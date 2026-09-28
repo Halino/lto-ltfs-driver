@@ -95,6 +95,7 @@ getent group lto-admin >/dev/null || /usr/sbin/groupadd -r lto-admin
 %files
 %license LICENSE NOTICES COPYING.LIB LGPL-NOTICE provenance/upstream.json
 %doc provenance/downstream-overlays.json provenance/upstream-files.sha256
+%doc provenance/license-inventory.json
 %{_bindir}/ltfs
 %{_bindir}/ltfsck
 %attr(0750,root,lto-admin) %{_bindir}/mkltfs

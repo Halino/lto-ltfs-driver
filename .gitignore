@@ -26,9 +26,6 @@ messages/.lib
 # Files created by OS
 .DS_Store
 # Files for development
-.superpowers/
-__pycache__/
-*.py[cod]
 GPATH
 GRTAGS
 GTAGS
