@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://halino.example/schemas/ltfs-info-v1.schema.json",
+  "$comment": "SPDX-License-Identifier: BSD-3-Clause",
+  "title": "LTFS read-only media inspection schema version 1",
+  "type": "object",
+  "required": [
+    "tape_by_id",
+    "scsi_by_id",
+    "drive_serial",
+    "mam_barcode",
+    "mam_volume_serial",
+    "ltfs_volume_label",
+    "ltfs_volume_uuid",
+    "index_generation"
+  ],
+  "properties": {
+    "tape_by_id": {
+      "type": "string",
+      "pattern": "^/dev/tape/by-id/[^/\\\\\u0000-\u0020\u007f]+$",
+      "maxLength": 255
+    },
+    "scsi_by_id": {
+      "type": "string",
+      "pattern": "^/dev/lto-archiver-scsi-[^/\\\\\u0000-\u0020\u007f]+$",
+      "maxLength": 255
+    },
+    "drive_serial": {
+      "type": "string",
+      "pattern": "^[!-~]+$",
+      "maxLength": 255
+    },
+    "mam_barcode": {
+      "type": ["string", "null"],
+      "pattern": "^[ -~]+$",
+      "maxLength": 255
+    },
+    "mam_volume_serial": {
+      "type": ["string", "null"],
+      "pattern": "^[ -~]+$",
+      "maxLength": 255
+    },
+    "ltfs_volume_label": {
+      "type": ["string", "null"],
+      "maxLength": 255
+    },
+    "ltfs_volume_uuid": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{4}-[0-9A-Fa-f]{12}$"
+    },
+    "index_generation": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    }
+  },
+  "additionalProperties": false
+}

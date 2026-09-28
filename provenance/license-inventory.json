@@ -1,0 +1,1095 @@
+[
+  {
+    "path": ".gitattributes",
+    "sha256": "1f9c7871d01c5c4fc2701140a79a7386ad3659844d781293fc5a27d0b5987ab4",
+    "upstream_sha256": "f8982a07b30e9ae1313ff53cbca49fb3b9aea9209a026d3c2adbe756204eedb6",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 .gitattributes plus local uthash path attributes",
+    "evidence": "Exact IBM tag file SHA-256 matches upstream_sha256; downstream diff adds only a comment and -text/-whitespace rule for the vendored uthash directory, with no HPE implementation content",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "Makefile.am",
+    "sha256": "82b0ecc7fa311d2e248663cf59ad2dc76d64195e76bf596922b6dcdcc7a6ab37",
+    "upstream_sha256": "c10ec0db909d17fe49c52c5cf92ecd6dbaf999a5694123f9cf1dc087013449af",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 Makefile.am plus local build/distribution manifest",
+    "evidence": "Exact IBM tag file SHA-256 matches upstream_sha256; downstream diff only adds tests to SUBDIRS and lists local qualification, schema, documentation and benchmark files in EXTRA_DIST; no HPE implementation content",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "README.md",
+    "sha256": "f13d4d5a8078aff30960035b33f38d2c1ab045a4b42f397e1fe5330d0da4baf7",
+    "upstream_sha256": "0e87e8661b7657397011b0ec03ab53398fa3908e26c3c83cd407d1fe22959441",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 README plus locally authored RHEL 9 driver packaging, device-admission and qualification instructions",
+    "evidence": "Full diff against the hash-pinned IBM README contains one 200-line downstream project-specific technical section, removal of an overbroad BSD badge, and a three-line license-status correction; the inherited IBM text remains. Added instructions refer to this project's exact local scripts, schemas, release numbers and qualification files. Distinctive added phrases were absent from the retained HPE 3.4.2 and 3.5 comparison trees. This is a file-scoped documentation-origin review, not a clearance of linked driver implementation or HPE-derived code.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "configure.ac",
+    "sha256": "e38efb7313b74f83c14703c2477ad8686ed3468a5d8f254fc30dacadc5ff12bb",
+    "upstream_sha256": "1ab0d0dc47dc239b582b6d0799c765acf239e7b45e710bb5b5ae4d7e38eb96e0",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 configure.ac plus local test-build switches",
+    "evidence": "Exact IBM tag file SHA-256 matches upstream_sha256; complete downstream diff only selects Python 3, adds a closed --enable-tests option and includes tests/Makefile; IBM BSD-3-Clause notice is retained, with no HPE implementation content",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "docs/qualification/complete-ltfs-report-template.md",
+    "sha256": "55daed52c5f84a3cad9e2e425c5fe5c003ad9eb11dd93fd0e8b9b60c40b6963d",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "locally authored qualification report template",
+    "evidence": "A dated local FileChange at 2026-08-23T20:23:40Z added this complete 119-line document; its recorded content SHA-256 equals both the reviewed candidate file and exact public-candidate tar entry. The document contains a blank evidence form and no literal cassette, host or job identity. Distinctive wording was absent from three local HPE comparison mirrors. This file-scoped finding does not clear other qualification documents or implementation code",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "docs/qualification/mam-volume-identifier.md",
+    "sha256": "ded07d8a6acc4e3ef2b3b7ec7fa32614a0d86404f6428b894d6c47848afff1ed",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local release20 MAM qualification report",
+    "evidence": "The complete 46-line candidate describes this project's release20 parser regression, fake-backend and sanitizer tests, and a bounded local hardware observation; it links the external LTO-6 guide instead of reproducing its prose. It has no upstream IBM counterpart; its title and distinctive wording were absent from the retained HPE 3.4.2 and 3.5 trees. Exact candidate hash is bound to the overlay manifest and tar; privacy tests pass. This document-only review does not clear the parser implementation or establish physical qualification beyond the stated run.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "docs/qualification/read-only-capacity.md",
+    "sha256": "ad821bcbf2270c26ee728695c00653b7896861f92a292ce1dd0d5a5c3451f75c",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local release18 read-only capacity qualification report",
+    "evidence": "The complete 92-line candidate describes this project's exact command, admission rules, JSON schema and hardware-free test evidence. It has no upstream IBM counterpart; its title and distinctive wording were absent from the retained HPE 3.4.2 and 3.5 trees. Exact candidate hash is bound to the overlay manifest and tar; privacy tests pass. This document-only review does not clear SG capacity parser origin or claim hardware interoperability.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "docs/qualification/read-only-session.md",
+    "sha256": "e7608b307a03c77964e200087829cad96413b280ac9f4fbd6558b567e6379c39",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local release19 read-only session qualification report",
+    "evidence": "The complete 59-line candidate describes this project's forced-read-only defect, local fake-backend regressions and explicit limits. It has no upstream IBM counterpart; its title and distinctive wording were absent from the retained HPE 3.4.2 and 3.5 trees. Exact candidate hash is bound to the overlay manifest and tar; privacy tests pass. This document-only review does not clear affected implementation files.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "docs/qualification/sg-lbp-response-bounds.md",
+    "sha256": "07ef6f69223f684e8e5cd39a2ce694ac834060a884073044b070d0a4f2f2a794",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local release21 SG bounds qualification report",
+    "evidence": "The complete 74-line candidate describes this project's captured SG boundary defect and exact regression/sanitizer results; it links the external T10 proposal rather than reproducing its prose. It has no upstream IBM counterpart; its title and distinctive wording were absent from the retained HPE 3.4.2 and 3.5 trees. Exact candidate hash is bound to the overlay manifest and tar; privacy tests pass. This document-only review does not clear the SG implementation or claim new physical qualification.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "messages/bin_ltfs/en.txt",
+    "sha256": "ae47f899d707eba31396b5490fe08a437d833014628e4efd98da07e6e0cb80a2",
+    "upstream_sha256": "529e2ffcc9b36f0ea8e114d42d1206a00d0083986ceef4aaaea07493bdd59e1d",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 English message table plus local operation-option help text",
+    "evidence": "Exact IBM tag file SHA-256 matches upstream_sha256; complete diff adds one help-text record for local event, index and receipt options; IBM BSD-3-Clause notice is retained, with no HPE implementation content",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "messages/bin_ltfs/root.txt",
+    "sha256": "27dd5ac3f187be46fe4b1d0b1bfcdf287af474016cf19c3cdbb958075f05ad78",
+    "upstream_sha256": "1b88972837a9af55cdb89f855c7b33d0c7e04c8d690b2e8d0d98efaec595dd55",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 root message table plus local operation-option help text",
+    "evidence": "Exact IBM tag file SHA-256 matches upstream_sha256; complete diff updates legacy sync-policy wording and adds one local event, index and receipt help record; IBM BSD-3-Clause notice is retained, with no HPE implementation content",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "src/Makefile.am",
+    "sha256": "c00fcd57a8a320e408354cfa5e5f0116da553263eec4e7c2e76fe58869e34bb2",
+    "upstream_sha256": "aec602eed678a82cde670650773eb1c0333d9c41bba29d1a83bbbbcb61ffd78d",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 source build manifest plus local version macros and header entry",
+    "evidence": "Exact IBM tag file SHA-256 matches upstream_sha256; complete diff adds local project/version macros and finalization.h to the installed header list; IBM BSD-3-Clause notice is retained, with no HPE implementation content",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "src/iosched/fcfs.c",
+    "sha256": "99aee301f91f0287f01bb30e2b902700444bdc0aa1492a91853dd9cb38445ed1",
+    "upstream_sha256": "7d4d92c684ba0048c746a6eab74c5ac3fe2953cc525875bcbcddd99e3289cc52",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 fcfs.c plus two local scheduler adjustments",
+    "evidence": "Both file hashes match the reviewed source and authenticated IBM commit; complete diff only renames the copyright data symbol and makes the no-op fcfs_flush accept an unused null dentry. Three HPE comparison copies retain the original IBM spelling and null check. IBM BSD-3-Clause notice and terms are unchanged; this finding is limited to fcfs.c",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/iosched/unified.c",
+    "sha256": "8871b421cd6ab9ef72f152cddc4f8323276293850841ceb2c2046ba4632e44da",
+    "upstream_sha256": "fad0d5d67e57c6adac0a38b5d78d163961a0419cd8f2dc24d01dafcb1445d4d8",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 unified scheduler plus local streaming telemetry integration",
+    "evidence": "Complete diff against the hash-pinned IBM file retains its IBM BSD-3-Clause notice and adds only a local streaming_stats member/calls, lock-protected queue-byte and underrun callbacks, and their ops registrations. Distinctive added API names are absent from retained HPE 3.4.2 and 3.5 comparison trees; the exact four-line scan found no HPE match. This file-scoped judgment does not clear the separately inventoried streaming_stats implementation, SG backend, or possible non-literal HPE adaptation elsewhere.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/Makefile.am",
+    "sha256": "a4d5f389218dadd92782ffd4023eb7de84da540c65e6fe4a781a98cad69ae65a",
+    "upstream_sha256": "79b23db989bfc30eec0ffc1c63d92b3d1f153510f275c587b79902eb0f587ca0",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 library build manifest plus local source entries and crypto linkage",
+    "evidence": "Exact IBM tag file SHA-256 matches upstream_sha256; complete diff only adds local source and header filenames and the -lcrypto link flag; IBM BSD-3-Clause notice is retained, with no HPE implementation content in this build file (listed C/H files are reviewed separately)",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "src/libltfs/arch/ltfs_arch_ops.h",
+    "sha256": "5fa3e11611a0e06283b8198be4aadd0810c751f9695a8cc716d7781c17694f46",
+    "upstream_sha256": "5fe51db98d188aac1621b014c772a17d991011e976ac5383b53a57201a479bce",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 architecture header plus a local POSIX open macro correction",
+    "evidence": "Exact IBM tag and downstream file SHA-256 match inventory; complete diff only names the permission argument, discards the Windows share flag and passes that permission to POSIX open; IBM BSD-3-Clause notice retained; added macro absent from two available HPE comparison mirrors (not proof of complete historical independence)",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/device_guard.c",
+    "sha256": "0c015da09ed9a76aadf7bad9fd215ec8c441b5901444e596da87ef7b36254510",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local device admission and operation-lock integration, with later SG broker-descriptor anchoring",
+    "evidence": "The full 169-line file was reviewed against its project-specific identity and lock APIs. A retained local 2026-08-22 worktree event modifies its device-guard requirement, and a 2026-08-25 local patch evolves this file from NST to SG descriptor anchoring with matching current code; the initial creation patch is not retained. Distinctive guard symbols and F_DUPFD_CLOEXEC anchoring were absent from the retained HPE 3.4.2/3.5 trees, and the added-run scan found no exact HPE four-line match. It declares BSD-3-Clause. This scoped engineering attribution does not exclude undocumented design influence or clear the separate identity/lock implementations; qualified rights review remains required before distribution.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/device_guard.h",
+    "sha256": "dd5069f49c620d2753242d1b5d49164b7171a12579327014287dfd4eba25e686",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local device guard interface linking identity and operation-lock APIs",
+    "evidence": "The complete 34-line header defines only the project's guard roots/state and five local API declarations. Retained local patches dated 2026-08-22 and 2026-08-25 modify its exact guard requirement and SG broker-anchor fields; the initial creation patch is not retained. Its distinctive symbols were absent from retained HPE 3.4.2/3.5 trees, and it declares BSD-3-Clause. This header-only attribution does not clear implementation dependencies or exclude undocumented design influence; qualified rights review remains required before distribution.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/device_identity.c",
+    "sha256": "bd366ce5e9ad481b4d76d143a6fc9e2917f9817d03cc48259d1560272c4caaf7",
+    "upstream_sha256": null,
+    "review_status": "policy_approved",
+    "declared_spdx": [
+      "LGPL-2.1-only"
+    ],
+    "license_candidate": "LGPL-2.1-only",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "downstream device-identity implementation; any HPE derivation remains unverified",
+    "evidence": "Original candidate and pinned overlay hashes identify the complete file. The retained HPE LTFS 3.5.0 README offers LGPL version 2.1; the owner selected that conservative distribution policy on 2026-09-28. This treatment does not prove authorship or line-level origin.",
+    "license": "LGPL-2.1-only",
+    "origin_certainty": "unverified",
+    "approval_basis": "owner-selected conservative LGPL-2.1-only policy",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/device_identity.h",
+    "sha256": "1f22abd682a2fec4e7787f4857980210b1bbbe4edd1bd1d216b38f41be908036",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local device identity and admission interface",
+    "evidence": "The complete 112-line header declares the project's device configuration, paired NST/SG identity, boot-bound lock roots, diagnostic phases and API. Its exact SHA-256 matches both the candidate tree and tar entry. Distinctive phase and trusted-config symbols are absent from the retained HPE 3.5 and 3.6 comparison trees and the locally retained HPE tape-driver tree; the header declares BSD-3-Clause. This file-scoped review does not clear the 840-line device_identity.c implementation or exclude undocumented HPE design influence; qualified rights review remains required before distribution.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/file_write_state.c",
+    "sha256": "92403eb8e4c86fe6a8b8210a4ecf3119231cbf2f9fca9f722f7c7949dfb432fc",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "locally introduced write-state accounting module",
+    "origin": "2026-08-22 local addition and revision of file-write release accounting",
+    "evidence": "Exact current SHA-256 matches inventory. A dated local Codex Add File patch at 2026-08-22T17:18:51Z creates this module, and a local diff recorded at 17:49Z shows the current 18-line body including its revised result handling. Distinctive symbols are absent from two available HPE comparison trees, first cloned August 24. The source declares BSD-3-Clause; this file-scoped finding does not clear the FUSE caller or perf-counters implementation.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/file_write_state.h",
+    "sha256": "4ca2924cb3da1fb976cc3ae8a3a48a7453acc3e25efc526799dc0acd46751452",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "locally introduced write-state interface",
+    "origin": "2026-08-22 local addition and revision of the per-file write-state interface",
+    "evidence": "Exact current SHA-256 matches inventory. The dated local development transcript contains an Add File patch for this header and the 17:49Z diff shows its final 48-line interface; the current two-state structure, inline helpers and release-accounting declaration match. Distinctive symbols are absent from two available HPE comparison trees, first cloned August 24. The source declares BSD-3-Clause; this header review does not clear consumers or implementations.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/finalization.c",
+    "sha256": "5329c589e05069aa717322393a1708fd9a5379a82d4b0f6c36de083e86fa372e",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local LTFS finalization and durable receipt state machine",
+    "evidence": "The complete 484-line module matches the private candidate tar and tree SHA-256 5329c589e05069aa717322393a1708fd9a5379a82d4b0f6c36de083e86fa372e and is absent from authenticated IBM tag v2.4.8.4-10522. It implements the retained August 21 local Task 7 phase/receipt/ACK design, including fail-closed acknowledgement, skip-AOM-dependent cleanup reporting, exact operation/volume/generation matching, independent close result and one terminal failure. The exact native C phase/fault matrix passed in an isolated local compile. Distinctive symbols were absent from retained HPE 3.4.2/3.5/3.6 comparison trees. BSD-3-Clause is declared. File-scoped working origin review does not prove absence of nonliteral HPE influence, clear its callers or replace qualified distribution-rights review.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/finalization.h",
+    "sha256": "319929c980147e8aa37681123636ada18c66db2cd1c9dfa2a96693c18680c649",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; file-scoped local design evidence; qualified redistribution-rights review still required",
+    "origin": "project-local durable LTFS finalization interface, with no IBM upstream counterpart in the exact overlay manifest",
+    "evidence": "Complete 164-line candidate header is byte-identical in the private source tree and SHA-256-pinned candidate tar. The retained August 21 local modern-core plan (SHA-256 a26a62df733d06d5d3fe968d8ee767392a5dfff81cbeeb4ce4bf51b3a3e94c94) explicitly says to create finalization.h and specifies its ordered phases, receipt identity and callback API; August 21 local development records show implementation/review of this interface. Distinctive finalization symbols were absent from the already retained HPE 3.4.2, 3.5 and 3.6 comparison trees. This is a bounded file-origin finding, not proof against non-literal HPE influence or clearance of finalization.c, other overlays or redistribution rights.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/fuse_foreground.c",
+    "sha256": "5ee25ff2622c0177d35b34a17d1893797638ede2b0335381cea80595cf6d5894",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "locally added FUSE foreground argument guard",
+    "origin": "2026-08-21 local addition of a bounded FUSE foreground argument helper",
+    "evidence": "Exact candidate SHA-256 matches inventory. A dated local git diff captured on 2026-08-21 contains this exact 18-line new file and retains its BSD-3-Clause SPDX marker. The two available HPE comparison trees use the general fuse_opt_insert_arg API for mount options but have no matching foreground helper or body. This file-scoped finding does not clear main.c or earlier design influence.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/fuse_foreground.h",
+    "sha256": "07f86ab7835d22c58612558452400e43cb20123f05578f15c2055b8a0920a995",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "locally added FUSE foreground helper declaration",
+    "origin": "2026-08-21 local addition of the FUSE foreground helper interface",
+    "evidence": "Exact candidate SHA-256 matches inventory. The same dated local git diff contains this exact 10-line new header and its BSD-3-Clause SPDX marker. Neither available HPE comparison tree has this helper declaration. This review covers only the header, not its caller or unrelated FUSE code.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/iosched.c",
+    "sha256": "47d9a7336c0a124d1471f8127788c3c7dfc7420054d32fa0d4fb3375819ecfff",
+    "upstream_sha256": "4b661fba7a3320fa6c71aa3b7235810c763377933c82e46f5d20de48af66c6c2",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": null,
+    "origin_candidate": "IBM LTFS v2.4.8.4-10522 plus local optional telemetry dispatch",
+    "origin": "IBM LTFS v2.4.8.4-10522 iosched.c with local optional read-only telemetry wrappers",
+    "evidence": "Exact IBM tag and candidate SHA-256 match inventory. Complete diff changes the callback-table required prefix to offsetof and adds two small zero-defaulting dispatch wrappers; IBM BSD-3-Clause notice remains. Distinctive callback names are absent from both available HPE comparison trees. This file-scoped result does not clear unified.c or callback implementations.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/iosched.h",
+    "sha256": "af6e4ed5ebcda39c21a87a4964d4f3856e56e77001c77c7cc9989f27feb4baef",
+    "upstream_sha256": "e0fa34a3a766ad8b1708cd310aef2915d2880bfd2d04598e3ae747a56f11fd17",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 scheduler API header plus local read-only telemetry declarations",
+    "evidence": "Exact IBM tag and downstream file SHA-256 match inventory; complete diff adds only queue-fill and buffer-underrun declarations; IBM BSD-3-Clause notice retained; new symbols absent from two available HPE comparison mirrors (not proof of complete historical independence)",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/iosched_ops.h",
+    "sha256": "2238db5488af91bd282525b48852312f887d4462e2e29f58daa360bc5e47b44d",
+    "upstream_sha256": "7c28a54db6096fbf3cce0a587489c24938609f0e6281b09b0b621b239b39d628",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 scheduler operations header plus local optional read-only telemetry callbacks",
+    "evidence": "Exact IBM tag and downstream file SHA-256 match inventory; complete diff adds two optional callback declarations and comments only; IBM BSD-3-Clause notice retained; callback names absent from two available HPE comparison mirrors (not proof of complete historical independence)",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/ltfs.c",
+    "sha256": "ed4ccf24fdd7f9cb5d01c149806dbef3cb474fde27a119b3acb160a49c191789",
+    "upstream_sha256": "43cefe2c190ff6050d29aedfae0ad939511958c439da667f4f5eff06e4e61ea6",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 core with downstream finalization and read-only guards",
+    "evidence": "Exact candidate/tree/tar SHA-256 ed4ccf24fdd7f9cb5d01c149806dbef3cb474fde27a119b3acb160a49c191789 and IBM-tag SHA-256 43cefe2c190ff6050d29aedfae0ad939511958c439da667f4f5eff06e4e61ea6 bind the complete diff. IBM BSD-3-Clause notice remains. Added close-result propagation, skip-AOM until catalog acknowledgement, unmount/index phase observation and forced-read-only index guard implement the retained August 21 finalization design and September 8 local guard changes; the plan names this file and contains red-green close/eject-gate evidence. Distinctive downstream symbols were absent from the retained HPE 3.4.2/3.5/3.6 comparison trees. File-scoped origin review does not clear finalization.c, tape.c, nonliteral HPE influence or qualified distribution rights.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/ltfs.h",
+    "sha256": "f679bac95488402bde66e2fd759030c6ec7e85243e1596b93d161b72a9a59fd9",
+    "upstream_sha256": "7194067bac816f743a903f2fe691d00f59f34603967cba94fa51ced974e814fa",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": null,
+    "origin_candidate": "IBM LTFS v2.4.8.4-10522 plus local identity and finalization declarations",
+    "origin": "IBM LTFS v2.4.8.4-10522 ltfs.h with local MAM fields and finalization declarations",
+    "evidence": "Exact IBM tag and candidate SHA-256 match inventory. Complete diff adds two MAM text fields, a local finalization include and function/type declarations, and changes two close return types; no algorithm body is added. IBM BSD-3-Clause notice remains. Distinctive new field and function names are absent from both available HPE comparison headers; implementations and MAM parsing remain separate review items.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/ltfs_endian.h",
+    "sha256": "176249a54c04d86cf3a1214b1238624fc4ce422f00df49d0b7351432ebb0c5e5",
+    "upstream_sha256": "6573719a59f28eb46d88b9df5de01f548a8bdce0399c93a9da4078b3037eee86",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 ltfs_endian.h plus locally authored alignment-safe conversion helpers",
+    "evidence": "Candidate tar entry SHA-256 equals the reviewed file hash; authenticated IBM tag file equals upstream_sha256. Complete diff retains IBM authorship and BSD-3-Clause notice and replaces six unaligned-cast macros with memcpy-based inline helpers. A dated local FileChange at 2026-09-08T21:23:59Z records the exact added and removed lines in this file. Distinctive new helper text was absent from three local HPE mirror comparators; exact HPE source remains unavailable, so this is a file-scoped provenance finding, not project-wide clearance",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/ltfs_error.h",
+    "sha256": "524a0acab1187c39046333123a0f9a5462409bc77a7e792e0835896f09d4ae12",
+    "upstream_sha256": "8fd2912e9758e2138d78c91a92bfc79300df7d74d2e93f6930f0ac9edeb6a651",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 error-code header plus local retry and identity error identifiers",
+    "evidence": "Exact IBM tag and downstream file SHA-256 match inventory; complete diff adds four adjacent error-code macros only; IBM BSD-3-Clause notice retained; new identifiers absent from two available HPE comparison mirrors (not proof of complete historical independence)",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/ltfs_events.c",
+    "sha256": "0b44b96ec9baab4f0b7abb46924b141b6ba93fcd37b7f4ab9eaec0195bddadb1",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local versioned LTFS event emission module",
+    "evidence": "The complete 536-line module is byte-identical in the private candidate tree and tar (SHA-256 0b44b96ec9baab4f0b7abb46924b141b6ba93fcd37b7f4ab9eaec0195bddadb1), absent from authenticated IBM tag v2.4.8.4-10522 and explicitly specified for creation in the retained August 21 local plan. Its UUID, phase/status, bounded JSON, escaping, sequence, duplicated descriptor and pipe-failure interfaces implement that local event contract; the exact native C fixture and four schema tests passed in an isolated local compile. Distinctive symbols were absent from retained HPE 3.4.2/3.5/3.6 comparison trees. The file declares BSD-3-Clause. This file-scoped review does not prove absence of nonliteral HPE influence, clear dependent modules, or replace qualified distribution-rights review.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/ltfs_events.h",
+    "sha256": "691a5e77e0f8883403c69d0d324dc869a57899ede7daab7eda3a1387ce28493b",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; file-scoped local design evidence; qualified redistribution-rights review still required",
+    "origin": "project-local versioned LTFS event interface, with no IBM upstream counterpart in the exact overlay manifest",
+    "evidence": "Complete 100-line candidate header is byte-identical in the private source tree and SHA-256-pinned candidate tar. The retained August 21 local modern-core plan (SHA-256 a26a62df733d06d5d3fe968d8ee767392a5dfff81cbeeb4ce4bf51b3a3e94c94) explicitly says to create ltfs_events.h and specifies schema 1, phase/status enums, counters and caller-owned descriptor behavior; later local finalization work extends those event phases. Distinctive event symbols were absent from the already retained HPE 3.4.2, 3.5 and 3.6 comparison trees. This is a bounded file-origin finding, not proof against non-literal HPE influence or clearance of ltfs_events.c, other overlays or redistribution rights.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/ltfs_internal.c",
+    "sha256": "397332a455381659c506b87033d297f5d56e345d6c7a446ed7e2ee9d3ac35d72",
+    "upstream_sha256": "24f3950e31148731ae8fae983533c119c0ccf51491934d9f9749f328bf80f959",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": null,
+    "origin_candidate": "IBM LTFS v2.4.8.4-10522 plus local read-only consistency guards",
+    "origin": "IBM LTFS v2.4.8.4-10522 ltfs_internal.c with three local forced-read-only checks",
+    "evidence": "Exact IBM tag and candidate SHA-256 match inventory. Complete diff adds only a forced-read-only suppression of repair, a conditional coherency update and a null/read-only guard; IBM BSD-3-Clause notice is retained. The distinctive new helper name is absent from both available HPE comparison trees. This file-scoped review does not clear tape_is_forced_read_only or other tape implementation files.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/operation_control.c",
+    "sha256": "01d960f176278c3e4822a5cf51b2c328542f355ee99bbb802ec90fd64ecbaa28",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local operation-option and interval-commit controller",
+    "evidence": "The complete 468-line module matches the private candidate tar and tree SHA-256 01d960f176278c3e4822a5cf51b2c328542f355ee99bbb802ec90fd64ecbaa28 and is absent from authenticated IBM tag v2.4.8.4-10522. Its event-fd/schema/operation-id parsing, legacy-policy conflict gate, first-byte-or-time serialized commit, atomic failure latch and cancellation implement the retained August 21 local Task 4 contract; the exact native C CLI/concurrency/fault matrix passed in an isolated local compile. Distinctive symbols were absent from retained HPE 3.4.2/3.5/3.6 comparison trees. BSD-3-Clause is declared. The initial creation patch was not retained; this file-scoped working origin review does not prove absence of nonliteral HPE influence or replace qualified distribution-rights review.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/operation_control.h",
+    "sha256": "fa677618d6a6b6fe51586c51bd16416c2e54a5fa6fc7fa347645349dd66ececb",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local operation and interval-commit interface",
+    "evidence": "The complete 86-line header is byte-identical in the private candidate tree and tar (SHA-256 fa677618d6a6b6fe51586c51bd16416c2e54a5fa6fc7fa347645349dd66ececb). It declares event-fd/schema/operation-id and index-policy parsing, first-byte-or-time interval control, failure preservation and cancellation interfaces specified by the retained August 21 local plan. It is absent from authenticated IBM tag v2.4.8.4-10522; distinctive operation-control symbols are absent from the retained HPE 3.4.2/3.5/3.6 comparison trees. BSD-3-Clause is declared in the file. This file-scoped classification does not clear operation_control.c, nonliteral HPE influence or qualified distribution rights.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/operation_lock.c",
+    "sha256": "438c52106b13fdfda37e0f73a1d76951842f0c658326ee44571d1cef74aa67d2",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "local operation-lock implementation corresponding to retained 2026-08-21 core foundation plan",
+    "evidence": "The complete 498-line implementation is byte-identical in the private candidate tree and tar (SHA-256 438c52106b13fdfda37e0f73a1d76951842f0c658326ee44571d1cef74aa67d2). It implements the retained local plan's exclusive 0600 JSON lock record, PID/boot/start-tick ownership, fsync, proven-stale replacement and owned release. Authenticated IBM tag v2.4.8.4-10522 lacks the module; distinctive lock symbols were absent from the retained HPE 3.4.2/3.5/3.6 trees. The exact native C lock test passed, including 100 concurrent contenders. Initial source-creation patch is not retained. This is file-scoped working origin classification, not proof against nonliteral HPE influence or qualified distribution-rights clearance.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/operation_lock.h",
+    "sha256": "24ff83304e1d4bee0b39bb2f572987d782cbf6fcdc602bf68dfe6d89b83ccfd2",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-specific boot-bound operation-lock interface",
+    "evidence": "The complete 45-line header declares operation classes, lock-record fields and acquire/release APIs tied to the project's device identity. Exact SHA-256 matches the candidate tree, source archive and inventory. Its distinctive acquire API was absent from the retained HPE 3.5/3.6 comparison trees and local HPE tape-driver tree. BSD-3-Clause is declared. This header-only review does not clear operation_lock.c or exclude undocumented design influence; qualified rights review remains required before distribution.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/perf_counters.c",
+    "sha256": "66b38d13bce18b74f0afd585f155e28ca09f385e73aa2a61e64abe619e8e33af",
+    "upstream_sha256": null,
+    "review_status": "policy_approved",
+    "declared_spdx": [
+      "LGPL-2.1-only"
+    ],
+    "license_candidate": "LGPL-2.1-only",
+    "origin_candidate": "local Add File patch on 2026-08-22T11:43:54Z; final 320-line body needs revision-by-revision review",
+    "origin": "downstream performance counters, initially added locally; later line-level origin remains unverified",
+    "evidence": "The initial dated local patch and exact original candidate hash identify this file, but not every later change. The retained HPE LTFS 3.5.0 README offers LGPL version 2.1; the owner selected that conservative distribution policy on 2026-09-28. This does not prove independent authorship.",
+    "license": "LGPL-2.1-only",
+    "origin_certainty": "unverified",
+    "approval_basis": "owner-selected conservative LGPL-2.1-only policy",
+    "evidence_gap": "The complete current 320-line body was inspected and matches the candidate tar, and its ring/clock/saturation design matches the retained August 21 local plan; however the initial August 22 Add File patch does not establish the origin of every later change, including file-identity de-duplication. Non-literal HPE influence and qualified rights signoff remain unresolved",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/perf_counters.h",
+    "sha256": "9f1a67fce1064eedc1ef820075943c87a63e039ca9ac501c95a0899248dd4082",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream telemetry interface with dated local creation record; qualified redistribution-rights review still required",
+    "origin": "project-local bounded performance telemetry interface for the IBM-derived LTFS runtime",
+    "evidence": "Complete 101-line current header is byte-identical in the private candidate tree and SHA-256-pinned tar. The retained August 21 modern-core plan (SHA-256 a26a62df733d06d5d3fe968d8ee767392a5dfff81cbeeb4ce4bf51b3a3e94c94) expressly calls for creating perf_counters.h and specifies monotonic timing, 1/10/60-second rates, queue/underrun/retry counters, memory ceiling and finalization durations; a local Add File patch is recorded on August 22 at 11:43:54 UTC. The current interface was read in full; distinctive symbols were absent from the already retained HPE 3.4.2, 3.5 and 3.6 comparison trees and local HPE tape-driver tree. This is only a file-scoped interface review: later edits, perf_counters.c, non-literal HPE influence and distribution rights still need qualified review.",
+    "license": "BSD-3-Clause",
+    "residual_limitation": "The complete creation-to-current edit chain is not retained; this reviewed label is not a final redistribution-rights signoff",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/perf_reporter.c",
+    "sha256": "ba04aa9ec50f408e4af1e63b40aa568bc54fe35e1d011b8aca65e412342d4d07",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local asynchronous performance-event reporter",
+    "evidence": "The complete 129-line C body matches the private candidate tar and tree SHA-256 ba04aa9ec50f408e4af1e63b40aa568bc54fe35e1d011b8aca65e412342d4d07. It couples locally designed counters and event sink through a coalescing pthread reporter, implements the retained August 21 plan's bounded telemetry interface, and passed its exact native C integration test in an isolated local compile. Distinctive reporter symbols are absent from retained HPE 3.4.2/3.5/3.6 comparison trees. BSD-3-Clause is declared. The initial creation patch was not retained; this file-scoped review does not exclude nonliteral HPE influence or replace qualified distribution-rights review.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/perf_reporter.h",
+    "sha256": "1d4b9e75a4effb4f64bb6ca24d67b0d987a1abc7384d2f7f4241bd36f105fc06",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local performance reporter interface",
+    "evidence": "The complete 44-line header matches the private candidate tar and tree SHA-256 1d4b9e75a4effb4f64bb6ca24d67b0d987a1abc7384d2f7f4241bd36f105fc06. It declares the sampler, counters/event-sink binding and lifecycle for the local asynchronous reporter required by the retained August 21 bounded-telemetry plan. Its exact C consumer test passed in an isolated local compile; distinctive symbols were absent from retained HPE 3.4.2/3.5/3.6 comparison trees. BSD-3-Clause is declared. The initial creation patch was not retained; this interface-only classification does not exclude nonliteral HPE influence or replace qualified rights review.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/periodic_sync.c",
+    "sha256": "a54d6bc36cefc5f60fe12b60652cee7e045b124b4206c7881fcbcd55e26ebdd7",
+    "upstream_sha256": "5e8c02a270c6b2eaa5af58718a994468de5a5ddb5007685c0c1d48064084dbae",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 periodic sync scheduler adapted for the locally designed time-or-byte operation controller",
+    "evidence": "The complete 233-line candidate and complete IBM diff are bound by the exact upstream and candidate SHA-256 values. IBM BSD-3-Clause terms remain. The retained August 21 local plan calls for the first positive byte or time threshold to trigger one serialized index commit, matching the added interval-control callbacks, monotonic clock and dirty-byte accounting. A dated 2026-09-08 local FileChange adds the final forced-read-only guard. Distinctive added APIs were absent in the retained HPE 3.4.2/3.5/3.6 trees. This is a file-scoped review of the adapter, not proof against undocumented nonliteral HPE influence or clearance of operation_control.c and other dependencies.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/periodic_sync.h",
+    "sha256": "1188c4da40c8655954c14100120bfbb8b24620577937b137f6da274868d4c692",
+    "upstream_sha256": "0414958ad6054674ab823dbcbf2c04b6220ade32cbbb65174deec6925e9bd6fe",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": null,
+    "origin_candidate": "IBM LTFS v2.4.8.4-10522 plus local periodic-sync interface changes",
+    "origin": "IBM LTFS v2.4.8.4-10522 periodic_sync.h with local byte-threshold and failure-reporting declarations",
+    "evidence": "Exact IBM tag and candidate SHA-256 match inventory. Complete diff adds stdint and forward declarations, revises three function signatures and declares dirty-byte accounting; no implementation body is added. IBM BSD-3-Clause notice remains. Distinctive new names are absent from both available HPE comparison headers. The paired periodic_sync.c has its own file-scoped review; operation_control.c and broader distribution rights remain separate.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/retry_policy.c",
+    "sha256": "7593eb060e9ae66f4b3e0b7bc5f546ddc977f2d27d7cd8a377d178f9e5f7335c",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "local retry-policy module developed against the IBM-derived SG backend",
+    "evidence": "The complete 155-line current module is SHA-256-identical in the candidate tree and tar. A retained August 21 local Git diff from a79d27d to 2025d3a records introduction of its 131-line BSD-3-Clause precursor and accompanying tests; later current code adds bounded ambiguity and non-idempotent-command handling. Current distinctive message codes were absent from the retained HPE 3.5/3.6 comparison trees and local HPE tape-driver tree. SCSI sense values are shared protocol concepts, not evidence of HPE-exclusive code. This file-scoped technical review does not authenticate the missing historical HPE input or clear other SG implementations; qualified rights review remains required before distribution.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/retry_policy.h",
+    "sha256": "1bb68f10ad398acf71b1e325243634358113927bd87054585d050e8c6f0af73a",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-specific retry-policy interface",
+    "evidence": "The complete 51-line header defines command classes, retry inputs/actions and the project's classification API. Exact SHA-256 matches candidate tree, archive and inventory. The distinctive ltfs_retry_classify symbol was absent from the retained HPE 3.5/3.6 comparison trees and local HPE tape-driver tree. BSD-3-Clause is declared. This header-only review does not clear retry_policy.c or prove that no external design influenced the policy; qualified rights review remains required before distribution.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/standalone_receipt.c",
+    "sha256": "c957ad5207df634c8894c94e815ee120590f888c41792b49f59620522463385b",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "local standalone ready, prepared and terminal receipt implementation specified in retained August 21 design",
+    "evidence": "The complete 612-line implementation is byte-identical in private candidate tree and tar (SHA-256 c957ad5207df634c8894c94e815ee120590f888c41792b49f59620522463385b). Its private-directory, byte-bound identity, no-overwrite hard-link publication and file/directory fsync behavior matches the retained 2026-08-21 local core specification. Authenticated IBM tag v2.4.8.4-10522 lacks this module; distinctive receipt symbols were absent from retained HPE 3.4.2/3.5/3.6 comparison trees. Exact standalone-receipt and fsync-receipt native C tests passed. Initial source-creation patch is not retained. This file-scoped working origin classification is not proof against nonliteral HPE influence or qualified distribution-rights clearance.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/standalone_receipt.h",
+    "sha256": "cdb839f6b85f572648fdbd07225765b6deb57b9fd48f5a89281311d0a2210061",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-specific standalone finalization receipt interface",
+    "evidence": "The complete 35-line header defines this project's ready identity and receipt persistence/finalization APIs, with an explicit dependency on finalization.h. Exact SHA-256 matches candidate tree, archive and inventory. Its distinctive finalize API was absent from the retained HPE 3.5/3.6 comparison trees and local HPE tape-driver tree. BSD-3-Clause is declared. This header-only review does not clear standalone_receipt.c or finalization.h/.c; qualified rights review remains required before distribution.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/streaming_stats.c",
+    "sha256": "e72af07ec184ad04fd11c4c6c345e9f8e1d18dc3b73cd78592c23646aab6ca93",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "locally introduced streaming-starvation counter, not present in pinned IBM base",
+    "origin": "2026-08-22 local addition of a self-contained streaming-starvation counter",
+    "evidence": "Exact current SHA-256 matches inventory. A dated local Codex transcript delta at 2026-08-22T17:37:17Z records an Add File patch for streaming_stats.c; its recorded function body matches this 20-line file. Targeted function-name and underrun/streaming searches found no corresponding implementation in the two available HPE comparison trees, first cloned on August 24. The file declares BSD-3-Clause. This file-scoped finding does not clear other SG or LTFS changes or exclude undocumented earlier design influence.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/streaming_stats.h",
+    "sha256": "4fc4d8393b80126926bf07bed05f442c021e963136692ed2cab5a646bb931128",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "locally introduced streaming-starvation counter interface, not present in pinned IBM base",
+    "origin": "2026-08-22 local addition of the streaming-starvation counter interface",
+    "evidence": "Exact current SHA-256 matches inventory. The same dated local Add File development record includes streaming_stats.h; its two-field structure and declarations match this 18-line file. Targeted symbol and underrun/streaming searches found no matching interface in the two available HPE comparison trees, first cloned on August 24. The file declares BSD-3-Clause. This review covers only this header, not the scheduler implementation or unknown earlier design influence.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/tape.c",
+    "sha256": "c3f93bccbf210c013c49589cd829d8ed362e8f88220ec2424ba8917ffe475cba",
+    "upstream_sha256": "6197fea29c0460a15b8ef87a7b6234c1ffd78b1aa7326e48546382d91413ea17",
+    "review_status": "policy_approved",
+    "declared_spdx": ["BSD-3-Clause AND LGPL-2.1-only"],
+    "license_candidate": "BSD-3-Clause AND LGPL-2.1-only",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "pinned IBM LTFS tape.c plus downstream changes of unverified HPE derivation",
+    "evidence": "The IBM baseline hash and original downstream overlay hash identify the changed file. IBM BSD-3-Clause terms remain intact; the retained HPE LTFS 3.5.0 README offers LGPL version 2.1 for conservatively treated downstream changes, selected by the owner on 2026-09-28. This does not establish the origin of each added line.",
+    "license": "BSD-3-Clause AND LGPL-2.1-only",
+    "origin_certainty": "unverified",
+    "approval_basis": "owner-selected conservative LGPL-2.1-only policy",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/tape.h",
+    "sha256": "54f564b8bba8f3b4b9c6b0de7841fe13f413e264d99951c8ed08fb0fcc08fb00",
+    "upstream_sha256": "dc0c57fb0ebcefe8bab7de119c22ce9c5dfd56f92a58deb49b48214f1661916a",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": null,
+    "origin_candidate": "IBM LTFS v2.4.8.4-10522 plus local tape status and close declarations",
+    "origin": "IBM LTFS v2.4.8.4-10522 tape.h with local status, close-result and telemetry declarations",
+    "evidence": "Exact IBM tag and candidate SHA-256 match inventory. Complete diff widens the write-protection field, changes two close-return declarations to int and adds two local status/telemetry declarations; no implementation body is added. The IBM BSD-3-Clause notice is retained. Distinctive new symbols are absent from two available HPE comparison headers; the implementations remain separate review items.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/tape_ops.h",
+    "sha256": "6a08d69f9aacbeeeee6af76a646bf5292c1f0d05ca567bfd574a050f55f3c9d8",
+    "upstream_sha256": "e51060f2738f0fc2c2eb7c8dfc453f7195f352b44e536179b56b923f3c9842c0",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 tape backend interface with bounded local telemetry and MAM declarations",
+    "evidence": "Current and authenticated IBM-tag SHA-256 match the inventory, and the complete zero-context diff adds only a two-field telemetry structure, an optional telemetry callback, and four MAM identifier/size constants. The local 2026-08-22 task8-info development record shows the telemetry extension in use; dated local diffs on 2026-08-23 and 2026-08-24 show the MAM additions. IBM SCSI references independently document Volume Identifier 0008h and Medium Serial Number 0401h. The two retained HPE comparison trees have none of the added symbols. The IBM BSD-3-Clause notice remains intact. This file-scoped review does not clear the SG callback implementation, MAM parsing callers, or possible nonliteral HPE derivation elsewhere.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/libltfs/uthash_submodule/LICENSE",
+    "sha256": "3fbbead84dff6db076bdd60eee3c98dadc35a4a415c72b0a35f95d723931c18a",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-1-Clause",
+    "origin_candidate": "vendored third-party uthash",
+    "origin": "Exact vendored uthash files from troydhanson/uthash commit 2031adfd8cd6f8f498e0f4a9055648b19496f12e",
+    "evidence": "Local SHA-256 matches provenance/uthash.json and independently fetched GitHub source for this commit; original copyright and one-condition BSD notice retained",
+    "license": "BSD-1-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "src/libltfs/uthash_submodule/src/uthash.h",
+    "sha256": "61bf8a411bcd81f6e67fe8281001a444ebae51560b3df15ff13bb018fe51f18c",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-1-Clause",
+    "origin_candidate": "vendored third-party uthash",
+    "origin": "Exact vendored uthash files from troydhanson/uthash commit 2031adfd8cd6f8f498e0f4a9055648b19496f12e",
+    "evidence": "Local SHA-256 matches provenance/uthash.json and independently fetched GitHub source for this commit; original copyright and one-condition BSD notice retained",
+    "license": "BSD-1-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "src/ltfs_fuse.c",
+    "sha256": "addb153b8fc60bc0274728c7ae65b1e4159e5e45d71f08916d28e2aa0c4d1260",
+    "upstream_sha256": "0d3bcb218eeb5588bc387904bbe1e4f48c45fd0f23b95b7a3a79f273020b7176",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 FUSE adapter plus local events, write accounting, receipt and finalization wiring",
+    "evidence": "Candidate tree and private tar match SHA-256 addb153b8fc60bc0274728c7ae65b1e4159e5e45d71f08916d28e2aa0c4d1260; authenticated IBM tag source matches upstream_sha256. The complete 597-line unified diff of the 1671-line candidate was read. IBM copyright/BSD-3-Clause notice remains. Added/replaced regions implement the retained August 21 local design's event adapter, write-state accounting, interval scheduler, identity-bound standalone receipt and durable finalization callbacks. Distinctive added identifiers were absent from retained HPE 3.4.2/3.5/3.6 trees; earlier comprehensive four-line scan found no HPE-exclusive match. This is file-scoped working origin classification, not proof against nonliteral HPE influence, FUSE runtime functional acceptance or qualified distribution-rights clearance. No built LTFS/FUSE integration binary was present for fresh executable checks.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/ltfs_fuse.h",
+    "sha256": "96789699027cb548255de140dc79bbc2f5dfb7d508eaeb3bb06ac3f4b7e1a583",
+    "upstream_sha256": "f57cb06bea218ead8b8ba22f76c1c2728796551cf7ff55cacd67a9dedfc5c5b0",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": null,
+    "origin_candidate": "IBM LTFS v2.4.8.4-10522 plus local FUSE state declarations",
+    "origin": "IBM LTFS v2.4.8.4-10522 ltfs_fuse.h plus local types, fields and function declarations",
+    "evidence": "Exact IBM tag and candidate SHA-256 match inventory. Complete diff adds local header includes, operation/finalization/receipt/telemetry fields and two function declarations, and replaces one dirty flag with a local write-state structure; no algorithm body is added. IBM BSD-3-Clause notice is retained. Distinctive new symbols are absent from both available HPE comparison headers. Referenced implementation files remain separate unreviewed items.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/main.c",
+    "sha256": "5b21b9c2190637aa33bc14205d99ff9791d0afa2630eb7c2261765d915de7db4",
+    "upstream_sha256": "802dceb3146147251b5af64d239d8d2e36320af1d3512de01611c11ca6708703",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 main.c plus local CLI, device-fencing, event and finalization integration",
+    "evidence": "Candidate tree and private tar match SHA-256 5b21b9c2190637aa33bc14205d99ff9791d0afa2630eb7c2261765d915de7db4; authenticated IBM tag source matches upstream_sha256. The complete 561-line unified diff of the 1512-line candidate was read. IBM copyright/BSD-3-Clause notice remains. Added/replaced regions implement locally specified side-effect-free version output, operation-option validation, device-guard/foreground admission, events, standalone receipt and close-result preservation; the retained August 21 plan/spec explicitly name these main.c changes. Distinctive added identifiers were absent from the retained HPE 3.4.2/3.5/3.6 trees; an earlier exhaustive four-line scan found no HPE-exclusive match. This is file-scoped working origin classification, not proof against nonliteral HPE influence, a functional runtime pass or qualified distribution-rights clearance. No built CLI was available in this local harness for fresh executable checks.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/freebsd/cam/cam_cmn.c",
+    "sha256": "6c4d8640d4c3d923c79b5b439369785a69cd7fdb395906b8580ed0ccd23d743b",
+    "upstream_sha256": "e4a2ffd36665f7a4387e7ee39df17c2a9d546441fbb562360160a8c1b97e8a83",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 CAM driver with local copyright-symbol rename",
+    "evidence": "Exact local and pinned IBM hashes verified; complete diff only renames the IBM copyright data symbol to tape_cam_copyright; IBM BSD-3-Clause notice and implementation are otherwise unchanged",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/generic/file/filedebug_tc.c",
+    "sha256": "43ccb43f77108b8248a910aaf38fcfc747f61cee27960d3a10f8cf9806410e74",
+    "upstream_sha256": "7bafd91c4dab790c6339f62c3cb31595b39f6120e4ce7f6158c68ba4156fc300",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 file backend with local copyright-symbol rename",
+    "evidence": "Exact local and pinned IBM hashes verified; complete diff only renames the IBM copyright data symbol to tape_filedebug_copyright; IBM BSD-3-Clause notice and implementation are otherwise unchanged",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/generic/itdtimg/itdtimg_tc.c",
+    "sha256": "ac5ef5c4028c7a4271bffc6e21dfadbb2465e748ed8ba015d7f9ec52f2e146cf",
+    "upstream_sha256": "1f7f36ccc1ea59e08103336563e044e5618b27f6155bdffbffcb796ac1f625be",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 ITDT image backend with local copyright-symbol rename",
+    "evidence": "Exact local and pinned IBM hashes verified; complete diff only renames the IBM copyright data symbol to tape_itdtimg_copyright; IBM BSD-3-Clause notice and implementation are otherwise unchanged",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/linux/lin_tape/lin_tape_ibmtape.c",
+    "sha256": "9a07d4ad3dddd3d09ebfbddf279fcdc8563b9d614406dde25b967c0bce396fad",
+    "upstream_sha256": "3e967426ae96da2d16c2cca9d1ae20cb03a7706d4868a7c931b4c84d0148e9fc",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 lin_tape backend with local copyright-symbol rename",
+    "evidence": "Exact local and pinned IBM hashes verified; complete diff only renames the IBM copyright data symbol to tape_lintape_copyright; IBM BSD-3-Clause notice and implementation are otherwise unchanged",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/Makefile.am",
+    "sha256": "6c2e9c145e30cd3461b1f70c4b8597366e872e16957d35b7de72a1a937ca03a7",
+    "upstream_sha256": "95bf94d53ed9dbef41754414a527c43c3afef0dec76ad54972c1d594a3b22725",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 SG backend build manifest plus two local capacity-parser file entries",
+    "evidence": "Exact IBM tag file SHA-256 matches upstream_sha256; complete diff adds only sg_capacity.c and sg_capacity.h to the source list; IBM BSD-3-Clause notice is retained; those C/H files remain separately unreviewed",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_capacity.c",
+    "sha256": "2d34ebaf6dce56c94f60a7d6365afaf1865a6a3cae39e9052b9548381b7a813d",
+    "upstream_sha256": null,
+    "review_status": "policy_approved",
+    "declared_spdx": [
+      "LGPL-2.1-only"
+    ],
+    "license_candidate": "LGPL-2.1-only",
+    "origin_candidate": "new bounded SG capacity parser; IBM SG behavior verified, authorship/HPE derivation unresolved",
+    "origin": "downstream SG capacity parser using IBM-documented behavior; line-level HPE derivation unverified",
+    "license": "LGPL-2.1-only",
+    "origin_certainty": "unverified",
+    "approval_basis": "owner-selected conservative LGPL-2.1-only policy",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested",
+    "evidence": "Original candidate hash is pinned. IBM upstream already documents page 0x31/0x17 selection and parameter 0x0203; the parser adds bounds checks and fallback. The retained HPE LTFS 3.5.0 README offers LGPL version 2.1; the owner selected that conservative policy on 2026-09-28. Shared SCSI concepts do not prove independent authorship or HPE origin."
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_capacity.h",
+    "sha256": "3a54733b27549ff1c515fb0aca95de167733810e19853a7e1dc2448e8364bae0",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [
+      "BSD-3-Clause"
+    ],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-specific SG capacity parser interface",
+    "evidence": "The complete 20-line header declares page31/page17 parsing against the IBM-derived tape_ops capacity type. Exact SHA-256 matches candidate tree, archive and inventory. Its distinctive parser name was absent from the retained HPE 3.5/3.6 comparison trees and local HPE tape-driver tree. BSD-3-Clause is declared. Shared SCSI page semantics and this header alone do not establish code provenance for sg_capacity.c; qualified rights review remains required before distribution.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_scsi_tape.c",
+    "sha256": "fc72e02d82977cb36655b4033b17c37452d90ea04fb816b3af4934e735b485cd",
+    "upstream_sha256": "6801f4031fed2aa71651245e51e2c118f5bb1c69e6876f3c14f09285d146b6eb",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 Linux SG command handler with locally planned bounded-retry integration (working file-scoped classification)",
+    "evidence": "Candidate tree, unchanged private tar and inventory match SHA-256 fc72e02d82977cb36655b4033b17c37452d90ea04fb816b3af4934e735b485cd; authenticated IBM tag file matches upstream_sha256 and its BSD-3-Clause notice remains. The complete 671-line diff was read: added command classification, monotonic bounded retry/deadline, ambiguous-write stop, identity refresh and bounded response handling correspond to the retained 2026-08-21 Task 6 plan and scripted SG test cases. A 2026-08-21 19:54 UTC local tool output already contains sg_apply_retry_decision before the retained HPE mirrors were cloned August 24; distinctive retry identifiers are absent from retained HPE 3.4.2/3.5/3.6 trees. This is technical origin triage only: the initial patch is not retained, negative comparisons do not disprove nonliteral HPE influence, and qualified distribution-rights review remains necessary.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_scsi_tape.h",
+    "sha256": "0615a7b048f923984dfbb66814af9cf10837d86dc449f01dc146d64994f5b44c",
+    "upstream_sha256": "d623c0a85cff966f584e44457f47be9fe13d8e372474b1d45143fe4470da8564",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 SG interface plus locally developed retry, identity and destructive-CDB declarations",
+    "evidence": "The complete 164-line candidate and complete diff are bound to the pinned IBM file by SHA-256; the inherited IBM BSD-3-Clause copyright and terms remain. The added SG retry and identity interfaces link to project-local headers. Dated local FileChange records on 2026-08-23 add the erase/format CDB builders and then change their null checks to the exact current form; earlier local August 21 output already exercised the retry deadline. Distinctive added symbols are absent from the retained HPE 3.4.2/3.5/3.6 comparison trees. This is a file-scoped interface-origin review, not clearance of the paired SG implementations, undocumented nonliteral HPE influence or public redistribution rights.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_tape.c",
+    "sha256": "5dee482980a8c84afd21e59e66e73477d4ab2dd4340ae16593ff4259fa170ccd",
+    "upstream_sha256": "4f2ec5c955cce931180fb16d54e9a6d2d37cf44670e3131d70841fcce62d6c12",
+    "review_status": "policy_approved",
+    "declared_spdx": ["BSD-3-Clause AND LGPL-2.1-only"],
+    "license_candidate": "BSD-3-Clause AND LGPL-2.1-only",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "pinned IBM LTFS SG driver plus downstream changes of unverified HPE derivation",
+    "evidence": "The IBM baseline hash and original downstream overlay hash identify the changed file. IBM BSD-3-Clause terms remain intact; the retained HPE LTFS 3.5.0 README offers LGPL version 2.1 for conservatively treated downstream changes, selected by the owner on 2026-09-28. This does not establish the origin of each added line.",
+    "license": "BSD-3-Clause AND LGPL-2.1-only",
+    "origin_certainty": "unverified",
+    "approval_basis": "owner-selected conservative LGPL-2.1-only policy",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_tape.h",
+    "sha256": "98061e838307660fc3677c6e3f9958110e560a40664b6c1b041041cdccf3e0de",
+    "upstream_sha256": "ed13d737bd19ec30a5dbe6b2114afc5d635b4b2ab9d5a913f3415f0c3a9aec11",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 SG header with one downstream retry-counter declaration",
+    "evidence": "Exact local and pinned IBM hashes verified; complete diff only adds uint64_t retry_count to the IBM SG device struct; IBM BSD-3-Clause notice remains; no other SG implementation file is cleared by this review",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/netbsd/scsipi-ibmtape/scsipi_ibmtape.c",
+    "sha256": "a1e0338888f859b9357ff2107700d0b3a1b028efc8816e3251dcf7f981297b08",
+    "upstream_sha256": "c31df6a77bfaa4a60d3c642489b3fcfc1e94e38b5fecbc6224eea773abcbfb59",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 NetBSD backend with local copyright-symbol rename",
+    "evidence": "Exact local and pinned IBM hashes verified; complete diff only renames the IBM copyright data symbol to tape_netbsd_ibmtape_copyright; IBM BSD-3-Clause notice and implementation are otherwise unchanged",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/tape_drivers/osx/iokit/iokit_tape.c",
+    "sha256": "12007ae271700704b12d652126440f8b80a67494eeb6791634a2c3898ae7a798",
+    "upstream_sha256": "78ef8d6ec98e7c667e0d30891677a05ba69869b073e766363ff981f4dc3e1f0f",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 IOKit backend with local copyright-symbol rename",
+    "evidence": "Exact local and pinned IBM hashes verified; complete diff only renames the IBM copyright data symbol to tape_iokit_copyright; IBM BSD-3-Clause notice and implementation are otherwise unchanged",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/utils/Makefile.am",
+    "sha256": "6acff3d8074f71c7f29e22c3c05e2d8452957bef9e571f0c0061b0c4cad20ced",
+    "upstream_sha256": "dc7e9a0ad4fddc2248c0a9641eacf0e5f97982eb0647bee5749e8782c78cb89f",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 utilities build manifest plus local ltfs-info program entries",
+    "evidence": "Exact IBM tag file SHA-256 matches upstream_sha256; complete diff only names the local ltfs-info target, its sources and build flags; IBM BSD-3-Clause notice is retained; referenced C/H files remain separately unreviewed",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "src/utils/ltfs_info.c",
+    "sha256": "99098b125381931f3b2c294c0c19ac268cd633954f7e0cc5eeb33b392e8df179",
+    "upstream_sha256": null,
+    "review_status": "policy_approved",
+    "declared_spdx": [
+      "LGPL-2.1-only"
+    ],
+    "license_candidate": "LGPL-2.1-only",
+    "origin_candidate": "local Add File patches on 2026-08-22T11:08:09Z and 11:10:02Z; final 1341-line body needs revision-by-revision review",
+    "origin": "downstream ltfs-info diagnostic, initially added locally; later line-level origin remains unverified",
+    "evidence": "Initial dated local patches and original candidate hash identify the file, but not every later change. The retained HPE LTFS 3.5.0 README offers LGPL version 2.1; the owner selected that conservative distribution policy on 2026-09-28. This does not prove independent authorship.",
+    "license": "LGPL-2.1-only",
+    "origin_certainty": "unverified",
+    "approval_basis": "owner-selected conservative LGPL-2.1-only policy",
+    "evidence_gap": "The initial local patches do not establish the origin or license of every later change in the byte-exact candidate; HPE derivation remains unverified",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/utils/ltfs_info.h",
+    "sha256": "9634a6e6a8fb59190c26ebf3220804921dffa3adeaa2d695807af1330f091e85",
+    "upstream_sha256": null,
+    "review_status": "policy_approved",
+    "declared_spdx": [
+      "LGPL-2.1-only"
+    ],
+    "license_candidate": "LGPL-2.1-only",
+    "origin_candidate": "local Add File patch on 2026-08-22T11:04:54Z; final 152-line interface needs revision-by-revision review",
+    "origin": "downstream ltfs-info interface, initially added locally; later line-level origin remains unverified",
+    "evidence": "Dated local Add File and subsequent changes are recorded but are not a complete origin chain. The retained HPE LTFS 3.5.0 README offers LGPL version 2.1; the owner selected that conservative distribution policy on 2026-09-28. This does not prove independent authorship.",
+    "license": "LGPL-2.1-only",
+    "origin_certainty": "unverified",
+    "approval_basis": "owner-selected conservative LGPL-2.1-only policy",
+    "evidence_gap": "The initial local patch does not establish the origin or license of every later change in the byte-exact candidate; HPE derivation remains unverified",
+    "development_evidence": "The dated initial Add File content has SHA-256 30e481b4c49cc28d746d9f2e6bcdbfa9cb404b4c74c0b95f260af6b542117741. Local FileChange records on 2026-08-22 add opcode, coherency, capacity-page and attribute-response declarations; 2026-09-06 FileChange records add the explicit expected-medium and capacity-report contracts. Local August 23-24 outputs show pre-format, config-path, device-config JSON and media-state APIs before the recorded acquisition of the retained HPE comparison clones. The final candidate/tree/tar SHA-256 is 3cbdac1db1ff0b9daf29152786b7a4c51924c3c3c954478e2010d8108809cdd9. Distinctive API names were absent from the retained HPE 3.4.2/3.5/3.6 trees. This chronology is not a complete revision chain or proof against earlier HPE influence; review_status remains unreviewed.",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/utils/ltfsck.c",
+    "sha256": "d21da0bb8a67aad4220c001540b55f0b62ec88f0d92801c123dddd439fcb4b2c",
+    "upstream_sha256": "b06043295c809c4b95c2b9b99738328565141b103c0f00e7edb0bd680e23fe3b",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 utility with downstream device-identity admission and cleanup",
+    "evidence": "Exact candidate/tree/tar SHA-256 d21da0bb8a67aad4220c001540b55f0b62ec88f0d92801c123dddd439fcb4b2c and IBM-tag SHA-256 b06043295c809c4b95c2b9b99738328565141b103c0f00e7edb0bd680e23fe3b bind the complete diff. IBM BSD-3-Clause notice remains. Added trusted configuration, device guard and operation lock, backend-path substitution and cleanup-state flags implement the retained August 21 local device-exclusivity design for ltfsck; the later backend path adjustment has a retained August 25 local FileChange. Distinctive added symbols were absent from the retained HPE 3.4.2/3.5/3.6 comparison trees. File-scoped origin review does not clear device_guard.c dependencies, nonliteral HPE influence, behavioral qualification or qualified distribution rights.",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  },
+  {
+    "path": "src/utils/mkltfs.c",
+    "sha256": "cbb73ad14006ebecac5017d519bf00842e98eb5f83d09ae0111def79ca8df7aa",
+    "upstream_sha256": "2b03cf81d743b588067c8f8d2ea42b3693a8867da4992162ca11d4464e75fb9a",
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
+    "origin": "IBM LTFS v2.4.8.4-10522 mkltfs utility with local copyright-symbol rename",
+    "evidence": "Exact local and pinned IBM hashes verified; complete diff only renames the IBM copyright data symbol to mkltfs_copyright; IBM BSD-3-Clause notice and implementation are otherwise unchanged",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "no exact four-line match in added runs vs public HPE StoreOpen 3.5.0 mirror; non-literal derivation untested"
+  }
+]

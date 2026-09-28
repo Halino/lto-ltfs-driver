@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/LinearTapeFileSystem/ltfs.git",
+  "tag": "v2.4.8.4-10522",
+  "commit": "7d0de7c0a71296353160f4c5bc082fec9af04e5c",
+  "tree": "5e22b0e576d2cb15deb41bdee1073f862c5b48e0",
+  "license": "BSD-3-Clause",
+  "excluded_paths": [
+    ".github/",
+    ".gitmodules",
+    ".travis.yml",
+    "src/libltfs/uthash_submodule"
+  ]
+}

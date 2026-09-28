@@ -1,0 +1,21 @@
+HPE LTFS licensing notice for this downstream source candidate
+
+Copyright (C) 2015-2021 Hewlett Packard Enterprise Development LP.
+
+The retained HPE LTFS 3.5.0 README states that HPE LTFS may be redistributed
+and modified under version 2.1 of the GNU Lesser General Public License.
+The accompanying COPYING.LIB is that license text. This package uses the
+LGPL-2.1-only treatment conservatively for the downstream components named
+in provenance/license-inventory.json. Their exact line-level origin remains
+unverified; this notice does not assert that every such file contains HPE code.
+
+IBM LTFS source remains attributed under its BSD-3-Clause terms in LICENSE
+and in the original file headers. The separate Queue.h and uthash notices in
+NOTICES also remain in force. These notices are cumulative, not replacements.
+
+Project changes made from 2026-08 through 2026-09 include device identity,
+performance counters, tape and SG handling, capacity parsing, and ltfs-info.
+On 2026-09-28 the project added the conservative license annotations and RPM
+packaging for release 22. No tape-operation behavior was changed by that
+license-only update. See the source files and the downstream overlay manifest
+for the change descriptions and exact source hashes.

@@ -1,0 +1,548 @@
+[
+  {
+    "path": ".gitattributes",
+    "upstream_sha256": "f8982a07b30e9ae1313ff53cbca49fb3b9aea9209a026d3c2adbe756204eedb6",
+    "downstream_sha256": "1f9c7871d01c5c4fc2701140a79a7386ad3659844d781293fc5a27d0b5987ab4",
+    "rationale": "Preserve byte-exact vendored uthash files while limiting whitespace lint suppression to that subtree.",
+    "task": "task-2"
+  },
+  {
+    "path": "Makefile.am",
+    "upstream_sha256": "c10ec0db909d17fe49c52c5cf92ecd6dbaf999a5694123f9cf1dc087013449af",
+    "downstream_sha256": "82b0ecc7fa311d2e248663cf59ad2dc76d64195e76bf596922b6dcdcc7a6ab37",
+    "rationale": "Add the downstream test harness and distribute sanitizer, file-backend benchmark, complete LTFS surface-verification, destructive file-backend qualification, versioned ltfs-info schemas including the label-first schema 2 contract, complete qualification runner, and report-template assets. Add the guarded read-only capacity diagnostic with shared capacity parsers and explicit compatibility and qualification limits. Distribute the release20 MAM Volume Identifier correction and qualification document. Distribute the SG response-bounds and alignment-safe endian qualification report.",
+    "task": "task-2/task-3/task-8-pre-format/task-9/complete-ltfs-qualification/label-first-preformat-identity/r18-read-only-capacity/read-only-session-20260908/mam-variable-volume-id-20260908/sg-endian-release21-20260908"
+  },
+  {
+    "path": "README.md",
+    "upstream_sha256": "0e87e8661b7657397011b0ec03ab53398fa3908e26c3c83cd407d1fe22959441",
+    "downstream_sha256": "f13d4d5a8078aff30960035b33f38d2c1ab045a4b42f397e1fe5330d0da4baf7",
+    "rationale": "Document offline locked RHEL 9 RPM construction, guarded device provisioning and pre-format inspection, broker descriptor admission, MAM continuity, SG sequential sense and finalization semantics, corrected HP LTO-6 capacity telemetry, VCI signature and option parsing, and explicit hardware/interoperability and non-universal-reserve limitations. Describe release21 SG/endian corrections and historical predecessors. Update current package examples to the private release22 candidate and document the conditional LGPL-2.1-only treatment alongside IBM and third-party BSD notices without claiming public clearance.",
+    "task": "task-8-pre-format/task-10/complete-ltfs-qualification/tmpfiles-device-namespace-fix/r4-flat-udev-alias/mam-medium-serial-r6/review-fix-1/r7-sg-capacity/r8-sg-filemark/r9-sg-sequential-sense/r10-sg-close/r11-capacity-sentinel/r16-stable-fuse-source/r17-capacity-vci-options/r18-read-only-capacity/mam-variable-volume-id-20260908/sg-endian-release21-20260908/lgpl-release22-20260928"
+  },
+  {
+    "path": "configure.ac",
+    "upstream_sha256": "1ab0d0dc47dc239b582b6d0799c765acf239e7b45e710bb5b5ae4d7e38eb96e0",
+    "downstream_sha256": "e38efb7313b74f83c14703c2477ad8686ed3468a5d8f254fc30dacadc5ff12bb",
+    "rationale": "Add the downstream tests option, Python interpreter discovery, and test makefile.",
+    "task": "task-2"
+  },
+  {
+    "path": "docs/qualification/complete-ltfs-report-template.md",
+    "upstream_sha256": null,
+    "downstream_sha256": "55daed52c5f84a3cad9e2e425c5fe5c003ad9eb11dd93fd0e8b9b60c40b6963d",
+    "rationale": "Provide the closed independent report schema for hermetic, RHEL, physical-identity, per-operation, and final-media evidence.",
+    "task": "complete-ltfs-qualification"
+  },
+  {
+    "path": "docs/qualification/mam-volume-identifier.md",
+    "upstream_sha256": null,
+    "downstream_sha256": "ded07d8a6acc4e3ef2b3b7ec7fa32614a0d86404f6428b894d6c47848afff1ed",
+    "rationale": "Document the standards-backed MAM Volume Identifier length correction, hardware-free regression evidence, and pending release20 deployment and physical qualification. Record successful release20 read-only HP hardware qualification and distinguish the separately corrected SG close command. Public-source variant removes private operation and media identifiers; original signed Source0 remains unchanged.",
+    "task": "mam-variable-volume-id-20260908/sg-endian-release21-20260908"
+  },
+  {
+    "path": "docs/qualification/read-only-capacity.md",
+    "upstream_sha256": null,
+    "downstream_sha256": "ad821bcbf2270c26ee728695c00653b7896861f92a292ce1dd0d5a5c3451f75c",
+    "rationale": "Document the separately versioned read-only capacity diagnostic, exact identity continuity, maintenance exclusion and hardware qualification limits. Public-source variant removes private operation and media identifiers; original signed Source0 remains unchanged.",
+    "task": "r18-read-only-capacity"
+  },
+  {
+    "path": "docs/qualification/read-only-session.md",
+    "upstream_sha256": null,
+    "downstream_sha256": "e7608b307a03c77964e200087829cad96413b280ac9f4fbd6558b567e6379c39",
+    "rationale": "Document forced-read-only session enforcement, normal and sanitizer evidence, unchanged writable behavior, and remaining release and hardware qualification limits.",
+    "task": "read-only-session-20260908"
+  },
+  {
+    "path": "docs/qualification/sg-lbp-response-bounds.md",
+    "upstream_sha256": null,
+    "downstream_sha256": "07ef6f69223f684e8e5cd39a2ce694ac834060a884073044b070d0a4f2f2a794",
+    "rationale": "Document observed SG response-length defect, alignment-safe endian fix, full normal/sanitized37of37 results and remaining deployment/hardware gates. Public-source variant removes private operation and media identifiers; original signed Source0 remains unchanged.",
+    "task": "sg-endian-release21-20260908"
+  },
+  {
+    "path": "messages/bin_ltfs/en.txt",
+    "upstream_sha256": "529e2ffcc9b36f0ea8e114d42d1206a00d0083986ceef4aaaea07493bdd59e1d",
+    "downstream_sha256": "ae47f899d707eba31396b5490fe08a437d833014628e4efd98da07e6e0cb80a2",
+    "rationale": "Document the structured-event, index-policy, and durable standalone-receipt command-line controls in the English message catalog.",
+    "task": "task-4/complete-ltfs-qualification"
+  },
+  {
+    "path": "messages/bin_ltfs/root.txt",
+    "upstream_sha256": "1b88972837a9af55cdb89f855c7b33d0c7e04c8d690b2e8d0d98efaec595dd55",
+    "downstream_sha256": "27dd5ac3f187be46fe4b1d0b1bfcdf287af474016cf19c3cdbb958075f05ad78",
+    "rationale": "Document the structured-event controls, actual unmount-default index policy, and durable standalone-receipt mount option in the root message catalog.",
+    "task": "task-4/fix-1/complete-ltfs-qualification"
+  },
+  {
+    "path": "src/Makefile.am",
+    "upstream_sha256": "aec602eed678a82cde670650773eb1c0333d9c41bba29d1a83bbbbcb61ffd78d",
+    "downstream_sha256": "c00fcd57a8a320e408354cfa5e5f0116da553263eec4e7c2e76fe58869e34bb2",
+    "rationale": "Define the downstream product and install the public finalization API header.",
+    "task": "task-2/task-7-fix-1"
+  },
+  {
+    "path": "src/iosched/fcfs.c",
+    "upstream_sha256": "7d4d92c684ba0048c746a6eab74c5ac3fe2953cc525875bcbcddd99e3289cc52",
+    "downstream_sha256": "99aee301f91f0287f01bb30e2b902700444bdc0aa1492a91853dd9cb38445ed1",
+    "rationale": "Give the FCFS plugin copyright payload a component-unique external symbol and honor the documented NULL dentry flush-all contract.",
+    "task": "task-3/task-9-fix-14"
+  },
+  {
+    "path": "src/iosched/unified.c",
+    "upstream_sha256": "fad0d5d67e57c6adac0a38b5d78d163961a0419cd8f2dc24d01dafcb1445d4d8",
+    "downstream_sha256": "8871b421cd6ab9ef72f152cddc4f8323276293850841ceb2c2046ba4632e44da",
+    "rationale": "Expose lock-protected queue telemetry and count active-stream starvation when full data writes drain while partial producer buffers remain.",
+    "task": "task-9-fix-1/task-9-fix-2"
+  },
+  {
+    "path": "src/libltfs/Makefile.am",
+    "upstream_sha256": "79b23db989bfc30eec0ffc1c63d92b3d1f153510f275c587b79902eb0f587ca0",
+    "downstream_sha256": "a4d5f389218dadd92782ffd4023eb7de84da540c65e6fe4a781a98cad69ae65a",
+    "rationale": "Compile structured events, operation controls, stable identity, locking, retry, finalization, bounded performance counters, and the per-handle write lifecycle into libltfs.",
+    "task": "task-3/task-4/task-5/fix-1/task-6/task-7/task-9/task-9-fix-2/task-9-fix-17"
+  },
+  {
+    "path": "src/libltfs/arch/ltfs_arch_ops.h",
+    "upstream_sha256": "5fe51db98d188aac1621b014c772a17d991011e976ac5383b53a57201a479bce",
+    "downstream_sha256": "5fa3e11611a0e06283b8198be4aadd0810c751f9695a8cc716d7781c17694f46",
+    "rationale": "Use the requested create permissions, rather than Windows share flags, as the POSIX open mode so file-backend records remain owner-readable after close.",
+    "task": "task-9-fix-13"
+  },
+  {
+    "path": "src/libltfs/device_guard.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "0c015da09ed9a76aadf7bad9fd215ec8c441b5901444e596da87ef7b36254510",
+    "rationale": "Share fail-closed stable identity resolution and locking, pin broker FDs to the configured NST and SG identities, recognize only an owned virtual backend directory, and provide result-preserving startup cleanup.",
+    "task": "task-5/fix-1/task-9-fix-7/task-9-fix-10/r15-anchored-sg"
+  },
+  {
+    "path": "src/libltfs/device_guard.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "dd5069f49c620d2753242d1b5d49164b7171a12579327014287dfd4eba25e686",
+    "rationale": "Define the internal stable-device guard, broker-owned NST and SG duplicate descriptors, constrained virtual backend, and result-preserving cleanup seam contracts.",
+    "task": "task-5/fix-1/task-9-fix-7/task-9-fix-10/r15-anchored-sg"
+  },
+  {
+    "path": "src/libltfs/device_identity.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "bd366ce5e9ad481b4d76d143a6fc9e2917f9817d03cc48259d1560272c4caaf7",
+    "rationale": "Resolve paired non-rewinding and generic-SCSI identity through strict binary VPD80, exact mode-0600 configuration using the reboot-safe flat SG alias, RHEL sysfs WWID, and proc evidence.",
+    "task": "task-5/fix-1/r4-flat-udev-alias/r15-anchored-sg"
+  },
+  {
+    "path": "src/libltfs/device_identity.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "1f22abd682a2fec4e7787f4857980210b1bbbe4edd1bd1d216b38f41be908036",
+    "rationale": "Define fail-closed host device configuration and stable identity interfaces.",
+    "task": "task-5/r15-anchored-sg"
+  },
+  {
+    "path": "src/libltfs/file_write_state.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "92403eb8e4c86fe6a8b8210a4ecf3119231cbf2f9fca9f722f7c7949dfb432fc",
+    "rationale": "Account a successfully closed written handle through one production seam while preserving bounded UID deduplication.",
+    "task": "task-9-fix-17"
+  },
+  {
+    "path": "src/libltfs/file_write_state.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "4ca2924cb3da1fb976cc3ae8a3a48a7453acc3e25efc526799dc0acd46751452",
+    "rationale": "Keep per-handle operation-write identity independent from dirty buffers and expose the release-accounting seam used by FUSE.",
+    "task": "task-9-fix-17"
+  },
+  {
+    "path": "src/libltfs/finalization.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "5329c589e05069aa717322393a1708fd9a5379a82d4b0f6c36de083e86fa372e",
+    "rationale": "Run finalization with exact durable receipt ACK gating, retain the prepared snapshot, and publish the terminal receipt only after the independent device-close result is known.",
+    "task": "task-7/task-7-fix-1/task-7-fix-2"
+  },
+  {
+    "path": "src/libltfs/finalization.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "319929c980147e8aa37681123636ada18c66db2cd1c9dfa2a96693c18680c649",
+    "rationale": "Define the C/C++-safe two-stage finalization, exact durable acknowledgement, prepared snapshot, and independent close-result contracts.",
+    "task": "task-7/task-7-fix-1/task-7-fix-2"
+  },
+  {
+    "path": "src/libltfs/fuse_foreground.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "5ee25ff2622c0177d35b34a17d1893797638ede2b0335381cea80595cf6d5894",
+    "rationale": "Force the FUSE mount process to remain the recorded operation-lock owner.",
+    "task": "task-5/fix-1"
+  },
+  {
+    "path": "src/libltfs/fuse_foreground.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "07f86ab7835d22c58612558452400e43cb20123f05578f15c2055b8a0920a995",
+    "rationale": "Define the narrow foreground-enforcement interface used before device fencing.",
+    "task": "task-5/fix-1"
+  },
+  {
+    "path": "src/libltfs/iosched.c",
+    "upstream_sha256": "4b661fba7a3320fa6c71aa3b7235810c763377933c82e46f5d20de48af66c6c2",
+    "downstream_sha256": "47d9a7336c0a124d1471f8127788c3c7dfc7420054d32fa0d4fb3375819ecfff",
+    "rationale": "Expose optional read-only scheduler queue and streaming-starvation telemetry without making older plugins incomplete.",
+    "task": "task-9-fix-1/task-9-fix-2"
+  },
+  {
+    "path": "src/libltfs/iosched.h",
+    "upstream_sha256": "e0fa34a3a766ad8b1708cd310aef2915d2880bfd2d04598e3ae747a56f11fd17",
+    "downstream_sha256": "af6e4ed5ebcda39c21a87a4964d4f3856e56e77001c77c7cc9989f27feb4baef",
+    "rationale": "Declare backend-independent scheduler queue and streaming-starvation telemetry sampling.",
+    "task": "task-9-fix-1/task-9-fix-2"
+  },
+  {
+    "path": "src/libltfs/iosched_ops.h",
+    "upstream_sha256": "7c28a54db6096fbf3cce0a587489c24938609f0e6281b09b0b621b239b39d628",
+    "downstream_sha256": "2238db5488af91bd282525b48852312f887d4462e2e29f58daa360bc5e47b44d",
+    "rationale": "Add optional read-only queue-fill and streaming-starvation operations after the required scheduler ABI.",
+    "task": "task-9-fix-1/task-9-fix-2"
+  },
+  {
+    "path": "src/libltfs/ltfs.c",
+    "upstream_sha256": "43cefe2c190ff6050d29aedfae0ad939511958c439da667f4f5eff06e4e61ea6",
+    "downstream_sha256": "ed4ccf24fdd7f9cb5d01c149806dbef3cb474fde27a119b3acb160a49c191789",
+    "rationale": "Expose real results and select a skip-AOM device close until durable catalog acknowledgement authorizes unload behavior. Reject forced-read-only index writes and skip unmount commits for read-only sessions.",
+    "task": "task-3/task-7/task-7-fix-1/task-7-fix-2/read-only-session-20260908"
+  },
+  {
+    "path": "src/libltfs/ltfs.h",
+    "upstream_sha256": "7194067bac816f743a903f2fe691d00f59f34603967cba94fa51ced974e814fa",
+    "downstream_sha256": "f679bac95488402bde66e2fd759030c6ec7e85243e1596b93d161b72a9a59fd9",
+    "rationale": "Expose unmount observation, device-close results, the acknowledgement-aware close selector, and the read-only MAM Medium Serial Number used for physical continuity without changing legacy unmount.",
+    "task": "task-7/task-7-fix-1/task-7-fix-2/mam-medium-serial-r6"
+  },
+  {
+    "path": "src/libltfs/ltfs_endian.h",
+    "upstream_sha256": "6573719a59f28eb46d88b9df5de01f548a8bdce0399c93a9da4078b3037eee86",
+    "downstream_sha256": "176249a54c04d86cf3a1214b1238624fc4ce422f00df49d0b7351432ebb0c5e5",
+    "rationale": "Use memcpy through aligned local integers for all six endian conversions while preserving big-endian wire bytes at arbitrary SCSI/MAM byte offsets.",
+    "task": "sg-endian-release21-20260908"
+  },
+  {
+    "path": "src/libltfs/ltfs_error.h",
+    "upstream_sha256": "8fd2912e9758e2138d78c91a92bfc79300df7d74d2e93f6930f0ac9edeb6a651",
+    "downstream_sha256": "524a0acab1187c39046333123a0f9a5462409bc77a7e792e0835896f09d4ae12",
+    "rationale": "Reserve distinct core errors for ambiguous completion and identity-refresh failure causes.",
+    "task": "task-6/fix-1"
+  },
+  {
+    "path": "src/libltfs/ltfs_events.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "0b44b96ec9baab4f0b7abb46924b141b6ba93fcd37b7f4ab9eaec0195bddadb1",
+    "rationale": "Implement ordered lifecycle events with identity, real phase duration, nullable progress, and nullable device-close result.",
+    "task": "task-3/task-4/task-7/task-7-fix-1/task-7-fix-2"
+  },
+  {
+    "path": "src/libltfs/ltfs_events.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "691a5e77e0f8883403c69d0d324dc869a57899ede7daab7eda3a1387ce28493b",
+    "rationale": "Define schema-one events including bound media identity, real progress and duration, and independent close diagnostics.",
+    "task": "task-3/task-4/task-7/task-7-fix-1/task-7-fix-2"
+  },
+  {
+    "path": "src/libltfs/ltfs_internal.c",
+    "upstream_sha256": "24f3950e31148731ae8fae983533c119c0ccf51491934d9f9749f328bf80f959",
+    "downstream_sha256": "397332a455381659c506b87033d297f5d56e345d6c7a446ed7e2ee9d3ac35d72",
+    "rationale": "Prevent consistency repair and coherency refresh from mutating media or cached coherency during forced-read-only sessions.",
+    "task": "read-only-session-20260908"
+  },
+  {
+    "path": "src/libltfs/operation_control.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "01d960f176278c3e4822a5cf51b2c328542f355ee99bbb802ec90fd64ecbaa28",
+    "rationale": "Validate operation CLI contracts and implement durable failure-aware time-or-byte index scheduling.",
+    "task": "task-4/fix-1"
+  },
+  {
+    "path": "src/libltfs/operation_control.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "fa677618d6a6b6fe51586c51bd16416c2e54a5fa6fc7fa347645349dd66ececb",
+    "rationale": "Define validated operation controls, durable failure state, and the interval scheduler interface.",
+    "task": "task-4/fix-1"
+  },
+  {
+    "path": "src/libltfs/operation_lock.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "438c52106b13fdfda37e0f73a1d76951842f0c658326ee44571d1cef74aa67d2",
+    "rationale": "Create, replace, and release durable per-target operation locks with proven owner identity, including a dedicated serialized read-only inspection class.",
+    "task": "task-5/task-8-fix-1"
+  },
+  {
+    "path": "src/libltfs/operation_lock.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "24ff83304e1d4bee0b39bb2f572987d782cbf6fcdc602bf68dfe6d89b83ccfd2",
+    "rationale": "Define mutually exclusive operation classes, including read-only media inspection, and durable lock ownership state.",
+    "task": "task-5/task-8-fix-1"
+  },
+  {
+    "path": "src/libltfs/perf_counters.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "66b38d13bce18b74f0afd585f155e28ca09f385e73aa2a61e64abe619e8e33af",
+    "rationale": "Implement allocation-free bounded throughput, retry, underrun, memory, and finalization telemetry with an injected monotonic clock.",
+    "task": "task-9/task-9-fix-2"
+  },
+  {
+    "path": "src/libltfs/perf_counters.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "9f1a67fce1064eedc1ef820075943c87a63e039ca9ac501c95a0899248dd4082",
+    "rationale": "Define fixed-window byte-per-second telemetry, bounded resource counters with explicit file-count validity, and finalization phase durations.",
+    "task": "task-9/task-9-fix-2"
+  },
+  {
+    "path": "src/libltfs/perf_reporter.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "ba04aa9ec50f408e4af1e63b40aa568bc54fe35e1d011b8aca65e412342d4d07",
+    "rationale": "Move telemetry sampling and JSON emission to a preallocated asynchronous reporter outside the FUSE write callback.",
+    "task": "task-9-fix-1"
+  },
+  {
+    "path": "src/libltfs/perf_reporter.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "1d4b9e75a4effb4f64bb6ca24d67b0d987a1abc7384d2f7f4241bd36f105fc06",
+    "rationale": "Define the bounded asynchronous performance reporting contract and runtime sample seam.",
+    "task": "task-9-fix-1"
+  },
+  {
+    "path": "src/libltfs/periodic_sync.c",
+    "upstream_sha256": "5e8c02a270c6b2eaa5af58718a994468de5a5ddb5007685c0c1d48064084dbae",
+    "downstream_sha256": "a54d6bc36cefc5f60fe12b60652cee7e045b124b4206c7881fcbcd55e26ebdd7",
+    "rationale": "Run serialized conditional index commits and propagate terminal flush or index failures. Do not initialize the commit scheduler for forced-read-only sessions.",
+    "task": "task-4/fix-1/read-only-session-20260908"
+  },
+  {
+    "path": "src/libltfs/periodic_sync.h",
+    "upstream_sha256": "0414958ad6054674ab823dbcbf2c04b6220ade32cbbb65174deec6925e9bd6fe",
+    "downstream_sha256": "1188c4da40c8655954c14100120bfbb8b24620577937b137f6da274868d4c692",
+    "rationale": "Expose dirty-byte accounting and durable operation-failure state to the periodic index scheduler.",
+    "task": "task-4/fix-1"
+  },
+  {
+    "path": "src/libltfs/retry_policy.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "7593eb060e9ae66f4b3e0b7bc5f546ddc977f2d27d7cd8a377d178f9e5f7335c",
+    "rationale": "Classify normalized SCSI outcomes with independent unit-attention state and fail-closed non-idempotent replay rules.",
+    "task": "task-6/fix-1"
+  },
+  {
+    "path": "src/libltfs/retry_policy.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "1bb68f10ad398acf71b1e325243634358113927bd87054585d050e8c6f0af73a",
+    "rationale": "Define the pure retry contract including relative-positioning, state-changing, unknown, and unit-attention state.",
+    "task": "task-6/fix-1"
+  },
+  {
+    "path": "src/libltfs/standalone_receipt.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "c957ad5207df634c8894c94e815ee120590f888c41792b49f59620522463385b",
+    "rationale": "Persist ready, prepared, and terminal standalone receipts with byte-bound identity, private-directory enforcement, atomic no-overwrite publication, file and directory fsync, and exact durable acknowledgement.",
+    "task": "task-9-fix-2"
+  },
+  {
+    "path": "src/libltfs/standalone_receipt.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "cdb839f6b85f572648fdbd07225765b6deb57b9fd48f5a89281311d0a2210061",
+    "rationale": "Define the explicit ready/prepared/terminal standalone durable receipt adapter used by broker and file-backend qualification.",
+    "task": "task-9-fix-2"
+  },
+  {
+    "path": "src/libltfs/streaming_stats.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "e72af07ec184ad04fd11c4c6c345e9f8e1d18dc3b73cd78592c23646aab6ca93",
+    "rationale": "Count streaming write starvation transitions separately from SCSI read underrun conditions.",
+    "task": "task-9-fix-2"
+  },
+  {
+    "path": "src/libltfs/streaming_stats.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "4fc4d8393b80126926bf07bed05f442c021e963136692ed2cab5a646bb931128",
+    "rationale": "Define the fixed-memory streaming starvation state used by the unified writer and its failure-sensitive test.",
+    "task": "task-9-fix-2"
+  },
+  {
+    "path": "src/libltfs/tape.c",
+    "upstream_sha256": "6197fea29c0460a15b8ef87a7b6234c1ffd78b1aa7326e48546382d91413ea17",
+    "downstream_sha256": "c3f93bccbf210c013c49589cd829d8ed362e8f88220ec2424ba8917ffe475cba",
+    "rationale": "Propagate backend close and MODE SELECT failures, skip append-only disable when the tracked mode is already inactive, load the read-only MAM Medium Serial Number for physical continuity, avoid INFO logging raw cartridge identity values, and serialize the required NUL after the four-byte LTFS cartridge-coherency signature. Accept the HP MAM Volume Identifier's specified 0\u201332-byte range, copy only its actual value, and release response storage on invalid descriptors while preserving all other exact-length checks.",
+    "task": "task-7-fix-1/complete-ltfs-qualification/mam-medium-serial-r6/r10-sg-close/r17-vci-signature/read-only-session-20260908/mam-variable-volume-id-20260908"
+  },
+  {
+    "path": "src/libltfs/tape.h",
+    "upstream_sha256": "dc0c57fb0ebcefe8bab7de119c22ce9c5dfd56f92a58deb49b48214f1661916a",
+    "downstream_sha256": "54f564b8bba8f3b4b9c6b0de7841fe13f413e264d99951c8ed08fb0fcc08fb00",
+    "rationale": "Expose internal close-result contracts used by libltfs finalization and backend-close qualification. Preserve the 33-bit forced-read-only flag in 64-bit storage and expose a session-only policy predicate.",
+    "task": "task-7-fix-1/read-only-session-20260908"
+  },
+  {
+    "path": "src/libltfs/tape_ops.h",
+    "upstream_sha256": "e51060f2738f0fc2c2eb7c8dfc453f7195f352b44e536179b56b923f3c9842c0",
+    "downstream_sha256": "6a08d69f9aacbeeeee6af76a646bf5292c1f0d05ca567bfd574a050f55f3c9d8",
+    "rationale": "Expose only backend retry telemetry, keep streaming starvation in the write scheduler, and define read-only MAM Medium Serial Number 0x0401 for physical continuity.",
+    "task": "task-9-fix-1/task-9-fix-2/mam-medium-serial-r6"
+  },
+  {
+    "path": "src/libltfs/uthash_submodule/LICENSE",
+    "upstream_sha256": null,
+    "downstream_sha256": "3fbbead84dff6db076bdd60eee3c98dadc35a4a415c72b0a35f95d723931c18a",
+    "rationale": "Vendor the attributed BSD-1-Clause license for the pinned uthash build dependency.",
+    "task": "task-2"
+  },
+  {
+    "path": "src/libltfs/uthash_submodule/src/uthash.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "61bf8a411bcd81f6e67fe8281001a444ebae51560b3df15ff13bb018fe51f18c",
+    "rationale": "Vendor the exact uthash header required by the LTFS source include path.",
+    "task": "task-2"
+  },
+  {
+    "path": "src/ltfs_fuse.c",
+    "upstream_sha256": "0d3bcb218eeb5588bc387904bbe1e4f48c45fd0f23b95b7a3a79f273020b7176",
+    "downstream_sha256": "addb153b8fc60bc0274728c7ae65b1e4159e5e45d71f08916d28e2aa0c4d1260",
+    "rationale": "Run exact durability calls, publish bounded write telemetry, preserve written-file identity across fsync, seal the mounted generation and read-only MAM Medium Serial Number continuity in a durable ready record, and install the explicit terminal receipt adapter.",
+    "task": "task-4/fix-1/task-7/task-7-fix-1/task-7-fix-2/task-9/task-9-fix-2/task-9-fix-17/mam-medium-serial-r6"
+  },
+  {
+    "path": "src/ltfs_fuse.h",
+    "upstream_sha256": "f57cb06bea218ead8b8ba22f76c1c2728796551cf7ff55cacd67a9dedfc5c5b0",
+    "downstream_sha256": "96789699027cb548255de140dc79bbc2f5dfb7d508eaeb3bb06ac3f4b7e1a583",
+    "rationale": "Store validated controls, durable operation failure, finalization state, commit receipt, device-close ownership, bounded performance counters, and independent per-handle dirty and written state.",
+    "task": "task-4/fix-1/task-7/task-9/task-9-fix-2/task-9-fix-17"
+  },
+  {
+    "path": "src/main.c",
+    "upstream_sha256": "802dceb3146147251b5af64d239d8d2e36320af1d3512de01611c11ca6708703",
+    "downstream_sha256": "5b21b9c2190637aa33bc14205d99ff9791d0afa2630eb7c2261765d915de7db4",
+    "rationale": "Preserve failure status, pass only the guard-owned broker FD anchor to the physical backend, release it after every post-acquire path, expose a stable kernel FUSE source independent of the private descriptor number, and preserve already-validated event/index options through the configuration discovery pass without false invalid-option errors.",
+    "task": "task-2/task-3/task-4/fix-1/task-5/fix-1/task-7/task-7-fix-1/task-7-fix-2/task-9/task-9-fix-2/task-9-fix-7/task-9-fix-10/r16-stable-fuse-source/review-20260904-G01/read-only-session-20260908"
+  },
+  {
+    "path": "src/tape_drivers/freebsd/cam/cam_cmn.c",
+    "upstream_sha256": "e4a2ffd36665f7a4387e7ee39df17c2a9d546441fbb562360160a8c1b97e8a83",
+    "downstream_sha256": "6c4d8640d4c3d923c79b5b439369785a69cd7fdb395906b8580ed0ccd23d743b",
+    "rationale": "Give the CAM tape backend copyright payload a component-unique external symbol.",
+    "task": "task-3"
+  },
+  {
+    "path": "src/tape_drivers/generic/file/filedebug_tc.c",
+    "upstream_sha256": "7bafd91c4dab790c6339f62c3cb31595b39f6120e4ce7f6158c68ba4156fc300",
+    "downstream_sha256": "43ccb43f77108b8248a910aaf38fcfc747f61cee27960d3a10f8cf9806410e74",
+    "rationale": "Give the file tape backend copyright payload a component-unique external symbol.",
+    "task": "task-3"
+  },
+  {
+    "path": "src/tape_drivers/generic/itdtimg/itdtimg_tc.c",
+    "upstream_sha256": "1f7f36ccc1ea59e08103336563e044e5618b27f6155bdffbffcb796ac1f625be",
+    "downstream_sha256": "ac5ef5c4028c7a4271bffc6e21dfadbb2465e748ed8ba015d7f9ec52f2e146cf",
+    "rationale": "Give the ITDT image backend copyright payload a component-unique external symbol.",
+    "task": "task-3"
+  },
+  {
+    "path": "src/tape_drivers/linux/lin_tape/lin_tape_ibmtape.c",
+    "upstream_sha256": "3e967426ae96da2d16c2cca9d1ae20cb03a7706d4868a7c931b4c84d0148e9fc",
+    "downstream_sha256": "9a07d4ad3dddd3d09ebfbddf279fcdc8563b9d614406dde25b967c0bce396fad",
+    "rationale": "Give the lin_tape backend copyright payload a component-unique external symbol.",
+    "task": "task-3"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/Makefile.am",
+    "upstream_sha256": "95bf94d53ed9dbef41754414a527c43c3afef0dec76ad54972c1d594a3b22725",
+    "downstream_sha256": "6c2e9c145e30cd3461b1f70c4b8597366e872e16957d35b7de72a1a937ca03a7",
+    "rationale": "Compile the isolated Linux SG page-0x17 capacity parser into the backend plugin.",
+    "task": "r7-sg-capacity"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_capacity.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "2d34ebaf6dce56c94f60a7d6365afaf1865a6a3cae39e9052b9548381b7a813d",
+    "rationale": "Select MiB-valued page 0x31 for LTO-5 and HP LTO-6 while retaining other vendors and generations on page 0x17. Parse page 0x17 within returned bounds, prefer remaining capacity 0x0204, derive max-minus-used only when 0x0204 is absent, apply the partition-1 offset before unit conversion, and reject malformed records. Add the guarded read-only capacity diagnostic with shared capacity parsers and explicit compatibility and qualification limits.",
+    "task": "r7-sg-capacity/r17-hp-lto6-capacity/r18-read-only-capacity"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_capacity.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "3a54733b27549ff1c515fb0aca95de167733810e19853a7e1dc2448e8364bae0",
+    "rationale": "Declare testable Linux SG capacity-page selection and page-0x17 parsing seams. Add the guarded read-only capacity diagnostic with shared capacity parsers and explicit compatibility and qualification limits.",
+    "task": "r7-sg-capacity/r17-hp-lto6-capacity/r18-read-only-capacity"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_scsi_tape.c",
+    "upstream_sha256": "6801f4031fed2aa71651245e51e2c118f5bb1c69e6876f3c14f09285d146b6eb",
+    "downstream_sha256": "fc72e02d82977cb36655b4033b17c37452d90ea04fb816b3af4934e735b485cd",
+    "rationale": "Apply exhaustive opcode safety, deadline rechecks, and command-aware sense-first handling that preserves qualified READ ILI/filemark/EOD/record/cleaning and WRITE/WRITE FILEMARKS early-warning/cleaning outcomes before ambiguity classification while leaving unqualified sequential results fail-closed, plus observable recovered success, bounded VPD80 parsing, and distinct refresh failures.",
+    "task": "task-6/fix-1/r8-sg-filemark/r9-sg-sequential-sense"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_scsi_tape.h",
+    "upstream_sha256": "d623c0a85cff966f584e44457f47be9fe13d8e372474b1d45143fe4470da8564",
+    "downstream_sha256": "0615a7b048f923984dfbb66814af9cf10837d86dc449f01dc146d64994f5b44c",
+    "rationale": "Expose deterministic SG opcode classification, identity refresh binding, and literal validated ERASE/FORMAT CDB builders shared with production.",
+    "task": "task-6/fix-1/complete-ltfs-qualification"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_tape.c",
+    "upstream_sha256": "4f2ec5c955cce931180fb16d54e9a6d2d37cf44670e3131d70841fcce62d6c12",
+    "downstream_sha256": "5dee482980a8c84afd21e59e66e73477d4ab2dd4340ae16593ff4259fa170ccd",
+    "rationale": "Bind retry identity refresh, keep SCSI READ ILI separate from streaming write starvation telemetry, use validated literal ERASE/FORMAT CDB builders, route HP LTO-6 to MiB-valued page 0x31, parse page 0x17 against the exact positive response length with its raw-MB partition offset semantics, and report successful SG resource closure as success. Add the guarded read-only capacity diagnostic with shared capacity parsers and explicit compatibility and qualification limits. Validate mode response lengths, descriptor offsets and page identities before LBP access/SELECT, and align close reset with IBM-only setup.",
+    "task": "task-3/task-6/task-9-fix-2/complete-ltfs-qualification/r7-sg-capacity/r10-sg-close/r17-hp-lto6-capacity/r18-read-only-capacity/sg-endian-release21-20260908"
+  },
+  {
+    "path": "src/tape_drivers/linux/sg/sg_tape.h",
+    "upstream_sha256": "ed13d737bd19ec30a5dbe6b2114afc5d635b4b2ab9d5a913f3415f0c3a9aec11",
+    "downstream_sha256": "98061e838307660fc3677c6e3f9958110e560a40664b6c1b041041cdccf3e0de",
+    "rationale": "Store the atomic per-drive retry counter without misclassifying SCSI READ ILI as streaming starvation.",
+    "task": "task-9-fix-1/task-9-fix-2"
+  },
+  {
+    "path": "src/tape_drivers/netbsd/scsipi-ibmtape/scsipi_ibmtape.c",
+    "upstream_sha256": "c31df6a77bfaa4a60d3c642489b3fcfc1e94e38b5fecbc6224eea773abcbfb59",
+    "downstream_sha256": "a1e0338888f859b9357ff2107700d0b3a1b028efc8816e3251dcf7f981297b08",
+    "rationale": "Give the NetBSD SCSIPI backend copyright payload a component-unique external symbol.",
+    "task": "task-3"
+  },
+  {
+    "path": "src/tape_drivers/osx/iokit/iokit_tape.c",
+    "upstream_sha256": "78ef8d6ec98e7c667e0d30891677a05ba69869b073e766363ff981f4dc3e1f0f",
+    "downstream_sha256": "12007ae271700704b12d652126440f8b80a67494eeb6791634a2c3898ae7a798",
+    "rationale": "Give the macOS IOKit backend copyright payload a component-unique external symbol.",
+    "task": "task-3"
+  },
+  {
+    "path": "src/utils/Makefile.am",
+    "upstream_sha256": "dc7e9a0ad4fddc2248c0a9641eacf0e5f97982eb0647bee5749e8782c78cb89f",
+    "downstream_sha256": "6acff3d8074f71c7f29e22c3c05e2d8452957bef9e571f0c0061b0c4cad20ced",
+    "rationale": "Build and install the read-only ltfs-info inspection utility. Add the guarded read-only capacity diagnostic with shared capacity parsers and explicit compatibility and qualification limits.",
+    "task": "task-8/r18-read-only-capacity"
+  },
+  {
+    "path": "src/utils/ltfs_info.c",
+    "upstream_sha256": null,
+    "downstream_sha256": "99098b125381931f3b2c294c0c19ac268cd633954f7e0cc5eeb33b392e8df179",
+    "rationale": "Implement explicit metadata-only stable-device discovery and config-pinned normal and label-first pre-format Linux SCSI inspection with a reboot-safe flat SG alias, schema 2 media state, read-only MAM Medium Serial Number continuity, strict partial-evidence handling, optional capacity when the drive reports an unavailable 0xffffffff used-capacity sentinel, broker-compatible closed JSON contract, and hardware-free installed-binary fixtures. Add the guarded read-only capacity diagnostic with shared capacity parsers and explicit compatibility and qualification limits.",
+    "task": "task-8/task-8-fix-1/task-8-pre-format/task-10-fix-2/r4-flat-udev-alias/label-first-preformat-identity/mam-medium-serial-r6/r11-capacity-sentinel/r15-anchored-sg/r18-read-only-capacity"
+  },
+  {
+    "path": "src/utils/ltfs_info.h",
+    "upstream_sha256": null,
+    "downstream_sha256": "9634a6e6a8fb59190c26ebf3220804921dffa3adeaa2d695807af1330f091e85",
+    "rationale": "Define the closed read-only normal and label-first pre-format inspection backend, schema 2 media-state contract, exact provisionable discovery output, bounded SG and MAM text-descriptor helpers, and hardware-free installed-binary self-test used by ltfs-info. Add the guarded read-only capacity diagnostic with shared capacity parsers and explicit compatibility and qualification limits.",
+    "task": "task-8/task-8-fix-1/task-8-pre-format/task-10-fix-2/label-first-preformat-identity/mam-medium-serial-r6/r18-read-only-capacity"
+  },
+  {
+    "path": "src/utils/ltfsck.c",
+    "upstream_sha256": "b06043295c809c4b95c2b9b99738328565141b103c0f00e7edb0bd680e23fe3b",
+    "downstream_sha256": "d21da0bb8a67aad4220c001540b55f0b62ec88f0d92801c123dddd439fcb4b2c",
+    "rationale": "Give ltfsck a unique copyright symbol and pass only the guard-pinned NST path through complete CHECK cleanup.",
+    "task": "task-3/task-5/fix-1/r15-anchored-sg"
+  },
+  {
+    "path": "src/utils/mkltfs.c",
+    "upstream_sha256": "2b03cf81d743b588067c8f8d2ea42b3693a8867da4992162ca11d4464e75fb9a",
+    "downstream_sha256": "cbb73ad14006ebecac5017d519bf00842e98eb5f83d09ae0111def79ca8df7aa",
+    "rationale": "Give the mkltfs copyright payload a component-unique external symbol.",
+    "task": "task-3"
+  }
+]

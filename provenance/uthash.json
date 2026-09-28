@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/troydhanson/uthash.git",
+  "commit": "2031adfd8cd6f8f498e0f4a9055648b19496f12e",
+  "license": "BSD-1-Clause",
+  "files": {
+    "src/libltfs/uthash_submodule/LICENSE": "3fbbead84dff6db076bdd60eee3c98dadc35a4a415c72b0a35f95d723931c18a",
+    "src/libltfs/uthash_submodule/src/uthash.h": "61bf8a411bcd81f6e67fe8281001a444ebae51560b3df15ff13bb018fe51f18c"
+  }
+}

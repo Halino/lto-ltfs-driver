@@ -1,0 +1,185 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://halino.example/schemas/ltfs-event-v1.schema.json",
+  "$comment": "SPDX-License-Identifier: BSD-3-Clause",
+  "title": "LTFS lifecycle event schema version 1",
+  "type": "object",
+  "required": [
+    "schema",
+    "operation_id",
+	"volume_uuid",
+	"prior_generation",
+	"new_generation",
+    "seq",
+    "monotonic_ns",
+    "wall_time",
+    "phase",
+    "status",
+    "result",
+    "device_close_result",
+    "bytes_done",
+    "bytes_total",
+    "files_done",
+    "files_total",
+    "rate_bytes_per_second",
+	"queue_fill_bytes",
+	"buffer_underrun_count",
+	"retry_count",
+	"memory_high_water_bytes",
+	"telemetry_overflowed",
+	"phase_elapsed_ns",
+	"index_done",
+	"index_total",
+    "eta_seconds",
+    "device_serial",
+    "message_code"
+  ],
+  "properties": {
+    "schema": {
+      "const": 1
+    },
+    "operation_id": {
+      "type": "string",
+      "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[1-5][0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}$"
+    },
+	"volume_uuid": {
+	  "type": ["string", "null"],
+	  "pattern": "^[0-9A-Fa-f]{8}-[0-9A-Fa-f]{4}-[1-5][0-9A-Fa-f]{3}-[89ABab][0-9A-Fa-f]{3}-[0-9A-Fa-f]{12}$"
+	},
+	"prior_generation": {
+	  "type": ["integer", "null"],
+	  "minimum": 0,
+	  "maximum": 18446744073709551615
+	},
+	"new_generation": {
+	  "type": ["integer", "null"],
+	  "minimum": 0,
+	  "maximum": 18446744073709551615
+	},
+    "seq": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 18446744073709551615
+    },
+    "monotonic_ns": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    },
+    "wall_time": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$"
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "STARTING",
+        "MOUNTING",
+        "READY",
+        "WRITING",
+        "CLOSING_HANDLES",
+        "DRAINING_DATA",
+        "BUILDING_INDEX",
+        "WRITING_INDEX",
+        "UNMOUNTING",
+        "MEDIA_COMMITTED",
+		"PERSISTING_RECEIPT",
+        "UNLOADING",
+        "COMPLETE",
+        "FAILED"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["started", "progress", "complete", "failed"]
+    },
+    "result": {
+      "type": "integer",
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "device_close_result": {
+      "type": ["integer", "null"],
+      "minimum": -2147483648,
+      "maximum": 2147483647
+    },
+    "bytes_done": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    },
+    "bytes_total": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    },
+    "files_done": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    },
+    "files_total": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    },
+    "rate_bytes_per_second": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    },
+	"queue_fill_bytes": {
+	  "type": "integer",
+	  "minimum": 0,
+	  "maximum": 18446744073709551615
+	},
+	"buffer_underrun_count": {
+	  "type": "integer",
+	  "minimum": 0,
+	  "maximum": 18446744073709551615
+	},
+	"retry_count": {
+	  "type": "integer",
+	  "minimum": 0,
+	  "maximum": 18446744073709551615
+	},
+	"memory_high_water_bytes": {
+	  "type": "integer",
+	  "minimum": 0,
+	  "maximum": 536870912
+	},
+	"telemetry_overflowed": {
+	  "type": "boolean"
+	},
+	"phase_elapsed_ns": {
+	  "type": "integer",
+	  "minimum": 0,
+	  "maximum": 18446744073709551615
+	},
+	"index_done": {
+	  "type": ["integer", "null"],
+	  "minimum": 0,
+	  "maximum": 18446744073709551615
+	},
+	"index_total": {
+	  "type": ["integer", "null"],
+	  "minimum": 1,
+	  "maximum": 18446744073709551615
+	},
+    "eta_seconds": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "maximum": 18446744073709551615
+    },
+    "device_serial": {
+      "type": ["string", "null"],
+      "maxLength": 256
+    },
+    "message_code": {
+      "type": "string",
+      "maxLength": 128,
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    }
+  },
+  "additionalProperties": false
+}

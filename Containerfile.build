@@ -1,0 +1,42 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+FROM registry.access.redhat.com/ubi9/ubi@sha256:5426a8f45e80a07168a30ea24d84f266094b3756624a5508cc53927e6ee39e09
+
+RUN dnf install -y --setopt=install_weak_deps=False \
+        autoconf \
+        automake \
+        libtool \
+        gcc \
+        gcc-c++ \
+        libasan \
+        libubsan \
+        make \
+        git \
+        libxml2-devel \
+        libuuid-devel \
+        libicu-devel \
+        icu \
+        openssl-devel \
+        zlib-devel \
+        python3 \
+        rpm-build \
+        findutils \
+        diffutils \
+    && dnf install -y --setopt=install_weak_deps=False \
+        --enablerepo=ubi-9-codeready-builder-rpms \
+        fuse-devel \
+    && dnf clean all
+
+RUN mkdir -p /home/builder /workspace \
+    && chown -R 1001:0 /home/builder /workspace
+
+WORKDIR /workspace
+COPY --chown=1001:0 . .
+
+USER 1001:0
+ENV HOME=/home/builder
+
+RUN ./autogen.sh \
+    && ./configure --enable-tests --disable-snmp --disable-lintape \
+    && make -j2 \
+    && make check

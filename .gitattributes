@@ -1,0 +1,5 @@
+# Ensure .gitmodules always uses LF line endings
+.gitmodules text eol=lf
+
+# Preserve byte-exact third-party vendor files, including upstream EOF whitespace.
+src/libltfs/uthash_submodule/** -text -whitespace

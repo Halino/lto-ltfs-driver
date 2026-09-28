@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "status": "local-build-identity-only",
+  "source_lineage": "upstream-lineage-unverified",
+  "baseline_package_nevra": "lto-ltfs-0.1.0-16.el9.x86_64",
+  "baseline_archive_sha256": "12ece65ae5ba1e53fec2ff9bcd660357cd6c615d9690c005850fcc8328edf8c8",
+  "baseline_archive_embedded_commit": "4f0756d21512cb4d83343e9fe73c9e9cb1fbf4e4",
+  "local_recovery_commit": "684e79229cad0f54007280597e9550994ad64ddd",
+  "recovery_method": "Exact archive import into a new local Git repository; original Git history was not recovered.",
+  "limitations": [
+    "Hash verification establishes exact baseline bytes, not authenticated upstream or private-remote lineage.",
+    "A future downstream package signature must not be interpreted as proof of upstream lineage.",
+    "Hardware-free tests do not establish physical-medium interoperability."
+  ]
+}

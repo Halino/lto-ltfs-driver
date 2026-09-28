@@ -1,0 +1,5614 @@
+{
+  "schema": 2,
+  "library": "src/libltfs/.libs/libltfs.so.0.0.0",
+  "commands": {
+    "ltfs": {
+      "artifact": "src/.libs/ltfs",
+      "help_argv": [
+        "-o",
+        "config_file={source_root}/qualification/ltfs-surface.conf",
+        "-a"
+      ],
+      "help_exit_codes": [
+        1
+      ],
+      "options": [
+        {
+          "name": "--event-fd",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--event-schema",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--help",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--index-interval-bytes",
+          "operation_class": "commit",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_finalization.c::test_ack_is_fail_closed_and_identity_bound"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--index-interval-seconds",
+          "operation_class": "commit",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_finalization.c::test_ack_is_fail_closed_and_identity_bound"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--index-policy",
+          "operation_class": "commit",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_finalization.c::test_ack_is_fail_closed_and_identity_bound"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--operation-id",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--version",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:ac_attr_timeout",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:allow_other",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:allow_root",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:async_read",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:atime",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:atomic_o_trunc",
+          "operation_class": "write",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_retry_policy.c::test_sg_write_ambiguity_is_never_replayed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:attr_timeout",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:auto_unmount",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:big_writes",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:capture_index",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:config_file",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:congestion_threshold",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:debug",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:default_permissions",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:device_list",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:devname",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:direct_io",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:dmask",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:eject",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_tape_close.c::test_unload_is_refused_without_acknowledged_close"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "-o:entry_timeout",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:fmask",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:force_mount_no_eod",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_tape_close.c::test_unload_is_refused_without_acknowledged_close"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "-o:from_code",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:fsname",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:fulltrace",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:gid",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:hard_remove",
+          "operation_class": "write",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_retry_policy.c::test_sg_write_ambiguity_is_never_replayed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:intr",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:intr_signal",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:iosched_backend",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:kernel_cache",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:kmi_backend",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:large_read",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:max_background",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:max_pool_size",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:max_read",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:max_readahead",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:max_write",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:min_pool_size",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:modules",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:negative_timeout",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:no_remote_flock",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:no_remote_lock",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:no_remote_posix_lock",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:noatime",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:noeject",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:noforget",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:nonempty",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:nopath",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:opt",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:quiet",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:readdir_ino",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:release_device",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:remember",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:rollback_mount",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_tape_close.c::test_unload_is_refused_without_acknowledged_close"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "-o:rules",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:scsi_append_only_mode",
+          "operation_class": "write",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_retry_policy.c::test_sg_write_ambiguity_is_never_replayed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:standalone_receipt",
+          "operation_class": "commit",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_finalization.c::test_ack_is_fail_closed_and_identity_bound"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:subdir",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:subtype",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:sync_read",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:sync_type",
+          "operation_class": "write",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed",
+            "tests/c/test_retry_policy.c::test_sg_write_ambiguity_is_never_replayed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:syslogtrace",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:tape_backend",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:to_code",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:trace",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:uid",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:umask",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:use_ino",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:verbose",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "-o:work_directory",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_mount_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        }
+      ]
+    },
+    "mkltfs": {
+      "artifact": "src/utils/.libs/mkltfs",
+      "help_argv": [
+        "--config",
+        "{source_root}/qualification/ltfs-surface.conf",
+        "--advanced-help"
+      ],
+      "help_exit_codes": [
+        0
+      ],
+      "options": [
+        {
+          "name": "--advanced-help",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--backend",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--blocksize",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--config",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--destructive",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed",
+            "tests/python/test_cli_surface.py::test_mkltfs_destructive_options_refuse_without_a_loadable_backend"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "--device",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--force",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed",
+            "tests/python/test_cli_surface.py::test_mkltfs_destructive_options_refuse_without_a_loadable_backend"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "--fulltrace",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--help",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--keep-capacity",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--kmi-backend",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--long-wipe",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed",
+            "tests/python/test_cli_surface.py::test_mkltfs_destructive_options_refuse_without_a_loadable_backend"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "--no-compression",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--no-override",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--quiet",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--rules",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--syslogtrace",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--tape-serial",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--trace",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--version",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--volume-name",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--wipe",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_mkltfs_advanced_help_is_closed",
+            "tests/python/test_cli_surface.py::test_mkltfs_destructive_options_refuse_without_a_loadable_backend"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        }
+      ]
+    },
+    "ltfsck": {
+      "artifact": "src/utils/.libs/ltfsck",
+      "help_argv": [
+        "--config",
+        "{source_root}/qualification/ltfs-surface.conf",
+        "--advanced-help"
+      ],
+      "help_exit_codes": [
+        0
+      ],
+      "options": [
+        {
+          "name": "--advanced-help",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--backend",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--capture-index",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--config",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--deep-recovery",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed",
+            "tests/python/test_cli_surface.py::test_ltfsck_conflicting_destructive_modes_are_rejected"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "--erase-history",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed",
+            "tests/python/test_cli_surface.py::test_ltfsck_conflicting_destructive_modes_are_rejected"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "--full-index-info",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--full-recovery",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed",
+            "tests/python/test_cli_surface.py::test_ltfsck_conflicting_destructive_modes_are_rejected"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "--fulltrace",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--generation",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--help",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--keep-history",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--kmi-backend",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--list-rollback-points",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--no-rollback",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed",
+            "tests/python/test_cli_surface.py::test_ltfsck_conflicting_destructive_modes_are_rejected"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "--quiet",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--rollback",
+          "operation_class": "destructive",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed",
+            "tests/python/test_cli_surface.py::test_ltfsck_conflicting_destructive_modes_are_rejected"
+          ],
+          "physical_policy": "operation-token-and-exact-label"
+        },
+        {
+          "name": "--salvage-rollback-points",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--syslogtrace",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--trace",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--traverse",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--version",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfsck_advanced_help_is_closed"
+          ],
+          "physical_policy": null
+        }
+      ]
+    },
+    "ltfs-info": {
+      "artifact": "src/utils/.libs/ltfs-info",
+      "help_argv": [
+        "--help"
+      ],
+      "help_exit_codes": [
+        2
+      ],
+      "options": [
+        {
+          "name": "--device",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_info_usage_surface_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--diagnose-identity",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_info_usage_surface_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--discover",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_info_usage_surface_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--expect-drive-serial",
+          "operation_class": "read-only",
+          "evidence": ["tests/python/test_ltfs_info.py::test_capacity_incomplete_or_malformed_expectations_fail_before_device_access"],
+          "physical_policy": null
+        },
+        {
+          "name": "--expect-generation",
+          "operation_class": "read-only",
+          "evidence": ["tests/python/test_ltfs_info.py::test_capacity_incomplete_or_malformed_expectations_fail_before_device_access"],
+          "physical_policy": null
+        },
+        {
+          "name": "--expect-label",
+          "operation_class": "read-only",
+          "evidence": ["tests/python/test_ltfs_info.py::test_capacity_incomplete_or_malformed_expectations_fail_before_device_access"],
+          "physical_policy": null
+        },
+        {
+          "name": "--expect-medium-serial",
+          "operation_class": "read-only",
+          "evidence": ["tests/python/test_ltfs_info.py::test_capacity_incomplete_or_malformed_expectations_fail_before_device_access"],
+          "physical_policy": null
+        },
+        {
+          "name": "--expect-uuid",
+          "operation_class": "read-only",
+          "evidence": ["tests/python/test_ltfs_info.py::test_capacity_incomplete_or_malformed_expectations_fail_before_device_access"],
+          "physical_policy": null
+        },
+        {
+          "name": "--json",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_info_usage_surface_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--mode",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_info_usage_surface_is_closed",
+            "tests/python/test_ltfs_info.py::test_true_cli_advertises_pre_format_without_device_access"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--self-test-fixture",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_info_usage_surface_is_closed",
+            "tests/python/test_ltfs_info.py::test_true_cli_self_test_exposes_pre_format_contract"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--tape-device",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_info_usage_surface_is_closed"
+          ],
+          "physical_policy": null
+        },
+        {
+          "name": "--version",
+          "operation_class": "read-only",
+          "evidence": [
+            "tests/python/test_cli_surface.py::test_ltfs_info_usage_surface_is_closed"
+          ],
+          "physical_policy": null
+        }
+      ]
+    }
+  },
+  "exports": [
+    {
+      "name": "_char_compare",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_chars_valid_in_xml",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_config_file_parse",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_config_file_parse_default",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_config_file_parse_name",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_config_file_parse_option",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_config_file_parse_plugin",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_config_file_remove_default",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_config_file_remove_plugin",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_config_file_validate",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_destroy_ustack",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_fs_dispose_dentry_contents",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_fs_dump_dentry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_fs_dump_tree",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_check_extents",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_check_pointers",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_detect_final_rec_ip",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_fsops_read_direntry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_fsraw_add_extent_unlocked",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_fsraw_write_data_unlocked",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_index_free",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_last_ref",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_make_lost_found",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_populate_lost_found",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_revalidate_mam",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_sigcont",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_terminate",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ltfs_volume_free",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_matches_name_criteria_caseless",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_next_char",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_check_utf8_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_foldcase_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_foldcase_utf8_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_format_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_is_utf8",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_normalize_nfc_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_normalize_nfd_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_normalize_utf8_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_normalize_utf8_nfd_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_system_to_utf16_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_utf16_to_utf8_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_utf8_to_system_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_utf8_to_utf16_icu",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_valid_in_xml",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pathname_validate",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_pop_ustack",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_prepare_glob_cache",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_push_ustack",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_tape_device_close",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_tape_test_unit_ready",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "_ustack_empty",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "acomp",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "admin_tr_list",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "base64_decode",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "caught_sigcont",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "config_file_free",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "config_file_get_default_plugin",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "config_file_get_lib",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "config_file_get_options",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "config_file_get_plugins",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "config_file_load",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_assign_name",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_cache_exists",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_close",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_create",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_destroy",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_diskimage_create",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_diskimage_is_full",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_diskimage_mount",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_diskimage_remove",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_diskimage_unmount",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_flush",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_free_options",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_get_advisory_lock",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_get_dentry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_get_dirty",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_get_generation",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_get_vol_uuid",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_get_workdir",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_getxattr",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_initialized",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_listxattr",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_mkcache",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_open",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_openat",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_parse_options",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_put_advisory_lock",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_put_dentry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_read_direntry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_readdir",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_removexattr",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_rename",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_rmcache",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_set_dirty",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_set_generation",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_set_vol_uuid",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_set_workdir",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_setxattr",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_unassign_name",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_unlink",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "dcache_wipe_dentry_tree",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "errormap_finish",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "errormap_fuse_error",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "errormap_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "errormap_msg_id",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fn_trc_header",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_add_key_to_hash_table",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_allocate_dentry",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_allocate_uid",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_clear_nametype",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_decrement_file_count",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_dentry_lookup",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_directory_lookup",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_dump_tree",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_find_key_from_hash_table",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_gc_dentry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_get_used_blocks",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_hash_sort_by_uid",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_increment_file_count",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_init_inode",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_is_percent_encode_required",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_is_predecessor",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_path_lookup",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_release_dentry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_release_dentry_unlocked",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_set_nametype",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_split_path",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_tr_list",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "fs_update_platform_safe_names",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "gen_uuid_unix",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "get_unix_current_timespec",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_retry_policy.c::test_retry_clock_is_deterministic"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "get_unix_localtime",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_contains_invalid_options",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_dup_rules",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_find_option",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_free",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_get_glob_patterns",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_get_max_filesize",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_match",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_parse",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_parse_name",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_parse_size",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "index_criteria_set_allow_update",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "internal_error_dat",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "interrupted",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_close",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_destroy",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_flush",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_get_buffer_underrun_count",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_get_filesize",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_get_queue_fill",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_initialized",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_open",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_read",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_set_profiler",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_truncate",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_update_data_placement",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "iosched_write",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "is_snmp_enabled",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "is_snmp_trapid",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "kmi_destroy",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "kmi_get_key",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "kmi_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "kmi_initialized",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "kmi_parse_opts",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "kmi_print_help_message",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "label_alloc",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "label_compare",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "label_free",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "label_make_ansi_label",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "libltfs_copyright",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "libltfs_dat",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "lock_wait",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "lock_zero",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_admin_function_trace_completed",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_capacity_data",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_capacity_data_unlocked",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_caught_sigcont",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_check_eod_status",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_check_medium",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_clear_tape_alert",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_compare_names",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_default_device_name",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_device_close",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_tape_close.c::test_public_close_propagates_backend_result"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_close_after_finalization",
+      "operation_class": "commit",
+      "evidence": [
+        "tests/c/test_tape_close.c::test_unload_is_refused_without_acknowledged_close",
+        "tests/c/test_tape_close.c::test_acknowledged_close_exercises_aom_path",
+        "tests/c/test_tape_close.c::test_missing_backend_close_is_observable"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_close_skip_append_only_mode",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_device_config_load",
+      "operation_class": "positioning",
+      "evidence": [
+        "tests/c/test_device_identity.c::test_device_config_is_closed_and_fail_closed"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_config_parse",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_device_identity.c::test_device_config_is_closed_and_fail_closed"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_guard_acquire",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_device_identity.c::test_broker_fd_is_anchored_to_the_configured_sg_identity",
+        "tests/c/test_device_identity.c::test_broker_fd_rejects_untrusted_or_wrong_descriptors",
+        "tests/c/test_device_identity.c::test_mount_guard_released_after_plugin_startup_error"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_guard_release",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_device_identity.c::test_broker_fd_is_anchored_to_the_configured_sg_identity",
+        "tests/c/test_device_identity.c::test_mount_guard_released_after_plugin_startup_error"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_guard_release_preserving_result",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_device_identity.c::test_mount_guard_released_after_plugin_startup_error"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_guard_requirement",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_device_identity.c::test_file_backend_uses_only_an_owned_virtual_directory"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_identity_normalize_text",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_device_identity.c::test_media_identity_text_normalization_is_fixed_length"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_identity_phase_name",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_device_identity.c::test_identity_diagnostic_reports_exact_failure_phase"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_identity_resolve",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_device_identity.c::test_matching_identity_and_canonical_aliases",
+        "tests/c/test_device_identity.c::test_rejects_rewinding_and_non_character_paths",
+        "tests/c/test_device_identity.c::test_rejects_serial_wwid_and_tuple_mismatch",
+        "tests/c/test_device_identity.c::test_rejects_malformed_vpd80_and_wwid",
+        "tests/c/test_device_identity.c::test_rejects_missing_boot_id"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_identity_resolve_diagnostic",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_device_identity.c::test_identity_diagnostic_reports_exact_failure_phase"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_device_open",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_device_reopen",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_dp_id",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_dump",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_dump_tree",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_dump_tree_unlocked",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_eject_tape",
+      "operation_class": "destructive",
+      "evidence": [],
+      "physical_policy": "operation-token-and-exact-label",
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_enable_livelink_mode",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_event_emit",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_events.c::test_order_and_required_fields",
+        "tests/c/test_events.c::test_device_close_result_is_serialized",
+        "tests/c/test_events.c::test_json_escaping",
+        "tests/c/test_events.c::test_two_events_are_sequenced",
+        "tests/c/test_events.c::test_full_pipe_disables_sink_without_blocking",
+        "tests/c/test_events.c::test_close_serializes_with_emit_and_late_emit_is_safe",
+        "tests/c/test_events.c::test_retries_interrupted_and_short_writes",
+        "tests/c/test_events.c::test_partial_then_eagain_disables_sink",
+        "tests/c/test_events.c::test_closed_reader_returns_epipe",
+        "tests/c/test_events.c::test_disabled_sink_is_a_noop",
+        "tests/c/test_events.c::test_sink_duplicates_fd_and_copies_operation_id",
+        "tests/c/test_events.c::test_volume_identity_must_be_schema_valid"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_events_close",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_events.c::test_order_and_required_fields",
+        "tests/c/test_events.c::test_device_close_result_is_serialized",
+        "tests/c/test_events.c::test_json_escaping",
+        "tests/c/test_events.c::test_two_events_are_sequenced",
+        "tests/c/test_events.c::test_full_pipe_disables_sink_without_blocking",
+        "tests/c/test_events.c::test_retries_interrupted_and_short_writes",
+        "tests/c/test_events.c::test_partial_then_eagain_disables_sink",
+        "tests/c/test_events.c::test_closed_reader_returns_epipe",
+        "tests/c/test_events.c::test_disabled_sink_is_a_noop",
+        "tests/c/test_events.c::test_sink_duplicates_fd_and_copies_operation_id",
+        "tests/c/test_events.c::test_volume_identity_must_be_schema_valid"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_events_init",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_events.c::test_order_and_required_fields",
+        "tests/c/test_events.c::test_device_close_result_is_serialized",
+        "tests/c/test_events.c::test_json_escaping",
+        "tests/c/test_events.c::test_two_events_are_sequenced",
+        "tests/c/test_events.c::test_full_pipe_disables_sink_without_blocking",
+        "tests/c/test_events.c::test_close_serializes_with_emit_and_late_emit_is_safe",
+        "tests/c/test_events.c::test_retries_interrupted_and_short_writes",
+        "tests/c/test_events.c::test_partial_then_eagain_disables_sink",
+        "tests/c/test_events.c::test_closed_reader_returns_epipe",
+        "tests/c/test_events.c::test_disabled_sink_is_a_noop",
+        "tests/c/test_events.c::test_sink_duplicates_fd_and_copies_operation_id",
+        "tests/c/test_events.c::test_volume_identity_must_be_schema_valid"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_extra_signal_handlers",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_file_write_state_account_release",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_finalization_advance",
+      "operation_class": "commit",
+      "evidence": [
+        "tests/c/test_finalization.c::test_index_progress_requires_real_total"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_finalization_index_progress",
+      "operation_class": "commit",
+      "evidence": [
+        "tests/c/test_finalization.c::test_index_progress_requires_real_total"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_finalization_init",
+      "operation_class": "commit",
+      "evidence": [
+        "tests/c/test_finalization.c::test_optional_and_partial_initialization",
+        "tests/c/test_finalization.c::test_ack_is_fail_closed_and_identity_bound",
+        "tests/c/test_finalization.c::test_invalid_operation_counters_are_not_invented",
+        "tests/c/test_finalization.c::test_missing_volume_identity_cannot_be_acknowledged"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_finalization_set_media_identity",
+      "operation_class": "commit",
+      "evidence": [
+        "tests/c/test_finalization.c::test_media_identity_update_preserves_operation_totals"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_finalization_set_receipt",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_finalize",
+      "operation_class": "commit",
+      "evidence": [
+        "tests/c/test_finalization.c::test_success_order_and_receipt",
+        "tests/c/test_finalization.c::test_fault_matrix",
+        "tests/c/test_finalization.c::test_optional_and_partial_initialization",
+        "tests/c/test_finalization.c::test_ack_is_fail_closed_and_identity_bound",
+        "tests/c/test_finalization.c::test_capture_failure_continues_cleanup_once",
+        "tests/c/test_finalization.c::test_event_failure_is_never_success",
+        "tests/c/test_finalization.c::test_invalid_operation_counters_are_not_invented",
+        "tests/c/test_finalization.c::test_nonzero_backend_close_result_is_observable",
+        "tests/c/test_finalization.c::test_missing_volume_identity_cannot_be_acknowledged",
+        "tests/c/test_finalization.c::test_required_cleanup_adapters_fail_closed",
+        "tests/c/test_finalization.c::test_precommit_failure_retains_secondary_close_result",
+        "tests/c/test_finalization.c::test_clean_media_does_not_fabricate_index_write",
+        "tests/c/test_finalization.c::test_read_only_finalization_preserves_ready_generation"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_finish",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fn_trace_start",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_force_foreground",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_lock.c::test_forced_foreground_keeps_recorded_owner_live"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_format_tape",
+      "operation_class": "destructive",
+      "evidence": [],
+      "physical_policy": "operation-token-and-exact-label",
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_format_version",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fs_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_close",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_create",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_flush",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_getattr",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_getattr_path",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_getxattr",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_listxattr",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_open",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_open_combo",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_read",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_read_direntry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_read_direntry_noroot",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_readdir",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_readlink_path",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_removexattr",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_rename",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_set_readonly",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_set_readonly_path",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_setxattr",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_symlink_path",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_target_absolute_path",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_truncate",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_truncate_path",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_unlink",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_update_used_blocks",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_utimens",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_utimens_all",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_utimens_path",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_volume_sync",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsops_write",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsraw_add_extent",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsraw_cleanup_extent",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsraw_close",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsraw_get_dentry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsraw_open",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsraw_put_dentry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsraw_read",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsraw_truncate",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsraw_write",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_fsraw_write_data",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_function_trace",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_append_position",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_barcode",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_blocksize",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_cartridge_health",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_compression",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_criteria_allow_update",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_days_of_year",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_file_count",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_format_time",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_index_backpointer",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_index_commit_message",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_index_creator",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_index_criteria",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_index_generation",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_index_selfpointer",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_index_time",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_index_version",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_mday_from_yday",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_params_unlocked",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_partition_readonly",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_rao_list",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_tape_alert",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_tape_alert_unlocked",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_tape_readonly",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_trace_status",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_valid_block_count",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_valid_block_count_unlocked",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_vendorunique_xattr",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_volume_lock",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_volume_name",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_get_volume_uuid",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_gmtime",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_header_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_index_alloc",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_interval_commit_execute",
+      "operation_class": "commit",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_interval_commit_fault_injection"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_interval_control_add_bytes",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_terminal_policy_failure_is_durable",
+        "tests/c/test_operation_control.c::test_interval_commit_fault_injection",
+        "tests/c/test_operation_control.c::test_interval_boundaries_and_atomic_reset",
+        "tests/c/test_operation_control.c::test_byte_threshold_wakes_waiter"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_interval_control_claim_at",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_terminal_policy_failure_is_durable",
+        "tests/c/test_operation_control.c::test_interval_commit_fault_injection",
+        "tests/c/test_operation_control.c::test_interval_boundaries_and_atomic_reset",
+        "tests/c/test_operation_control.c::test_time_deadline_rearms_after_long_commit"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_interval_control_complete_at",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_terminal_policy_failure_is_durable",
+        "tests/c/test_operation_control.c::test_interval_boundaries_and_atomic_reset",
+        "tests/c/test_operation_control.c::test_time_deadline_rearms_after_long_commit",
+        "tests/c/test_operation_control.c::test_byte_threshold_wakes_waiter"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_interval_control_create",
+      "operation_class": "write",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_terminal_policy_failure_is_durable",
+        "tests/c/test_operation_control.c::test_interval_commit_fault_injection",
+        "tests/c/test_operation_control.c::test_interval_boundaries_and_atomic_reset",
+        "tests/c/test_operation_control.c::test_time_deadline_rearms_after_long_commit",
+        "tests/c/test_operation_control.c::test_byte_threshold_wakes_waiter"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_interval_control_destroy",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_terminal_policy_failure_is_durable",
+        "tests/c/test_operation_control.c::test_interval_commit_fault_injection",
+        "tests/c/test_operation_control.c::test_interval_boundaries_and_atomic_reset",
+        "tests/c/test_operation_control.c::test_time_deadline_rearms_after_long_commit",
+        "tests/c/test_operation_control.c::test_byte_threshold_wakes_waiter"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_interval_control_error",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_terminal_policy_failure_is_durable"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_interval_control_stop",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_byte_threshold_wakes_waiter"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_interval_control_wait_claim",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_ip_id",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_is_dirty",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_is_interrupted",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_is_valid_partid",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_load_all_attributes",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_load_tape",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_log_level",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_logpage",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_mam",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_max_cache_size",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_min_cache_size",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_mount",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_operation_failure_init",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_terminal_policy_failure_is_durable",
+        "tests/c/test_operation_control.c::test_interval_commit_fault_injection"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_operation_failure_record",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_terminal_policy_failure_is_durable"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_operation_failure_result",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_terminal_policy_failure_is_durable",
+        "tests/c/test_operation_control.c::test_interval_commit_fault_injection"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_operation_lock_acquire",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_lock.c::test_first_acquisition_live_conflict_and_owned_release",
+        "tests/c/test_operation_lock.c::test_read_only_info_class_is_serialized",
+        "tests/c/test_operation_lock.c::test_pid_reuse_and_previous_boot_are_proven_stale",
+        "tests/c/test_operation_lock.c::test_corrupt_and_wrong_target_records_fail_closed",
+        "tests/c/test_operation_lock.c::test_release_refuses_changed_ownership",
+        "tests/c/test_operation_lock.c::test_forced_foreground_keeps_recorded_owner_live"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_operation_lock_release",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_lock.c::test_first_acquisition_live_conflict_and_owned_release",
+        "tests/c/test_operation_lock.c::test_read_only_info_class_is_serialized",
+        "tests/c/test_operation_lock.c::test_pid_reuse_and_previous_boot_are_proven_stale",
+        "tests/c/test_operation_lock.c::test_release_refuses_changed_ownership",
+        "tests/c/test_operation_lock.c::test_forced_foreground_keeps_recorded_owner_live",
+        "tests/c/test_operation_lock.c::test_one_of_one_hundred_concurrent_acquisitions_wins"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_operation_options_message_code",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_operation_options_parse",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_cli_matrix"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_operation_result_preserve",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_operational_result_survives_cleanup"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_operation_write_gate",
+      "operation_class": "write",
+      "evidence": [
+        "tests/c/test_operation_control.c::test_terminal_policy_failure_is_durable"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_override_policy",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_parse_kmi_backend_opts",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_parse_library_backend_opts",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_parse_tape_backend_opts",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_part_id2num",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_perf_destroy",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_windows_and_idle_intervals",
+        "tests/c/test_perf_counters.c::test_fractional_average_uses_nanoseconds",
+        "tests/c/test_perf_counters.c::test_unique_file_count_is_bounded",
+        "tests/c/test_perf_counters.c::test_emit_cadence_reset_and_overflow",
+        "tests/c/test_perf_counters.c::test_finalization_and_auxiliary_counters",
+        "tests/c/test_perf_counters.c::test_absolute_runtime_samples_do_not_double_count",
+        "tests/c/test_perf_counters.c::test_concurrent_updates_are_exact"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_perf_init",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_finalization_and_auxiliary_counters"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_perf_record_buffer_underrun",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_finalization_and_auxiliary_counters"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_perf_record_file",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_windows_and_idle_intervals",
+        "tests/c/test_perf_counters.c::test_unique_file_count_is_bounded"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_perf_record_phase_duration",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_finalization_and_auxiliary_counters"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_perf_record_retry",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_finalization_and_auxiliary_counters"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_perf_record_write",
+      "operation_class": "write",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_windows_and_idle_intervals",
+        "tests/c/test_perf_counters.c::test_fractional_average_uses_nanoseconds",
+        "tests/c/test_perf_counters.c::test_emit_cadence_reset_and_overflow",
+        "tests/c/test_perf_counters.c::test_finalization_and_auxiliary_counters"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_perf_reporter_destroy",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_perf_reporter_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_perf_reporter_notify",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_perf_reporter_stop",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_perf_reset",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_emit_cadence_reset_and_overflow"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_perf_set_finalizing",
+      "operation_class": "commit",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_finalization_and_auxiliary_counters"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_perf_snapshot",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_windows_and_idle_intervals",
+        "tests/c/test_perf_counters.c::test_fractional_average_uses_nanoseconds",
+        "tests/c/test_perf_counters.c::test_unique_file_count_is_bounded",
+        "tests/c/test_perf_counters.c::test_emit_cadence_reset_and_overflow",
+        "tests/c/test_perf_counters.c::test_finalization_and_auxiliary_counters",
+        "tests/c/test_perf_counters.c::test_absolute_runtime_samples_do_not_double_count",
+        "tests/c/test_perf_counters.c::test_concurrent_updates_are_exact"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_perf_update_samples",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_perf_counters.c::test_absolute_runtime_samples_do_not_double_count"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_print_device_list",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_print_thread_id",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_profiler_set",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_read_index",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_read_labels",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_read_one_label",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_recover_eod",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_recover_eod_simple",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_release_medium",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_request_profiler_start",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_request_profiler_stop",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_reset_capacity",
+      "operation_class": "destructive",
+      "evidence": [],
+      "physical_policy": "operation-token-and-exact-label",
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_retry_classify",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_retry_policy.c::test_decision_table"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "ltfs_revalidate",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_save_index_to_disk",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_seek_index",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_barcode",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_blocksize",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_compression",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_eod_check",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_index_dirty",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_log_level",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_partition_map",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_scheduler_cache",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_signal_handlers",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_syslog_level",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_trace_status",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_traverse_mode",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_vendorunique_xattr",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_volume_name",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_set_work_dir",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_setup_device",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_sigcont_set",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_snmp_enabled",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_snmp_finish",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_snmp_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_split_symlink",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_standalone_receipt_finalize",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_standalone_receipt_persist",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_standalone_receipt_ready",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_start_mount",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_streaming_stats_wait",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_streaming_stats_write",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_sync_index",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_syslog_level",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_test_unit_ready",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_timegm",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_timespec_from_timespec",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_trace_destroy",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_trace_dump",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_trace_get_offset",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_trace_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_traverse_index_backward",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_traverse_index_forward",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_traverse_index_no_eod",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_unformat_tape",
+      "operation_class": "destructive",
+      "evidence": [],
+      "physical_policy": "operation-token-and-exact-label",
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_unmount",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_unmount_observed",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_unset_extra_signal_handler",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_unset_index_dirty",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_unset_signal_handlers",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_update_cart_coherency",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_update_valid_block_count",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_update_valid_block_count_unlocked",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_use_atime",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_version",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_volume_alloc",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_wait_device_ready",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_wait_revalidation",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_write_index",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_write_index_conditional",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfs_write_label",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfsmsg_internal",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfsprintf_finish",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfsprintf_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfsprintf_load_plugin",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfsprintf_set_log_level",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "ltfsprintf_unload_plugin",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "parse_vol",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_caseless_match",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_format",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_nfd_normalize",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_normalize",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_prepare_caseless",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_strlen",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_truncate",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_unformat",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_validate_file",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_validate_target",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_validate_xattr_name",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "pathname_validate_xattr_value",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "periodic_sync_add_dirty_bytes",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "periodic_sync_thread",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "periodic_sync_thread_destroy",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "periodic_sync_thread_init",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "periodic_sync_thread_initialized",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "plugin_load",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "plugin_unload",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "plugin_usage",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "read_tape_attribute",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "read_trap_def_file",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "req_header",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "req_trace",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "send_ltfsErrorTrap",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "send_ltfsInfoTrap",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "send_ltfsStartTrap",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "send_ltfsStopTrap",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "set_tape_attribute",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "show_runtime_system_info",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "start",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "start_offset",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_allow_medium_removal",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_check_eod_status",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_clear_key",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_clear_tape_alert",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_common_dat",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_default_device_name",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_device_alloc",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_device_close_raw",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_device_free",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_device_is_connected",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_device_lock",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_device_open",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_device_reopen",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_device_unlock",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_enable_append_only_mode",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_erase",
+      "operation_class": "destructive",
+      "evidence": [
+        "tests/c/test_tape_destructive.c::test_short_and_long_erase_propagate_failure_without_replay"
+      ],
+      "physical_policy": "operation-token-and-exact-label",
+      "probe": "source-call"
+    },
+    {
+      "name": "tape_force_read_only",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_tape_close.c::test_forced_readonly_blocks_payload_and_filemarks"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "tape_format",
+      "operation_class": "destructive",
+      "evidence": [
+        "tests/c/test_tape_destructive.c::test_partition_and_destructive_format_types_are_exact",
+        "tests/c/test_tape_destructive.c::test_format_refuses_after_each_failed_boundary"
+      ],
+      "physical_policy": "operation-token-and-exact-label",
+      "probe": "source-call"
+    },
+    {
+      "name": "tape_format_attribute_to_cm",
+      "operation_class": "destructive",
+      "evidence": [],
+      "physical_policy": "operation-token-and-exact-label",
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_append_only_mode_setting",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_append_position",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_attribute_from_cm",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_capacity",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_cart_coherency",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_cart_volume_lock_status",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_cartridge_health",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_device_list",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_drive_encryption_method",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_drive_encryption_state",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_first_untransfered_position",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_info",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_keyalias",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_max_blocksize",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_media_encrypted",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_media_pool_info",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_params",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_pews",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_position",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_position_from_drive",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_runtime_telemetry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_tape_alert",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_vendorunique_xattr",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_volume_change_reference",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_get_worm_status",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_inquiry",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_inquiry_page",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_is_cartridge_loadable",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_is_forced_read_only",
+      "operation_class": "read-only",
+      "evidence": [
+        "tests/c/test_tape_close.c::test_forced_readonly_blocks_payload_and_filemarks"
+      ],
+      "physical_policy": null,
+      "probe": "source-call"
+    },
+    {
+      "name": "tape_is_mountable",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_is_reformattable",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_load_all_attribute_from_cm",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_load_tape",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_locate_first_index",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_locate_last_index",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_locate_next_index",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_locate_previous_index",
+      "operation_class": "commit",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_logsense",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_parse_library_backend_opts",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_parse_opts",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_prevent_medium_removal",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_print_help_message",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_rao_request",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_read",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_read_attr",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_read_only",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_recover_eod_status",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_release_device",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_release_fence",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_reserve_device",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_reset_capacity",
+      "operation_class": "destructive",
+      "evidence": [],
+      "physical_policy": "operation-token-and-exact-label",
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_rewind",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_seek",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_seek_append_position",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_seek_eod",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_append_position",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_attribute_to_cm",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_cart_coherency",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_cart_volume_lock_status",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_compression",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_ip_append_position",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_key",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_media_pool_info",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_pews",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_profiler",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_set_vendorunique_xattr",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_spacefm",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_start_fence",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_takedump_drive",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_test_unit_ready",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_unformat",
+      "operation_class": "destructive",
+      "evidence": [
+        "tests/c/test_tape_destructive.c::test_unformat_uses_distinct_commands_and_refuses_after_failed_locate"
+      ],
+      "physical_policy": "operation-token-and-exact-label",
+      "probe": "source-call"
+    },
+    {
+      "name": "tape_unformat_hard",
+      "operation_class": "destructive",
+      "evidence": [
+        "tests/c/test_tape_destructive.c::test_unformat_uses_distinct_commands_and_refuses_after_failed_locate"
+      ],
+      "physical_policy": "operation-token-and-exact-label",
+      "probe": "source-call"
+    },
+    {
+      "name": "tape_unload_tape",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_wait_device_ready",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_write",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "tape_write_filemark",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "timerinfo",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "timespec_from_ltfs_timespec",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "trace_enable",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "trap_entries",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "trc_header",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "u_get_truncate_size",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "update_platform_safe_name",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "update_tape_attribute",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xattr_do_remove",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xattr_do_set",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xattr_get",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xattr_get_string",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xattr_get_u64",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xattr_list",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xattr_remove",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xattr_set",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xattr_set_mountpoint_length",
+      "operation_class": "positioning",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xattr_strip_name",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_acquire_file_lock",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_extent_symlink_info_from_file",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_finish",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_format_time",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_init",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_input_tape_close_callback",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_input_tape_read_callback",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_label_from_file",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_label_from_mem",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_make_label",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_make_schema",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_next_tag",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_output_fd_close_callback",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_output_fd_write_callback",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_output_tape_close_callback",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_output_tape_write_callback",
+      "operation_class": "write",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_parse_bool",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_parse_filename",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_parse_ll",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_parse_target",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_parse_time",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_parse_ull",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_parse_uuid",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_parse_xll",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_reader_read",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_release_file_lock",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_save_tag",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_scan_text",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_schema_from_file",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_schema_from_tape",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_schema_to_file",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_schema_to_tape",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    },
+    {
+      "name": "xml_skip_tag",
+      "operation_class": "read-only",
+      "evidence": [],
+      "physical_policy": null,
+      "probe": "abi-export"
+    }
+  ]
+}

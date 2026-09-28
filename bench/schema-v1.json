@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lto-archiver.invalid/schemas/ltfs-benchmark-v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "build", "environment", "backend", "settings", "workloads", "metrics", "validation"],
+  "properties": {
+    "schema": {"const": 1},
+    "build": {
+      "type": "object", "additionalProperties": false,
+      "required": ["project", "git_commit", "dirty", "python", "artifacts"],
+      "properties": {
+        "project": {"const": "lto-ltfs"},
+        "git_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "dirty": {"const": false}, "python": {"type": "string", "minLength": 1},
+        "artifacts": {"type": "object", "additionalProperties": false,
+          "required": ["ltfs", "mkltfs", "tape_backend", "iosched_backend", "config"],
+          "properties": {
+            "ltfs": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "mkltfs": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "tape_backend": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "iosched_backend": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "config": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+          }}
+      }
+    },
+    "environment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["system", "release", "machine", "cpu_count", "cpu_model", "ram_bytes", "source_filesystem_device", "hba", "driver", "firmware", "tape_alias"],
+      "properties": {
+        "system": {"type": "string"}, "release": {"type": "string"}, "machine": {"type": "string"},
+        "cpu_count": {"type": ["integer", "null"], "minimum": 1},
+        "cpu_model": {"type": ["string", "null"]}, "ram_bytes": {"type": ["integer", "null"], "minimum": 1},
+        "source_filesystem_device": {"type": "integer", "minimum": 0},
+        "hba": {"type": "null"}, "driver": {"type": "null"}, "firmware": {"type": "null"}, "tape_alias": {"type": "null"}
+      }
+    },
+    "backend": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "implementation", "physical_tape", "tape_backend_path"],
+      "properties": {
+        "kind": {"const": "file"}, "implementation": {"const": "ltfs-libtape-file"},
+        "physical_tape": {"const": false}, "tape_backend_path": {"type": "string", "minLength": 1}
+      }
+    },
+    "settings": {
+      "type": "object", "additionalProperties": false,
+      "required": ["seed", "large_bytes", "copy_buffer_bytes", "compression_enabled", "sync_type", "mount_readback_readonly"],
+      "properties": {
+        "seed": {"type": "integer", "minimum": 0}, "large_bytes": {"type": "integer", "minimum": 1048576},
+        "copy_buffer_bytes": {"const": 1048576}, "compression_enabled": {"const": false},
+        "sync_type": {"const": "unmount"}, "mount_readback_readonly": {"const": true}
+      }
+    },
+    "workloads": {
+      "type": "array", "minItems": 5, "maxItems": 5,
+      "items": {"type": "object", "additionalProperties": false, "required": ["name", "size_bytes", "sha256"],
+        "properties": {"name": {"type": "string", "minLength": 1}, "size_bytes": {"type": "integer", "minimum": 0}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}
+    },
+    "metrics": {
+      "type": "object", "additionalProperties": false,
+      "required": ["duration_ns", "total_bytes", "file_count", "throughput_bytes_per_second", "retry_count", "error_count", "finalization_count"],
+      "properties": {
+        "duration_ns": {"type": "integer", "minimum": 1}, "total_bytes": {"type": "integer", "minimum": 0},
+        "file_count": {"type": "integer", "minimum": 1}, "throughput_bytes_per_second": {"type": "integer", "minimum": 1},
+        "retry_count": {"type": "integer", "minimum": 0}, "error_count": {"const": 0}, "finalization_count": {"const": 2}
+      }
+    },
+    "validation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["method", "all_hashes_match", "files", "receipts"],
+      "properties": {
+        "method": {"const": "ltfs-unmount-remount-index-hash"}, "all_hashes_match": {"const": true},
+        "files": {"type": "array", "minItems": 5, "maxItems": 5,
+          "items": {"type": "object", "additionalProperties": false, "required": ["name", "expected_sha256", "observed_sha256", "matches"],
+            "properties": {"name": {"type": "string", "minLength": 1}, "expected_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "observed_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}, "matches": {"const": true}}}},
+        "receipts": {"type": "array", "minItems": 2, "maxItems": 2,
+          "items": {"type": "object", "additionalProperties": false,
+            "required": ["purpose", "sha256", "content_base64"],
+            "properties": {
+              "purpose": {"enum": ["write", "readback"]},
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "content_base64": {"type": "string", "minLength": 1}
+            }}}
+      }
+    }
+  }
+}
