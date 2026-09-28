@@ -290,8 +290,9 @@ class PackagingPolicyTests(unittest.TestCase):
         ):
             self.assertIn("Requires:       " + dependency, spec)
         self.assertIn("Requires(post): /usr/bin/systemd-tmpfiles", spec)
-        for build_dependency in ("git-core", "icu", "libubsan", "systemd-rpm-macros"):
+        for build_dependency in ("git-core", "libicu", "libubsan", "systemd-rpm-macros"):
             self.assertIn("BuildRequires:  " + build_dependency, spec)
+        self.assertNotIn("BuildRequires:  icu\n", spec)
         self.assertNotIn("--nodeps", spec)
         self.assertNotRegex(spec, r"libicu(?:uc|i18n)\.so\.[0-9]+")
 

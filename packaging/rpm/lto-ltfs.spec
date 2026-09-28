@@ -23,7 +23,7 @@ BuildRequires:  fuse-devel >= 2.9.9
 BuildRequires:  gcc
 BuildRequires:  gcc-c++
 BuildRequires:  git-core
-BuildRequires:  icu
+BuildRequires:  libicu
 BuildRequires:  libicu-devel
 BuildRequires:  libtool
 BuildRequires:  libubsan
