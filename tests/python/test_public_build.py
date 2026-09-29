@@ -146,6 +146,7 @@ class PublicBuildTests(unittest.TestCase):
         self.assertIn("-ffile-prefix-map=%{_topdir}=/usr/src/debug/lto-ltfs", spec)
         self.assertIn('CFLAGS="%{build_cflags} -ffile-prefix-map=', spec)
         self.assertIn('CXXFLAGS="%{build_cxxflags} -ffile-prefix-map=', spec)
+        self.assertIn('LDFLAGS="%{build_ldflags} -Wl,--build-id=none"', spec)
 
     def test_unsigned_build_requires_verified_icu_tools(self):
         lock = runpy.run_path(str(ROOT / "scripts/prepare-icu-build-tools.py"))["load_icu_lock"](

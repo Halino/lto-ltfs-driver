@@ -57,9 +57,12 @@ qualification. No vendor diagnostic payload or private media data is included.
 %build
 export SOURCE_DATE_EPOCH=%{source_date_epoch}
 # Independent jobs use distinct temporary topdirs. Normalize that prefix in
-# object debug metadata before linking so the final ELF Build IDs are stable.
+# object debug metadata before linking. The remaining per-topdir divergence
+# was confined to 20-byte GNU Build IDs in shared libraries; omit those notes
+# rather than publish two different hashes for byte-identical library code.
 export CFLAGS="%{build_cflags} -ffile-prefix-map=%{_topdir}=/usr/src/debug/lto-ltfs"
 export CXXFLAGS="%{build_cxxflags} -ffile-prefix-map=%{_topdir}=/usr/src/debug/lto-ltfs"
+export LDFLAGS="%{build_ldflags} -Wl,--build-id=none"
 ./autogen.sh
 %configure --enable-fast --enable-tests --disable-snmp --disable-lintape
 %make_build
