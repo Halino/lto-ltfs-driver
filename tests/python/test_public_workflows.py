@@ -129,6 +129,12 @@ class PublicWorkflowTests(unittest.TestCase):
         self.assertIn("validate_final_proof", str(data["jobs"]["finalize"]))
         self.assertIn("gh release edit", str(data["jobs"]["finalize"]))
         self.assertIn("isImmutable", str(data["jobs"]["finalize"]))
+        for job in data["jobs"].values():
+            self.assertEqual(job["if"], "startsWith(github.ref, 'refs/tags/v')")
+        preflight_steps = data["jobs"]["preflight"]["steps"]
+        self.assertIn("refs/tags/$RELEASE_TAG", preflight_steps[1]["run"])
+        self.assertNotIn("secrets.", str(preflight_steps[1]))
+        self.assertIn("PUBLIC_DRIVER_ADMIN_READ_TOKEN", str(preflight_steps[2]))
         self._assert_pinned_actions(text)
 
     def _assert_pinned_actions(self, text: str) -> None:
