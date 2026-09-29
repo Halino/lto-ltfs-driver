@@ -12,6 +12,7 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import stat
 import subprocess
 import sys
@@ -251,13 +252,154 @@ def fetch_icu_rpm(lock: dict, output: Path) -> Path:
     return output / lock["filename"]
 
 
+def _cpio_members(rpm: Path, directory: Path, selected: list[str] | None) -> str:
+    command = ["/usr/bin/cpio", "-it", "--quiet"] if selected is None else [
+        "/usr/bin/cpio", "-idm", "--no-absolute-filenames", "--quiet", *selected,
+    ]
+    try:
+        producer = subprocess.Popen(
+            ["/usr/bin/rpm2cpio", str(rpm)], stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE, stdin=subprocess.DEVNULL,
+        )
+        assert producer.stdout is not None
+        consumer = subprocess.run(
+            command, cwd=directory, stdin=producer.stdout, capture_output=True,
+            text=True, timeout=60,
+        )
+        producer.stdout.close()
+        producer_stderr = producer.communicate(timeout=60)[1]
+    except (OSError, subprocess.TimeoutExpired) as error:
+        raise IcuToolError("ICU archive inventory or extraction failed") from error
+    if (
+        producer.returncode or consumer.returncode
+        or len(consumer.stdout) > 1024 * 1024 or len(consumer.stderr) > 1024 * 1024
+        or len(producer_stderr) > 1024 * 1024
+    ):
+        raise IcuToolError("ICU archive inventory or extraction failed")
+    return consumer.stdout
+
+
+def _copy_reviewed_tools(lock: dict, extracted: Path, tools: Path) -> None:
+    if extracted.is_symlink() or not extracted.is_dir() or tools.exists() or tools.is_symlink():
+        raise IcuToolError("ICU tool staging path is unsafe")
+    expected_files = {path.removeprefix("/") for path in lock["tool_members"]}
+    expected_dirs = {"usr", "usr/bin"}
+    actual = {path.relative_to(extracted).as_posix(): path for path in extracted.rglob("*")}
+    if set(actual) != expected_files | expected_dirs:
+        raise IcuToolError("ICU extraction contains an unreviewed member")
+    for directory in expected_dirs:
+        if not stat.S_ISDIR(actual[directory].lstat().st_mode) or actual[directory].is_symlink():
+            raise IcuToolError("ICU extracted directory is unsafe")
+    rows = {row[0]: row for row in lock["payload_members"]}
+    for member in lock["tool_members"]:
+        source = actual[member.removeprefix("/")]
+        status = source.lstat()
+        mode = int(rows[member][1], 8)
+        if (
+            not stat.S_ISREG(status.st_mode) or status.st_nlink != 1
+            or stat.S_IMODE(status.st_mode) != stat.S_IMODE(mode)
+            or status.st_mode & 0o6000 or mode & 0o6000
+            or _sha256(source) != rows[member][2]
+        ):
+            raise IcuToolError("ICU extracted executable differs from signed inventory")
+    tools.mkdir(mode=0o755)
+    for member in lock["tool_members"]:
+        source = actual[member.removeprefix("/")]
+        target = tools / Path(member).name
+        shutil.copyfile(source, target, follow_symlinks=False)
+        if _sha256(target) != rows[member][2]:
+            raise IcuToolError("ICU copied executable differs from lock")
+        target.chmod(0o555)
+    tools.chmod(0o555)
+
+
+def prepare_icu_tools(lock_path: Path, output: Path) -> Path:
+    lock = load_icu_lock(lock_path)
+    output = Path(output)
+    if (
+        not output.is_absolute() or output.exists() or output.is_symlink()
+        or not output.parent.is_dir() or any(parent.is_symlink() for parent in output.parents)
+    ):
+        raise IcuToolError("ICU tools need a new absolute output directory")
+    with tempfile.TemporaryDirectory(prefix=".lto-icu-provider-", dir=output.parent) as raw:
+        scratch = Path(raw)
+        rpm = fetch_icu_rpm(lock, scratch / "fetched")
+        inventory = _cpio_members(rpm, scratch, None)
+        expected = ["." + row[0] for row in lock["payload_members"]]
+        if inventory.splitlines() != expected:
+            raise IcuToolError("ICU archive member closure differs from signed header")
+        extracted = scratch / "extracted"
+        extracted.mkdir()
+        _cpio_members(rpm, extracted, ["." + member for member in lock["tool_members"]])
+        with tempfile.TemporaryDirectory(prefix=".lto-icu-tools-", dir=output.parent) as stage_raw:
+            stage = Path(stage_raw)
+            _copy_reviewed_tools(lock, extracted, stage / "tools")
+            stage.chmod(0o755)
+            os.replace(stage, output)
+    return output / "tools"
+
+
+def validate_ubi_loader_report(report: str) -> set[str]:
+    """Reject unresolved symbols or any ICU library outside the UBI loader path."""
+    if type(report) is not str or "not found" in report or "undefined symbol" in report:
+        raise IcuToolError("ICU tool cannot load against UBI libraries")
+    resolved: set[str] = set()
+    names: set[str] = set()
+    for line in report.splitlines():
+        if "libicu" not in line:
+            continue
+        match = re.fullmatch(
+            r"\s*(libicu[A-Za-z0-9_]*\.so\.67) => (/\S+) \(0x[0-9a-fA-F]+\)\s*",
+            line,
+        )
+        if match is None or match.group(2) not in {
+            f"/lib64/{match.group(1)}", f"/usr/lib64/{match.group(1)}",
+        }:
+            raise IcuToolError("ICU tool resolved an unreviewed library")
+        names.add(match.group(1))
+        resolved.add(match.group(2))
+    if "libicuuc.so.67" not in names:
+        raise IcuToolError("ICU tool did not resolve UBI libicuuc")
+    return resolved
+
+
+def validate_pkgdata_config(contents: str) -> None:
+    values = {}
+    for line in contents.splitlines():
+        if "=" in line:
+            key, value = line.split("=", 1)
+            if key in values:
+                raise IcuToolError("duplicate UBI pkgdata helper setting")
+            values[key] = value
+    if (
+        values.get("GENCCODE_ASSEMBLY_TYPE") != "-a gcc"
+        or not values.get("COMPILE", "").startswith("gcc ")
+        or values.get("AR") != "ar" or values.get("RANLIB") != "ranlib"
+    ):
+        raise IcuToolError("UBI pkgdata compiler/archive helpers differ")
+
+
+def verify_catalog_pair(first: Path, second: Path) -> None:
+    for path in (first, second):
+        status = Path(path).lstat()
+        if (
+            not stat.S_ISREG(status.st_mode) or status.st_nlink != 1
+            or status.st_size <= 4 or not Path(path).read_bytes().startswith(b"\x7fELF")
+        ):
+            raise IcuToolError("generated ICU catalog is not a nonempty ELF object")
+    if _sha256(first) != _sha256(second):
+        raise IcuToolError("ICU catalog bytes are not repeatable")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--lock", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--prepare", action="store_true")
     args = parser.parse_args()
     try:
-        rpm = fetch_icu_rpm(load_icu_lock(args.lock), args.output)
+        rpm = (prepare_icu_tools(args.lock, args.output) if args.prepare
+               else fetch_icu_rpm(load_icu_lock(args.lock), args.output))
     except (IcuToolError, OSError, ValueError) as error:
         print(f"ICU build-tool provider refused: {error}", file=sys.stderr)
         return 1

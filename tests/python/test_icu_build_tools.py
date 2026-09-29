@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import copy
+import hashlib
+import os
 import runpy
 import tempfile
 import unittest
@@ -104,6 +106,44 @@ class IcuBuildToolTests(unittest.TestCase):
                     lock["rpm_url"], target, lock["size"], lock["sha256"], Opener()
                 )
             self.assertFalse(target.exists())
+
+    def test_only_reviewed_regular_executables_are_extracted(self) -> None:
+        lock = self.tool["load_icu_lock"](LOCK)
+        select = self.tool["_copy_reviewed_tools"]
+        error = self.tool["IcuToolError"]
+        contents = {"genrb": b"fixture-genrb", "pkgdata": b"fixture-pkgdata"}
+        fixture = copy.deepcopy(lock)
+        for row in fixture["payload_members"]:
+            if Path(row[0]).name in contents and row[0] in fixture["tool_members"]:
+                row[2] = hashlib.sha256(contents[Path(row[0]).name]).hexdigest()
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            extracted = root / "extracted"
+            tools = root / "tools"
+            source = extracted / "usr/bin"
+            source.mkdir(parents=True)
+            for name, value in contents.items():
+                (source / name).write_bytes(value)
+                (source / name).chmod(0o755)
+            select(fixture, extracted, tools)
+            self.assertEqual(set(contents), {p.name for p in tools.iterdir()})
+            (source / "extra-helper").write_bytes(b"extra")
+            with self.assertRaises(error):
+                select(fixture, extracted, root / "extra-output")
+            (source / "extra-helper").unlink()
+            (source / "genrb").unlink()
+            (source / "genrb").symlink_to("pkgdata")
+            with self.assertRaises(error):
+                select(fixture, extracted, root / "symlink-output")
+            (source / "genrb").unlink()
+            (source / "genrb").write_bytes(contents["genrb"])
+            (source / "genrb").chmod(0o4755)
+            with self.assertRaises(error):
+                select(fixture, extracted, root / "setuid-output")
+            (source / "genrb").chmod(0o755)
+            (source / "pkgdata").write_bytes(b"changed")
+            with self.assertRaises(error):
+                select(fixture, extracted, root / "digest-output")
 
 
 if __name__ == "__main__":
