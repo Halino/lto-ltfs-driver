@@ -189,12 +189,13 @@ jobs:
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: compared-unsigned-driver
-          path: incoming
+          path: ${{ runner.temp }}/incoming
       - name: Recheck exact compared bytes before no-tape runtime smoke
         run: |
           set -euo pipefail
           python3 scripts/verify-public-build.py \
-            --compare-first incoming/unsigned --compare-second incoming/unsigned
+            --compare-first "$RUNNER_TEMP/incoming/unsigned" \
+            --compare-second "$RUNNER_TEMP/incoming/unsigned"
       - name: Install, exercise and remove in fresh pinned UBI without ICU provider tools
         run: |
           set -euo pipefail
@@ -202,7 +203,7 @@ jobs:
           docker pull "$image"
           docker run --rm --pull=never \
             --mount "type=bind,source=$GITHUB_WORKSPACE,target=/src,readonly" \
-            --mount "type=bind,source=$GITHUB_WORKSPACE/incoming/unsigned,target=/artifacts,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP/incoming/unsigned,target=/artifacts,readonly" \
             --mount "type=bind,source=$RUNNER_TEMP,target=/work" \
             --workdir /src "$image" /bin/bash -euo pipefail -c '
               python3 -B scripts/fetch-public-rpms.py \
@@ -249,7 +250,7 @@ jobs:
       - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: compared-unsigned-driver
-          path: incoming
+          path: ${{ runner.temp }}/incoming
       - name: Recheck compared source and install signing tools
         env:
           RELEASE_TAG: ${{ inputs.tag }}
@@ -264,7 +265,7 @@ jobs:
           sudo apt-get install -y rpm gnupg cpio
           python3 scripts/verify-public-build.py --repo "$PWD" \
             --tag "$RELEASE_TAG" --commit "$REVIEWED_COMMIT" \
-            --output incoming/unsigned
+            --output "$RUNNER_TEMP/incoming/unsigned"
       - name: Sign exact driver RPM and SRPM only
         env:
           PUBLIC_DRIVER_RPM_SECRET_KEY_B64: ${{ secrets.PUBLIC_DRIVER_RPM_SECRET_KEY_B64 }}
@@ -278,19 +279,19 @@ jobs:
           trap 'rm -rf -- "$keydir"' EXIT
           printf '%s' "$PUBLIC_DRIVER_RPM_SECRET_KEY_B64" | base64 -d > "$keydir/secret.asc"
           printf '%s' "$PUBLIC_DRIVER_RPM_PUBLIC_KEY_B64" | base64 -d > "$keydir/public.asc"
-          bash scripts/sign-public-rpm.sh "$PWD/incoming/unsigned" \
-            "$PWD/release-candidate" "$keydir/secret.asc" "$keydir/public.asc" \
+          bash scripts/sign-public-rpm.sh "$RUNNER_TEMP/incoming/unsigned" \
+            "$RUNNER_TEMP/release-candidate" "$keydir/secret.asc" "$keydir/public.asc" \
             "$PUBLIC_DRIVER_RPM_PRIMARY_FPR" "$PUBLIC_DRIVER_RPM_SUBKEY_FPR"
       - name: Attest final signed RPM and SRPM bytes
         id: attest
         uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
         with:
-          subject-path: release-candidate/*.rpm
+          subject-path: ${{ runner.temp }}/release-candidate/*.rpm
       - name: Retain candidate without creating a public Release
-        run: cp '${{ steps.attest.outputs.bundle-path }}' release-candidate/ATTESTATION.json
+        run: cp '${{ steps.attest.outputs.bundle-path }}' "$RUNNER_TEMP/release-candidate/ATTESTATION.json"
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: signed-driver-release-candidate
-          path: release-candidate/
+          path: ${{ runner.temp }}/release-candidate/
           if-no-files-found: error
           retention-days: 7
