@@ -27,14 +27,14 @@
   },
   {
     "path": "README.md",
-    "sha256": "f13d4d5a8078aff30960035b33f38d2c1ab045a4b42f397e1fe5330d0da4baf7",
+    "sha256": "74a7ae4c6f2fa19f7884d27b568d5a6b56983b6c3c3ee92f223f0c6211c26509",
     "upstream_sha256": "0e87e8661b7657397011b0ec03ab53398fa3908e26c3c83cd407d1fe22959441",
     "review_status": "reviewed",
     "declared_spdx": [],
     "license_candidate": "BSD-3-Clause",
     "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
     "origin": "IBM LTFS v2.4.8.4-10522 README plus locally authored RHEL 9 driver packaging, device-admission and qualification instructions",
-    "evidence": "Full diff against the hash-pinned IBM README contains one 200-line downstream project-specific technical section, removal of an overbroad BSD badge, and a three-line license-status correction; the inherited IBM text remains. Added instructions refer to this project's exact local scripts, schemas, release numbers and qualification files. Distinctive added phrases were absent from the retained HPE 3.4.2 and 3.5 comparison trees. This is a file-scoped documentation-origin review, not a clearance of linked driver implementation or HPE-derived code.",
+    "evidence": "Full diff against the hash-pinned IBM README contains one 200-line downstream project-specific technical section, removal of an overbroad BSD badge, a license-status correction, and a later local public-release-guide link with private-to-downstream wording correction; the inherited IBM text remains. Added instructions refer to this project's exact local scripts, schemas, release numbers and qualification files. The earlier distinctive additions were absent from the retained HPE 3.4.2 and 3.5 comparison trees; the later additions are procedural only. This is a file-scoped documentation-origin review, not a clearance of linked driver implementation or HPE-derived code.",
     "license": "BSD-3-Clause",
     "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
   },
@@ -48,6 +48,19 @@
     "origin_candidate": "pinned IBM upstream file with downstream modifications; review added lines",
     "origin": "IBM LTFS v2.4.8.4-10522 configure.ac plus local test-build switches",
     "evidence": "Exact IBM tag file SHA-256 matches upstream_sha256; complete downstream diff only selects Python 3, adds a closed --enable-tests option and includes tests/Makefile; IBM BSD-3-Clause notice is retained, with no HPE implementation content",
+    "license": "BSD-3-Clause",
+    "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
+  },
+  {
+    "path": "docs/public-release-verification.md",
+    "sha256": "246ec5775599e1a81d5aee1e73678d752e1bdbff13ad5031f84cad4669d25f1f",
+    "upstream_sha256": null,
+    "review_status": "reviewed",
+    "declared_spdx": [],
+    "license_candidate": "BSD-3-Clause",
+    "origin_candidate": "new downstream file; authorship/HPE derivation unverified",
+    "origin": "project-local public release verification guide",
+    "evidence": "Local commit 0d16f64 introduced this procedural guide with the same SHA-256 recorded in the downstream overlay. The guide describes exact artifact and approval checks and retains the seven conditional-origin limitation; this file-scoped documentation review does not establish implementation provenance or clear an HPE claim.",
     "license": "BSD-3-Clause",
     "hpe_3_5_literal_scan": "not included in C/H added-run comparison"
   },

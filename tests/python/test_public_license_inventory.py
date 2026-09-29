@@ -13,6 +13,16 @@ CHECK = ROOT / "scripts/check-public-license-inventory.py"
 
 
 class PublicLicenseInventoryTests(unittest.TestCase):
+    def test_committed_inventory_matches_every_reviewed_source_file(self):
+        inventory = json.loads((ROOT / "provenance/license-inventory.json").read_text())
+        overlays = json.loads((ROOT / "provenance/downstream-overlays.json").read_text())
+        by_path = {row["path"]: row for row in inventory}
+        self.assertEqual(set(by_path), {row["path"] for row in overlays})
+        for path, row in by_path.items():
+            with self.subTest(path=path):
+                actual = hashlib.sha256((ROOT / path).read_bytes()).hexdigest()
+                self.assertEqual(row["sha256"], actual)
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
