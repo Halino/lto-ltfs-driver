@@ -56,6 +56,10 @@ qualification. No vendor diagnostic payload or private media data is included.
 
 %build
 export SOURCE_DATE_EPOCH=%{source_date_epoch}
+# Independent jobs use distinct temporary topdirs. Normalize that prefix in
+# object debug metadata before linking so the final ELF Build IDs are stable.
+export CFLAGS="${CFLAGS} -ffile-prefix-map=%{_topdir}=/usr/src/debug/lto-ltfs"
+export CXXFLAGS="${CXXFLAGS} -ffile-prefix-map=%{_topdir}=/usr/src/debug/lto-ltfs"
 ./autogen.sh
 %configure --enable-fast --enable-tests --disable-snmp --disable-lintape
 %make_build

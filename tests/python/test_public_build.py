@@ -141,6 +141,10 @@ class PublicBuildTests(unittest.TestCase):
         spec = (ROOT / "packaging/rpm/lto-ltfs.spec").read_text(encoding="utf-8")
         self.assertIn("%doc provenance/license-inventory.json", spec)
 
+    def test_spec_normalizes_variable_build_root_in_debug_objects(self):
+        spec = (ROOT / "packaging/rpm/lto-ltfs.spec").read_text(encoding="utf-8")
+        self.assertIn("-ffile-prefix-map=%{_topdir}=/usr/src/debug/lto-ltfs", spec)
+
     def test_unsigned_build_requires_verified_icu_tools(self):
         lock = runpy.run_path(str(ROOT / "scripts/prepare-icu-build-tools.py"))["load_icu_lock"](
             ROOT / "packaging/rpm/icu-build-tools.json"
