@@ -44,6 +44,10 @@ _REPO = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\Z")
 _TAG = re.compile(r"v[0-9]+\.[0-9]+\.[0-9]+\Z")
 _BINARY = "lto-ltfs-0.1.0-22.el9.x86_64.rpm"
 _SRPM = "lto-ltfs-0.1.0-22.el9.src.rpm"
+PINNED_UBI_IMAGE = (
+    "registry.access.redhat.com/ubi9/ubi@sha256:"
+    "5426a8f45e80a07168a30ea24d84f266094b3756624a5508cc53927e6ee39e09"
+)
 
 
 def asset_set_sha256(files: Mapping[str, str]) -> str:
@@ -102,6 +106,61 @@ def verify_release_files(candidate: Path, approved: Mapping[str, str]) -> None:
         raise PublicDriverReleaseError("final driver manifest is unreadable") from error
     if manifest != expected_manifest:
         raise PublicDriverReleaseError("final driver manifest differs from approved RPM bytes")
+
+
+def verify_draft_identity(
+    release: dict[str, object], downloaded: Path, approved: Mapping[str, str],
+    draft_id: int, tag: str, *, expect_draft: bool = True,
+) -> None:
+    """Bind one numeric GitHub release and its downloaded asset bytes."""
+    verify_release_files(downloaded, approved)
+    if (
+        type(release) is not dict or type(draft_id) is not int or draft_id <= 0
+        or type(tag) is not str or _TAG.fullmatch(tag) is None
+        or type(release.get("id")) is not int or release["id"] != draft_id
+        or release.get("draft") is not expect_draft
+        or release.get("tag_name") != tag
+        or type(release.get("assets")) is not list
+    ):
+        raise PublicDriverReleaseError("driver release identity differs from approved draft")
+    assets = release["assets"]
+    if len(assets) != len(RELEASE_ASSET_NAMES):
+        raise PublicDriverReleaseError("driver release asset count differs")
+    seen: set[str] = set()
+    for asset in assets:
+        if type(asset) is not dict or type(asset.get("name")) is not str:
+            raise PublicDriverReleaseError("malformed driver release asset metadata")
+        name = asset["name"]
+        if (
+            name in seen or name not in RELEASE_ASSET_NAMES
+            or type(asset.get("size")) is not int
+            or asset["size"] != (downloaded / name).stat().st_size
+            or asset.get("state") != "uploaded"
+        ):
+            raise PublicDriverReleaseError("driver release asset metadata differs")
+        seen.add(name)
+    if seen != RELEASE_ASSET_NAMES:
+        raise PublicDriverReleaseError("driver release asset names differ")
+
+
+def verify_smoke_report(
+    report: dict[str, object], repo: str, commit: str, run_id: int,
+) -> None:
+    if (
+        type(report) is not dict
+        or set(report) != {
+            "schema_version", "status", "repo", "commit", "run_id",
+            "image", "unsigned_binary_sha256",
+        }
+        or type(report["schema_version"]) is not int or report["schema_version"] != 1
+        or report["status"] != "passed_no_tape_install_fixture_remove"
+        or report["repo"] != repo or report["commit"] != commit
+        or type(report["run_id"]) is not int or report["run_id"] != run_id
+        or report["image"] != PINNED_UBI_IMAGE
+        or type(report["unsigned_binary_sha256"]) is not str
+        or _SHA.fullmatch(report["unsigned_binary_sha256"]) is None
+    ):
+        raise PublicDriverReleaseError("driver no-tape smoke report differs from approved build")
 
 
 def attestation_command(

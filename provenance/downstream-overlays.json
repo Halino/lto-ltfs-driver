@@ -16,9 +16,9 @@
   {
     "path": "README.md",
     "upstream_sha256": "0e87e8661b7657397011b0ec03ab53398fa3908e26c3c83cd407d1fe22959441",
-    "downstream_sha256": "f13d4d5a8078aff30960035b33f38d2c1ab045a4b42f397e1fe5330d0da4baf7",
-    "rationale": "Document offline locked RHEL 9 RPM construction, guarded device provisioning and pre-format inspection, broker descriptor admission, MAM continuity, SG sequential sense and finalization semantics, corrected HP LTO-6 capacity telemetry, VCI signature and option parsing, and explicit hardware/interoperability and non-universal-reserve limitations. Describe release21 SG/endian corrections and historical predecessors. Update current package examples to the private release22 candidate and document the conditional LGPL-2.1-only treatment alongside IBM and third-party BSD notices without claiming public clearance.",
-    "task": "task-8-pre-format/task-10/complete-ltfs-qualification/tmpfiles-device-namespace-fix/r4-flat-udev-alias/mam-medium-serial-r6/review-fix-1/r7-sg-capacity/r8-sg-filemark/r9-sg-sequential-sense/r10-sg-close/r11-capacity-sentinel/r16-stable-fuse-source/r17-capacity-vci-options/r18-read-only-capacity/mam-variable-volume-id-20260908/sg-endian-release21-20260908/lgpl-release22-20260928"
+    "downstream_sha256": "74a7ae4c6f2fa19f7884d27b568d5a6b56983b6c3c3ee92f223f0c6211c26509",
+    "rationale": "Document offline locked RHEL 9 RPM construction, guarded device provisioning and pre-format inspection, broker descriptor admission, MAM continuity, SG sequential sense and finalization semantics, corrected HP LTO-6 capacity telemetry, VCI signature and option parsing, and explicit hardware/interoperability and non-universal-reserve limitations. Describe release21 SG/endian corrections and historical predecessors. Update current package examples to the release22 candidate, document the conditional LGPL-2.1-only treatment alongside IBM and third-party BSD notices without claiming public clearance, and link the exact GitHub-built release verification guide.",
+    "task": "task-8-pre-format/task-10/complete-ltfs-qualification/tmpfiles-device-namespace-fix/r4-flat-udev-alias/mam-medium-serial-r6/review-fix-1/r7-sg-capacity/r8-sg-filemark/r9-sg-sequential-sense/r10-sg-close/r11-capacity-sentinel/r16-stable-fuse-source/r17-capacity-vci-options/r18-read-only-capacity/mam-variable-volume-id-20260908/sg-endian-release21-20260908/lgpl-release22-20260928/public-release-20260929"
   },
   {
     "path": "configure.ac",
@@ -26,6 +26,13 @@
     "downstream_sha256": "e38efb7313b74f83c14703c2477ad8686ed3468a5d8f254fc30dacadc5ff12bb",
     "rationale": "Add the downstream tests option, Python interpreter discovery, and test makefile.",
     "task": "task-2"
+  },
+  {
+    "path": "docs/public-release-verification.md",
+    "upstream_sha256": null,
+    "downstream_sha256": "246ec5775599e1a81d5aee1e73678d752e1bdbff13ad5031f84cad4669d25f1f",
+    "rationale": "Document exact signed driver Release assets and source, GPG and attestation verification, independent source/final approvals, immutable-release race, conditional provenance and hardware-free limits.",
+    "task": "public-release-20260929"
   },
   {
     "path": "docs/qualification/complete-ltfs-report-template.md",

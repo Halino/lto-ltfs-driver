@@ -201,6 +201,11 @@ In some systems, you might need `sudo ldconfig -v` after `make install` to load 
 
 ### Verified RHEL 9 RPM
 
+The [GitHub-built release verification guide](docs/public-release-verification.md)
+describes separately approved signed RPM/SRPM assets, source and attestation
+checks, and licensing and no-tape limits. This checkout alone does not prove
+that a public Release exists.
+
 The downstream `lto-ltfs` package is built only from a clean Git commit. The
 driver uses the digest-pinned UBI 9 packaging container twice, requires every
 RPM and SRPM byte to match, verifies both packages, and performs an isolated
@@ -574,7 +579,7 @@ Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our code o
 
 The IBM-derived LTFS code carries the BSD-3-Clause terms in [LICENSE](LICENSE).
 Vendored uthash components carry a separate BSD-1-Clause notice in
-[NOTICES](NOTICES). This private candidate also includes the
+[NOTICES](NOTICES). This downstream candidate also includes the
 [LGPL 2.1-only text](COPYING.LIB) and a [conservative HPE notice](LGPL-NOTICE)
 for the downstream components identified in
 [the source inventory](provenance/license-inventory.json). The package license

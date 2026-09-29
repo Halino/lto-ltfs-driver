@@ -229,6 +229,27 @@ jobs:
               test ! -e /usr/bin/mkltfs
               test ! -e /usr/bin/ltfs-info
             '
+          python3 - "$RUNNER_TEMP/incoming/unsigned/lto-ltfs-0.1.0-22.el9.x86_64.rpm" \
+            "$RUNNER_TEMP/driver-smoke-report.json" <<'PY'
+          import hashlib, json, os, pathlib, sys
+          binary = pathlib.Path(sys.argv[1])
+          report = {
+              "schema_version": 1,
+              "status": "passed_no_tape_install_fixture_remove",
+              "repo": os.environ["GITHUB_REPOSITORY"],
+              "commit": os.environ["GITHUB_SHA"],
+              "run_id": int(os.environ["GITHUB_RUN_ID"]),
+              "image": "registry.access.redhat.com/ubi9/ubi@sha256:5426a8f45e80a07168a30ea24d84f266094b3756624a5508cc53927e6ee39e09",
+              "unsigned_binary_sha256": hashlib.sha256(binary.read_bytes()).hexdigest(),
+          }
+          pathlib.Path(sys.argv[2]).write_text(json.dumps(report, sort_keys=True, separators=(",", ":")) + "\n")
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: driver-no-tape-smoke-report
+          path: ${{ runner.temp }}/driver-smoke-report.json
+          if-no-files-found: error
+          retention-days: 7
 
   sign:
     needs: [compare, smoke]
@@ -260,7 +281,8 @@ jobs:
           test "$GITHUB_REF" = "refs/tags/$RELEASE_TAG"
           test "$(git rev-parse HEAD)" = "$REVIEWED_COMMIT"
           python3 scripts/verify-public-build.py \
-            --compare-first incoming/unsigned --compare-second incoming/unsigned
+            --compare-first "$RUNNER_TEMP/incoming/unsigned" \
+            --compare-second "$RUNNER_TEMP/incoming/unsigned"
           sudo apt-get update
           sudo apt-get install -y rpm gnupg cpio
           python3 scripts/verify-public-build.py --repo "$PWD" \

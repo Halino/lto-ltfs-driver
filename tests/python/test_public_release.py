@@ -12,6 +12,7 @@ from unittest.mock import Mock, patch
 
 
 TOOL = Path(__file__).resolve().parents[2] / "scripts/verify-public-release.py"
+GUIDE = Path(__file__).resolve().parents[2] / "docs/public-release-verification.md"
 REPO = "example/lto-ltfs"
 COMMIT = "a" * 40
 FPR = "B" * 40
@@ -197,6 +198,55 @@ class PublicDriverReleaseProofTests(unittest.TestCase):
                 "signed driver release refused",
                 "".join(call.args[0] for call in stderr.write.call_args_list),
             )
+
+    def test_draft_identity_rejects_substituted_assets_and_wrong_numeric_id(self) -> None:
+        names = self.gate["RELEASE_ASSET_NAMES"]
+        error = self.gate["PublicDriverReleaseError"]
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            approved = candidate_fixture(root, names)
+            release = {
+                "id": 82, "draft": True, "tag_name": "v0.1.0",
+                "assets": [
+                    {"name": name, "size": (root / name).stat().st_size, "state": "uploaded"}
+                    for name in sorted(names)
+                ],
+            }
+            check = self.gate["verify_draft_identity"]
+            check(release, root, approved, 82, "v0.1.0")
+            for altered in (
+                release | {"id": 83},
+                release | {"draft": False},
+                release | {"assets": release["assets"][:-1]},
+            ):
+                with self.assertRaises(error):
+                    check(altered, root, approved, 82, "v0.1.0")
+            (root / next(iter(names))).write_bytes(b"changed")
+            with self.assertRaises(error):
+                check(release, root, approved, 82, "v0.1.0")
+
+    def test_smoke_report_must_bind_run_commit_and_pinned_image(self) -> None:
+        report = {
+            "schema_version": 1, "status": "passed_no_tape_install_fixture_remove",
+            "repo": REPO, "commit": COMMIT, "run_id": 49,
+            "image": self.gate["PINNED_UBI_IMAGE"],
+            "unsigned_binary_sha256": "a" * 64,
+        }
+        check = self.gate["verify_smoke_report"]
+        check(report, REPO, COMMIT, 49)
+        for changed in ({"run_id": 50}, {"status": "failed"}, {"image": "latest"}):
+            with self.assertRaises(self.gate["PublicDriverReleaseError"]):
+                check(report | changed, REPO, COMMIT, 49)
+
+    def test_operator_guide_discloses_exact_gates_and_limitations(self) -> None:
+        guide = " ".join(GUIDE.read_text(encoding="utf-8").split())
+        for required in (
+            "separate source/tag approval", "separate final-asset approval",
+            "conditional and unverified", "LGPL-2.1-only", "no physical tape",
+            "no DNF repository", "non-atomic", "verify-public-release.py",
+            "rpm -K", "gh attestation verify", "SOURCE-MANIFEST.json",
+        ):
+            self.assertIn(required, guide)
 
 
 if __name__ == "__main__":

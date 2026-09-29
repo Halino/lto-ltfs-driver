@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parents[2]
 CI = ROOT / ".github/workflows/ci.yml"
 BUILD = ROOT / ".github/workflows/build-release.yml"
 SIGNER = ROOT / "scripts/sign-public-rpm.sh"
+PUBLISH = ROOT / ".github/workflows/publish-release.yml"
 
 
 def _read_workflow(path: Path) -> tuple[str, dict]:
@@ -73,6 +74,8 @@ class PublicWorkflowTests(unittest.TestCase):
         self.assertNotIn("prepare-icu-build-tools", script)
         self.assertNotIn("icu/tools", script)
         self.assertEqual(set(data["jobs"]["sign"]["needs"]), {"compare", "smoke"})
+        self.assertIn("driver-no-tape-smoke-report", str(smoke))
+        self.assertIn("driver-smoke-report.json", str(smoke))
 
     def test_signing_is_protected_key_only_and_never_publishes(self) -> None:
         text, data = _read_workflow(BUILD)
@@ -89,6 +92,7 @@ class PublicWorkflowTests(unittest.TestCase):
             self.assertNotIn("PUBLIC_DRIVER_RPM_SECRET_KEY_B64", str(data["jobs"][name]))
         self.assertNotIn("contents: write", text)
         self.assertNotIn("gh release create", text)
+        self.assertNotIn("--compare-first incoming/unsigned", str(sign))
 
     def test_signer_pins_both_rpms_and_checks_post_signatures(self) -> None:
         script = SIGNER.read_text(encoding="utf-8")
@@ -100,6 +104,32 @@ class PublicWorkflowTests(unittest.TestCase):
         self.assertIn("-K", script)
         self.assertIn("FINAL-RPM-SHA256SUMS.asc", script)
         self.assertNotIn("gh release", script)
+
+    def test_driver_finalizer_has_no_second_approval_or_admin_token(self) -> None:
+        text, data = _read_workflow(PUBLISH)
+        self.assertEqual(set(data["jobs"]), {
+            "preflight", "publish", "final_preflight", "finalize",
+        })
+        self.assertEqual(data["permissions"], {"contents": "read"})
+        self.assertEqual(data["jobs"]["preflight"]["environment"], "public-driver-rpm-admin-read")
+        self.assertEqual(data["jobs"]["final_preflight"]["environment"], "public-driver-rpm-admin-read")
+        self.assertEqual(data["jobs"]["publish"]["environment"], "public-driver-rpm-publication")
+        self.assertNotIn("environment", data["jobs"]["finalize"])
+        self.assertEqual(data["jobs"]["finalize"]["needs"], "final_preflight")
+        for name in ("publish", "finalize"):
+            self.assertEqual(data["jobs"][name]["permissions"]["contents"], "write")
+            self.assertNotIn("PUBLIC_DRIVER_ADMIN_READ_TOKEN", str(data["jobs"][name]))
+            self.assertNotIn("PUBLIC_DRIVER_RPM_SECRET_KEY_B64", str(data["jobs"][name]))
+        for name in ("preflight", "final_preflight"):
+            self.assertEqual(data["jobs"][name]["permissions"]["contents"], "read")
+            self.assertNotIn("gh release create", str(data["jobs"][name]))
+            self.assertNotIn("gh release edit", str(data["jobs"][name]))
+        self.assertIn("--verify-immutability-http", str(data["jobs"]["preflight"]))
+        self.assertIn("--verify-immutability-http", str(data["jobs"]["final_preflight"]))
+        self.assertIn("validate_final_proof", str(data["jobs"]["finalize"]))
+        self.assertIn("gh release edit", str(data["jobs"]["finalize"]))
+        self.assertIn("isImmutable", str(data["jobs"]["finalize"]))
+        self._assert_pinned_actions(text)
 
     def _assert_pinned_actions(self, text: str) -> None:
         actions = re.findall(r"(?m)^\s*-?\s*uses:\s*([^\s#]+)", text)
