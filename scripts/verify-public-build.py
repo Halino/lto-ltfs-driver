@@ -12,6 +12,7 @@ import runpy
 import stat
 import subprocess
 import sys
+import tarfile
 import tempfile
 from pathlib import Path
 
@@ -21,7 +22,8 @@ RPM = "lto-ltfs-0.1.0-22.el9.x86_64.rpm"
 SRPM = "lto-ltfs-0.1.0-22.el9.src.rpm"
 SOURCE = "lto-ltfs-0.1.0.tar.gz"
 ARTIFACTS = frozenset({
-    RPM, SRPM, SOURCE, "SOURCE-MANIFEST.json", "RPM-PAYLOAD-DIGEST", "SHA256SUMS",
+    RPM, SRPM, SOURCE, "SOURCE-MANIFEST.json", "RPM-PAYLOAD-DIGEST",
+    "BUILD-INPUTS.json", "SHA256SUMS",
 })
 HEX40 = re.compile(r"[0-9a-f]{40}\Z")
 HEX64 = re.compile(r"[0-9a-f]{64}\Z")
@@ -76,6 +78,85 @@ def _regular(path: Path) -> bool:
     except OSError:
         return False
     return stat.S_ISREG(status.st_mode) and status.st_nlink == 1
+
+
+def _icu_lock(repository: Path) -> dict:
+    preparer = runpy.run_path(str(ROOT / "scripts/prepare-icu-build-tools.py"))
+    return preparer["load_icu_lock"](Path(repository) / "packaging/rpm/icu-build-tools.json")
+
+
+def _provider_digests(lock: dict) -> set[str]:
+    rows = {row[0]: row for row in lock["payload_members"]}
+    return {lock["sha256"], *(rows[path][2] for path in lock["tool_members"])}
+
+
+def verify_icu_tools(lock: dict, tools: Path) -> None:
+    tools = Path(tools)
+    if not tools.is_absolute() or tools.is_symlink() or not tools.is_dir() or any(
+        parent.is_symlink() for parent in tools.parents
+    ):
+        raise PublicDriverBuildError("isolated ICU tool directory is unavailable")
+    members = list(tools.iterdir())
+    expected = {Path(path).name for path in lock["tool_members"]}
+    if {path.name for path in members} != expected:
+        raise PublicDriverBuildError("isolated ICU tool set differs from approved lock")
+    rows = {row[0]: row for row in lock["payload_members"]}
+    for path in lock["tool_members"]:
+        member = tools / Path(path).name
+        if not _regular(member) or stat.S_IMODE(member.lstat().st_mode) != 0o555:
+            raise PublicDriverBuildError("isolated ICU executable metadata differs")
+        if _sha256(member) != rows[path][2]:
+            raise PublicDriverBuildError("isolated ICU executable digest differs")
+
+
+def _provider_name(name: str) -> bool:
+    basename = Path(name).name
+    return basename in {"genrb", "pkgdata"} or bool(
+        re.fullmatch(r"libicu[^/]*\.so(?:\.[0-9]+)*|icu-[^/]*\.rpm", basename)
+    )
+
+
+def reject_provider_files(root: Path, digests: set[str]) -> None:
+    for item in Path(root).rglob("*"):
+        if item.is_symlink():
+            continue  # The existing RPM payload verifier separately constrains links.
+        if item.is_file() and (_provider_name(item.name) or _sha256(item) in digests):
+            raise PublicDriverBuildError("distributed payload contains ICU provider bytes")
+
+
+def reject_provider_archive(archive: Path, digests: set[str]) -> None:
+    with tarfile.open(archive, mode="r:gz") as source:
+        for member in source:
+            if not member.isfile():
+                continue
+            if _provider_name(member.name):
+                raise PublicDriverBuildError("source archive contains an ICU provider file")
+            stream = source.extractfile(member)
+            if stream is None:
+                raise PublicDriverBuildError("source archive member is unreadable")
+            digest = hashlib.sha256()
+            for block in iter(lambda: stream.read(1024 * 1024), b""):
+                digest.update(block)
+            if digest.hexdigest() in digests:
+                raise PublicDriverBuildError("source archive contains ICU provider bytes")
+
+
+def build_inputs_bytes(lock: dict) -> bytes:
+    rows = {row[0]: row for row in lock["payload_members"]}
+    data = {
+        "schema": 1,
+        "image": lock["image"],
+        "provider": {
+            "url": lock["rpm_url"], "nevra": f'{lock["name"]}-{lock["epoch"]}:{lock["version"]}-{lock["release"]}.{lock["arch"]}',
+            "sha256": lock["sha256"], "size": lock["size"],
+            "key_url": lock["key_url"], "key_fingerprint": lock["key_fingerprint"],
+            "key_sha256": lock["key_sha256"],
+            "license": lock["license"],
+        },
+        "build_tools": {Path(path).name: rows[path][2] for path in lock["tool_members"]},
+        "runtime_provider_bytes": False,
+    }
+    return (json.dumps(data, sort_keys=True, separators=(",", ":")) + "\n").encode("utf-8")
 
 
 def verify_output_set(output: Path) -> None:
@@ -208,7 +289,11 @@ def _verify_rpm_with_existing_script(arguments: list[str]) -> None:
 def verify_output(repository: Path, commit: str, output: Path) -> None:
     verify_hash_manifest(output)
     output = Path(output)
+    lock = _icu_lock(repository)
+    if (output / "BUILD-INPUTS.json").read_bytes() != build_inputs_bytes(lock):
+        raise PublicDriverBuildError("build input manifest differs from approved provider")
     verify_tag_archive(repository, commit, output / SOURCE)
+    reject_provider_archive(output / SOURCE, _provider_digests(lock))
     _verify_rpm_with_existing_script([
         "--srpm", str(output / SRPM), "--source-manifest",
         str(output / "SOURCE-MANIFEST.json"),
@@ -220,6 +305,7 @@ def verify_output(repository: Path, commit: str, output: Path) -> None:
         payload = Path(raw)
         inspector["extract_payload"](output / RPM, payload, records)
         verify_installed_notices(repository, payload)
+        reject_provider_files(payload, _provider_digests(lock))
 
 
 def main() -> int:
@@ -231,15 +317,35 @@ def main() -> int:
     parser.add_argument("--lock", type=Path)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--authenticate-bundle", action="store_true")
+    parser.add_argument("--authenticate-icu-tools", type=Path)
+    parser.add_argument("--write-build-inputs", type=Path)
     args = parser.parse_args()
-    if bool(args.bundle) != bool(args.lock):
+    if not (args.authenticate_icu_tools or args.write_build_inputs) and bool(args.bundle) != bool(args.lock):
         parser.error("--bundle and --lock must be supplied together")
     if args.authenticate_bundle:
-        if not args.bundle or args.output or args.repo or args.tag or args.commit:
+        if not args.bundle or args.output or args.repo or args.tag or args.commit or args.authenticate_icu_tools or args.write_build_inputs:
             parser.error("bundle authentication accepts only --bundle and --lock")
         try:
             authenticate_bundle(args.bundle, args.lock)
         except (OSError, UnicodeError, ValueError, subprocess.TimeoutExpired) as error:
+            print(f"public driver build rejected: {error}", file=sys.stderr)
+            return 1
+        return 0
+    if args.authenticate_icu_tools or args.write_build_inputs:
+        if not args.lock or args.bundle or args.output or args.repo or args.tag or args.commit:
+            parser.error("ICU tool admission accepts only --lock and one ICU action")
+        if bool(args.authenticate_icu_tools) == bool(args.write_build_inputs):
+            parser.error("select exactly one ICU action")
+        try:
+            lock = runpy.run_path(str(ROOT / "scripts/prepare-icu-build-tools.py"))["load_icu_lock"](args.lock)
+            if args.authenticate_icu_tools:
+                verify_icu_tools(lock, args.authenticate_icu_tools)
+            else:
+                target = args.write_build_inputs
+                if target.exists() or target.is_symlink() or not target.parent.is_dir():
+                    raise PublicDriverBuildError("build input output must be a new file")
+                target.write_bytes(build_inputs_bytes(lock))
+        except (OSError, UnicodeError, ValueError) as error:
             print(f"public driver build rejected: {error}", file=sys.stderr)
             return 1
         return 0

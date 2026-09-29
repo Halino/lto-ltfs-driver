@@ -3,15 +3,16 @@
 # Run only inside the digest-pinned, keyless EL9 GitHub build container.
 set -euo pipefail
 
-if (($# != 5)); then
-    printf 'usage: %s TAG COMMIT BUNDLE LOCK NEW_OUTPUT\n' "$0" >&2
+if (($# != 6)); then
+    printf 'usage: %s TAG COMMIT BUNDLE LOCK ICU_TOOLS_DIR NEW_OUTPUT\n' "$0" >&2
     exit 2
 fi
 tag=$1
 commit=$2
 bundle=$3
 lock=$4
-output=$5
+icu_tools=$5
+output=$6
 script_directory=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
 repository=$(cd -- "$script_directory/.." && pwd -P)
 if [[ "$output" != /* || -e "$output" || -L "$output" ]]; then
@@ -31,6 +32,8 @@ for tool in /usr/bin/python3 /usr/bin/rpm /usr/bin/gpg /usr/bin/rpmkeys; do
 done
 /usr/bin/python3 -B "$repository/scripts/verify-public-build.py" \
     --authenticate-bundle --bundle "$bundle" --lock "$lock"
+/usr/bin/python3 -B "$repository/scripts/verify-public-build.py" \
+    --authenticate-icu-tools "$icu_tools" --lock "$repository/packaging/rpm/icu-build-tools.json"
 /usr/bin/rpm -Uvh --quiet "$bundle"/build/*.rpm
 for tool in /usr/bin/git /usr/bin/gzip /usr/bin/rpmbuild \
             /usr/bin/sha256sum /usr/bin/mktemp; do
@@ -46,6 +49,7 @@ if [[ ! "$epoch" =~ ^[0-9]+$ ]]; then
     printf 'source date from approved tag is invalid\n' >&2
     exit 1
 fi
+bash "$repository/scripts/verify-icu-catalogs.sh" "$icu_tools" "$repository"
 work=$(/usr/bin/mktemp -d "$parent/.lto-driver-unsigned.XXXXXXXX")
 cleanup() {
     if [[ -n "${work:-}" && -d "$work" ]]; then
@@ -67,7 +71,7 @@ cp -- "$source_archive" "$stage/"
 /usr/bin/python3 -B "$repository/scripts/verify-rpm.py" \
     --write-source-manifest "$stage/lto-ltfs-0.1.0.tar.gz" \
     "$stage/SOURCE-MANIFEST.json"
-SOURCE_DATE_EPOCH=$epoch /usr/bin/rpmbuild -ba \
+PATH="$icu_tools:/usr/bin:/bin" LD_BIND_NOW=1 SOURCE_DATE_EPOCH=$epoch /usr/bin/rpmbuild -ba \
     --define "_topdir $build" --define "source_date_epoch $epoch" \
     "$build/SPECS/lto-ltfs.spec"
 binary=$build/RPMS/x86_64/lto-ltfs-0.1.0-22.el9.x86_64.rpm
@@ -84,11 +88,14 @@ if ((${#built_files[@]} != 2)) || \
     exit 1
 fi
 cp -- "$binary" "$source_rpm" "$stage/"
+/usr/bin/python3 -B "$repository/scripts/verify-public-build.py" \
+    --lock "$repository/packaging/rpm/icu-build-tools.json" \
+    --write-build-inputs "$stage/BUILD-INPUTS.json"
 /usr/bin/rpm -qp --qf '%{PAYLOADDIGESTALGO}:%{PAYLOADDIGEST}\n' \
     "$stage/$(basename -- "$binary")" > "$stage/RPM-PAYLOAD-DIGEST"
 (
     cd -- "$stage"
-    /usr/bin/sha256sum RPM-PAYLOAD-DIGEST SOURCE-MANIFEST.json \
+    /usr/bin/sha256sum BUILD-INPUTS.json RPM-PAYLOAD-DIGEST SOURCE-MANIFEST.json \
         lto-ltfs-0.1.0-22.el9.src.rpm \
         lto-ltfs-0.1.0-22.el9.x86_64.rpm \
         lto-ltfs-0.1.0.tar.gz > SHA256SUMS

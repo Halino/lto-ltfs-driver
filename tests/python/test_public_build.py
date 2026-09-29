@@ -4,8 +4,11 @@ from __future__ import annotations
 
 import json
 import gzip
+import hashlib
+import io
 import runpy
 import subprocess
+import tarfile
 import tempfile
 import unittest
 from pathlib import Path
@@ -17,7 +20,7 @@ RPM = "lto-ltfs-0.1.0-22.el9.x86_64.rpm"
 SRPM = "lto-ltfs-0.1.0-22.el9.src.rpm"
 ARTIFACTS = {
     RPM, SRPM, "lto-ltfs-0.1.0.tar.gz", "SOURCE-MANIFEST.json",
-    "RPM-PAYLOAD-DIGEST", "SHA256SUMS",
+    "RPM-PAYLOAD-DIGEST", "SHA256SUMS", "BUILD-INPUTS.json",
 }
 
 
@@ -137,6 +140,92 @@ class PublicBuildTests(unittest.TestCase):
     def test_active_spec_installs_inventory_as_documentation(self):
         spec = (ROOT / "packaging/rpm/lto-ltfs.spec").read_text(encoding="utf-8")
         self.assertIn("%doc provenance/license-inventory.json", spec)
+
+    def test_unsigned_build_requires_verified_icu_tools(self):
+        lock = runpy.run_path(str(ROOT / "scripts/prepare-icu-build-tools.py"))["load_icu_lock"](
+            ROOT / "packaging/rpm/icu-build-tools.json"
+        )
+        check = self.api["verify_icu_tools"]
+        error = self.api["PublicDriverBuildError"]
+        with tempfile.TemporaryDirectory() as raw:
+            tools = Path(raw)
+            with self.assertRaises(error):
+                check(lock, tools)
+            fixture = json.loads(json.dumps(lock))
+            for row in fixture["payload_members"]:
+                if row[0] in fixture["tool_members"]:
+                    data = row[0].encode()
+                    (tools / Path(row[0]).name).write_bytes(data)
+                    (tools / Path(row[0]).name).chmod(0o555)
+                    row[2] = hashlib.sha256(data).hexdigest()
+            check(fixture, tools)
+            (tools / "pkgdata").chmod(0o755)
+            (tools / "pkgdata").write_bytes(b"changed")
+            (tools / "pkgdata").chmod(0o555)
+            with self.assertRaises(error):
+                check(fixture, tools)
+            (tools / "extra").write_bytes(b"extra")
+            with self.assertRaises(error):
+                check(fixture, tools)
+
+    def test_distributed_payload_excludes_provider(self):
+        check = self.api["reject_provider_files"]
+        check_archive = self.api["reject_provider_archive"]
+        error = self.api["PublicDriverBuildError"]
+        provider = b"CentOS ICU build executable"
+        digest = hashlib.sha256(provider).hexdigest()
+        with tempfile.TemporaryDirectory() as raw:
+            root = Path(raw)
+            (root / "ltfs").write_bytes(b"legitimate driver payload")
+            check(root, {digest})
+            (root / "genrb").write_bytes(provider)
+            with self.assertRaises(error):
+                check(root, {digest})
+            (root / "genrb").unlink()
+            (root / "libicuuc.so.67").write_bytes(b"unreviewed library")
+            with self.assertRaises(error):
+                check(root, {digest})
+            archive = root / "source.tar.gz"
+            with tarfile.open(archive, "w:gz") as output:
+                item = tarfile.TarInfo("lto-ltfs-0.1.0/ordinary-name")
+                item.size = len(provider)
+                output.addfile(item, io.BytesIO(provider))
+            with self.assertRaises(error):
+                check_archive(archive, {digest})
+
+    def test_two_builds_reject_catalog_byte_difference(self):
+        compare = self.api["compare_builds"]
+        error = self.api["PublicDriverBuildError"]
+        with tempfile.TemporaryDirectory() as raw:
+            first, second = Path(raw) / "first", Path(raw) / "second"
+            first.mkdir()
+            second.mkdir()
+            for name in ARTIFACTS:
+                (first / name).write_bytes(name.encode())
+                (second / name).write_bytes(name.encode())
+            (second / RPM).write_bytes(RPM.encode() + b"one catalog byte changed")
+            with self.assertRaises(error):
+                compare(first, second)
+
+    def test_container_uses_icu_tools_only_in_build_stage(self):
+        container = (ROOT / "packaging/rpm/Containerfile").read_text()
+        build_stage, runtime_stage = container.split(" AS runtime-test", 1)
+        self.assertIn("COPY icu-tools /workspace/icu-tools", build_stage)
+        self.assertIn("verify-icu-catalogs.sh", build_stage)
+        self.assertIn("BUILD-INPUTS.json", build_stage)
+        self.assertNotIn("COPY icu-tools", runtime_stage)
+        self.assertNotIn("COPY --from=build /workspace/icu-tools", runtime_stage)
+
+    def test_build_input_manifest_records_identity_not_provider_bytes(self):
+        lock = runpy.run_path(str(ROOT / "scripts/prepare-icu-build-tools.py"))["load_icu_lock"](
+            ROOT / "packaging/rpm/icu-build-tools.json"
+        )
+        manifest = self.api["build_inputs_bytes"](lock)
+        parsed = json.loads(manifest)
+        self.assertEqual(parsed["provider"]["sha256"], lock["sha256"])
+        self.assertEqual(set(parsed["build_tools"]), {"genrb", "pkgdata"})
+        self.assertIs(parsed["runtime_provider_bytes"], False)
+        self.assertLess(len(manifest), 2048)
 
 
 if __name__ == "__main__":
