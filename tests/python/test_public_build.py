@@ -244,6 +244,13 @@ class PublicBuildTests(unittest.TestCase):
         self.assertNotIn("COPY icu-tools", runtime_stage)
         self.assertNotIn("COPY --from=build /workspace/icu-tools", runtime_stage)
 
+    def test_builder_reauthenticates_bundle_before_admitting_bootstrap_cpio(self):
+        script = (ROOT / "scripts/build-public-unsigned.sh").read_text()
+        self.assertLess(script.index("--authenticate-bundle"), script.index("LTO_CPIO_PREINSTALLED"))
+        self.assertIn('rpm -V cpio', script)
+        self.assertIn('cpio-2.13-16.el9.x86_64.rpm', script)
+        self.assertNotIn("--replacepkgs", script)
+
     def test_build_input_manifest_records_identity_not_provider_bytes(self):
         lock = runpy.run_path(str(ROOT / "scripts/prepare-icu-build-tools.py"))["load_icu_lock"](
             ROOT / "packaging/rpm/icu-build-tools.json"

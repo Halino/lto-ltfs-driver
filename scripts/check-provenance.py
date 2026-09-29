@@ -50,6 +50,11 @@ IMPORTED_FILES = {
 IMPORTED_DIRECTORIES = {"conf", "docs", "init.d", "man", "messages", "src"}
 GENERATED_IMPORT_FILENAMES = {"Makefile.in"}
 VENDORED_EXCLUDED_PREFIXES = {"src/libltfs/uthash_submodule/"}
+DOWNSTREAM_WORKFLOW_FILES = {
+    ".github/workflows/ci.yml",
+    ".github/workflows/build-release.yml",
+    ".github/workflows/publish-release.yml",
+}
 
 
 def fail(message):
@@ -240,6 +245,26 @@ def verify_current_tree(root, entries):
             fail("downstream hash differs from declared tree: " + relative_path)
     for excluded in EXPECTED["excluded_paths"]:
         excluded_path = excluded.rstrip("/")
+        if excluded_path == ".github" and (root / excluded_path).exists():
+            github = root / excluded_path
+            members = list(github.rglob("*"))
+            files = {
+                path.relative_to(root).as_posix()
+                for path in members if path.is_file() and not path.is_symlink()
+            }
+            directories = {
+                path.relative_to(root).as_posix()
+                for path in members if path.is_dir() and not path.is_symlink()
+            }
+            if (
+                github.is_symlink() or not github.is_dir()
+                or not files or not files <= DOWNSTREAM_WORKFLOW_FILES
+                or directories != {".github/workflows"}
+                or any(path.is_symlink() or not (path.is_file() or path.is_dir())
+                       for path in members)
+            ):
+                fail("excluded upstream path is present: " + excluded)
+            continue
         declared = any(
             path == excluded_path or path.startswith(excluded_path + "/")
             for path in entries

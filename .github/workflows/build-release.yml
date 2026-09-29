@@ -1,0 +1,296 @@
+name: Build public driver RPM candidate on GitHub
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Exact reviewed protected driver tag
+        required: true
+        type: string
+      reviewed_commit:
+        description: Exact approved 40-character driver source commit
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+# Before dispatch, protect the release tag and configure public-driver-rpm-signing
+# with required reviewers, prevent-self-review and a selected-tag restriction.
+# No key or publication token is present in either keyless build job.
+jobs:
+  build-a:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Admit exact protected tag
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          REVIEWED_COMMIT: ${{ inputs.reviewed_commit }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$REVIEWED_COMMIT" =~ ^[0-9a-f]{40}$ ]]
+          test "$GITHUB_REF" = "refs/tags/$RELEASE_TAG"
+          test "$(git rev-parse HEAD)" = "$REVIEWED_COMMIT"
+          test "$(git rev-parse "refs/tags/$RELEASE_TAG^{commit}")" = "$REVIEWED_COMMIT"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+      - name: Independently fetch locked inputs and build keylessly in pinned UBI
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          REVIEWED_COMMIT: ${{ inputs.reviewed_commit }}
+        run: |
+          set -euo pipefail
+          image='registry.access.redhat.com/ubi9/ubi@sha256:5426a8f45e80a07168a30ea24d84f266094b3756624a5508cc53927e6ee39e09'
+          docker pull "$image"
+          docker run --rm --pull=never \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/src,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP,target=/work" \
+            --workdir /src \
+            -e GIT_CONFIG_COUNT=1 -e GIT_CONFIG_KEY_0=safe.directory \
+            -e GIT_CONFIG_VALUE_0=/src \
+            "$image" /bin/bash -euo pipefail -c '
+              python3 -B scripts/fetch-public-rpms.py \
+                --lock packaging/rpm/public-dependencies.json --output /work/dependencies
+              python3 -B scripts/verify-public-build.py --authenticate-bundle \
+                --bundle /work/dependencies/rpm-bundle \
+                --lock packaging/rpm/public-dependencies.json
+              rpm -Uvh --quiet \
+                /work/dependencies/rpm-bundle/build/cpio-2.13-16.el9.x86_64.rpm
+              python3 -B scripts/prepare-icu-build-tools.py --prepare \
+                --lock packaging/rpm/icu-build-tools.json --output /work/icu
+              LTO_CPIO_PREINSTALLED=1 bash scripts/build-public-unsigned.sh "$1" "$2" \
+                /work/dependencies/rpm-bundle packaging/rpm/public-dependencies.json \
+                /work/icu/tools /work/unsigned
+            ' bash "$RELEASE_TAG" "$REVIEWED_COMMIT"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: unsigned-driver-build-a
+          path: ${{ runner.temp }}/unsigned/
+          if-no-files-found: error
+          retention-days: 7
+
+  build-b:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Admit exact protected tag
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          REVIEWED_COMMIT: ${{ inputs.reviewed_commit }}
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$REVIEWED_COMMIT" =~ ^[0-9a-f]{40}$ ]]
+          test "$GITHUB_REF" = "refs/tags/$RELEASE_TAG"
+          test "$(git rev-parse HEAD)" = "$REVIEWED_COMMIT"
+          test "$(git rev-parse "refs/tags/$RELEASE_TAG^{commit}")" = "$REVIEWED_COMMIT"
+          test -z "$(git status --porcelain=v1 --untracked-files=all)"
+      - name: Independently fetch locked inputs and build keylessly in pinned UBI
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          REVIEWED_COMMIT: ${{ inputs.reviewed_commit }}
+        run: |
+          set -euo pipefail
+          image='registry.access.redhat.com/ubi9/ubi@sha256:5426a8f45e80a07168a30ea24d84f266094b3756624a5508cc53927e6ee39e09'
+          docker pull "$image"
+          docker run --rm --pull=never \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/src,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP,target=/work" \
+            --workdir /src \
+            -e GIT_CONFIG_COUNT=1 -e GIT_CONFIG_KEY_0=safe.directory \
+            -e GIT_CONFIG_VALUE_0=/src \
+            "$image" /bin/bash -euo pipefail -c '
+              python3 -B scripts/fetch-public-rpms.py \
+                --lock packaging/rpm/public-dependencies.json --output /work/dependencies
+              python3 -B scripts/verify-public-build.py --authenticate-bundle \
+                --bundle /work/dependencies/rpm-bundle \
+                --lock packaging/rpm/public-dependencies.json
+              rpm -Uvh --quiet \
+                /work/dependencies/rpm-bundle/build/cpio-2.13-16.el9.x86_64.rpm
+              python3 -B scripts/prepare-icu-build-tools.py --prepare \
+                --lock packaging/rpm/icu-build-tools.json --output /work/icu
+              LTO_CPIO_PREINSTALLED=1 bash scripts/build-public-unsigned.sh "$1" "$2" \
+                /work/dependencies/rpm-bundle packaging/rpm/public-dependencies.json \
+                /work/icu/tools /work/unsigned
+            ' bash "$RELEASE_TAG" "$REVIEWED_COMMIT"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: unsigned-driver-build-b
+          path: ${{ runner.temp }}/unsigned/
+          if-no-files-found: error
+          retention-days: 7
+
+  compare:
+    needs: [build-a, build-b]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.ref }}
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: unsigned-driver-build-a
+          path: build-a
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: unsigned-driver-build-b
+          path: build-b
+      - name: Reject any artifact or byte difference
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          REVIEWED_COMMIT: ${{ inputs.reviewed_commit }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/tags/$RELEASE_TAG"
+          test "$(git rev-parse HEAD)" = "$REVIEWED_COMMIT"
+          python3 scripts/verify-public-build.py \
+            --compare-first build-a --compare-second build-b
+          mkdir compared
+          cp -a build-a compared/unsigned
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: compared-unsigned-driver
+          path: compared/
+          if-no-files-found: error
+          retention-days: 7
+
+  smoke:
+    needs: [compare]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.ref }}
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: compared-unsigned-driver
+          path: incoming
+      - name: Recheck exact compared bytes before no-tape runtime smoke
+        run: |
+          set -euo pipefail
+          python3 scripts/verify-public-build.py \
+            --compare-first incoming/unsigned --compare-second incoming/unsigned
+      - name: Install, exercise and remove in fresh pinned UBI without ICU provider tools
+        run: |
+          set -euo pipefail
+          image='registry.access.redhat.com/ubi9/ubi@sha256:5426a8f45e80a07168a30ea24d84f266094b3756624a5508cc53927e6ee39e09'
+          docker pull "$image"
+          docker run --rm --pull=never \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/src,readonly" \
+            --mount "type=bind,source=$GITHUB_WORKSPACE/incoming/unsigned,target=/artifacts,readonly" \
+            --mount "type=bind,source=$RUNNER_TEMP,target=/work" \
+            --workdir /src "$image" /bin/bash -euo pipefail -c '
+              python3 -B scripts/fetch-public-rpms.py \
+                --lock packaging/rpm/public-dependencies.json --output /work/dependencies
+              python3 -B scripts/verify-public-build.py --authenticate-bundle \
+                --bundle /work/dependencies/rpm-bundle \
+                --lock packaging/rpm/public-dependencies.json
+              rpm -Uvh --quiet --replacepkgs \
+                /work/dependencies/rpm-bundle/runtime/*.rpm \
+                /artifacts/lto-ltfs-0.1.0-22.el9.x86_64.rpm
+              test -x /usr/bin/fusermount
+              ltfs --version
+              ltfsck --version
+              mkltfs --version
+              ltfs-info --version
+              ltfs-info --self-test-fixture ready > /work/ltfs-info-fixture.json
+              grep -Fqx '\''{"schema":2,"media_state":"ltfs","tape_by_id":"/dev/tape/by-id/self-test-nst","scsi_by_id":"/dev/lto-archiver-scsi-self-test-sg","drive_serial":"SELFTEST","mam_barcode":"SELFTEST01","mam_volume_serial":"SELFTEST-SERIAL-01","ltfs_volume_label":"SELF TEST","ltfs_volume_uuid":"11111111-2222-3333-4444-555555555555","index_generation":1}'\'' /work/ltfs-info-fixture.json
+              test "$(wc -l < /work/ltfs-info-fixture.json)" -eq 1
+              rpm -V lto-ltfs
+              rpm -e lto-ltfs
+              test ! -e /usr/bin/ltfs
+              test ! -e /usr/bin/ltfsck
+              test ! -e /usr/bin/mkltfs
+              test ! -e /usr/bin/ltfs-info
+            '
+
+  sign:
+    needs: [compare, smoke]
+    runs-on: ubuntu-24.04
+    environment: public-driver-rpm-signing
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: compared-unsigned-driver
+          path: incoming
+      - name: Recheck compared source and install signing tools
+        env:
+          RELEASE_TAG: ${{ inputs.tag }}
+          REVIEWED_COMMIT: ${{ inputs.reviewed_commit }}
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/tags/$RELEASE_TAG"
+          test "$(git rev-parse HEAD)" = "$REVIEWED_COMMIT"
+          python3 scripts/verify-public-build.py \
+            --compare-first incoming/unsigned --compare-second incoming/unsigned
+          sudo apt-get update
+          sudo apt-get install -y rpm gnupg cpio
+          python3 scripts/verify-public-build.py --repo "$PWD" \
+            --tag "$RELEASE_TAG" --commit "$REVIEWED_COMMIT" \
+            --output incoming/unsigned
+      - name: Sign exact driver RPM and SRPM only
+        env:
+          PUBLIC_DRIVER_RPM_SECRET_KEY_B64: ${{ secrets.PUBLIC_DRIVER_RPM_SECRET_KEY_B64 }}
+          PUBLIC_DRIVER_RPM_PUBLIC_KEY_B64: ${{ secrets.PUBLIC_DRIVER_RPM_PUBLIC_KEY_B64 }}
+          PUBLIC_DRIVER_RPM_PRIMARY_FPR: ${{ vars.PUBLIC_DRIVER_RPM_PRIMARY_FPR }}
+          PUBLIC_DRIVER_RPM_SUBKEY_FPR: ${{ vars.PUBLIC_DRIVER_RPM_SUBKEY_FPR }}
+        run: |
+          set -euo pipefail
+          umask 077
+          keydir="$(mktemp -d)"
+          trap 'rm -rf -- "$keydir"' EXIT
+          printf '%s' "$PUBLIC_DRIVER_RPM_SECRET_KEY_B64" | base64 -d > "$keydir/secret.asc"
+          printf '%s' "$PUBLIC_DRIVER_RPM_PUBLIC_KEY_B64" | base64 -d > "$keydir/public.asc"
+          bash scripts/sign-public-rpm.sh "$PWD/incoming/unsigned" \
+            "$PWD/release-candidate" "$keydir/secret.asc" "$keydir/public.asc" \
+            "$PUBLIC_DRIVER_RPM_PRIMARY_FPR" "$PUBLIC_DRIVER_RPM_SUBKEY_FPR"
+      - name: Attest final signed RPM and SRPM bytes
+        id: attest
+        uses: actions/attest-build-provenance@e8998f949152b193b063cb0ec769d69d929409be # v2.4.0
+        with:
+          subject-path: release-candidate/*.rpm
+      - name: Retain candidate without creating a public Release
+        run: cp '${{ steps.attest.outputs.bundle-path }}' release-candidate/ATTESTATION.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: signed-driver-release-candidate
+          path: release-candidate/
+          if-no-files-found: error
+          retention-days: 7

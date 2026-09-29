@@ -284,8 +284,18 @@ class ProvenanceTests(unittest.TestCase):
     def test_rejects_excluded_path(self):
         clone = self.temporary_import()
         excluded = clone / ".github"
-        excluded.mkdir()
+        excluded.mkdir(exist_ok=True)
         (excluded / "workflow.yml").write_text("not upstream\n")
+        result = self.run_check(clone)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("excluded", result.stderr)
+
+    def test_reviewed_downstream_workflows_are_not_upstream_imports(self):
+        clone = self.temporary_import()
+        result = self.run_check(clone)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        extra = clone / ".github/workflows/unreviewed.yml"
+        extra.write_text("name: unreviewed\n")
         result = self.run_check(clone)
         self.assertNotEqual(result.returncode, 0)
         self.assertIn("excluded", result.stderr)

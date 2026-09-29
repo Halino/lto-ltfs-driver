@@ -34,7 +34,39 @@ done
     --authenticate-bundle --bundle "$bundle" --lock "$lock"
 /usr/bin/python3 -B "$repository/scripts/verify-public-build.py" \
     --authenticate-icu-tools "$icu_tools" --lock "$repository/packaging/rpm/icu-build-tools.json"
-/usr/bin/rpm -Uvh --quiet "$bundle"/build/*.rpm
+# The pinned UBI bootstrap may have installed exactly one authenticated cpio
+# RPM to extract the ICU provider. Admit that narrow case only after the full
+# bundle is reauthenticated; never skip any other dependency in the transaction.
+if [[ "${LTO_CPIO_PREINSTALLED:-0}" == 1 ]]; then
+    cpio_rpm="$bundle/build/cpio-2.13-16.el9.x86_64.rpm"
+    if [[ ! -f "$cpio_rpm" || -L "$cpio_rpm" ]]; then
+        printf 'reviewed cpio bootstrap RPM is absent\n' >&2
+        exit 1
+    fi
+    expected=$(/usr/bin/rpm -qp --qf '%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}' "$cpio_rpm")
+    installed=$(/usr/bin/rpm -q --qf '%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}' cpio)
+    if [[ "$expected" != 'cpio-2.13-16.el9.x86_64' || "$installed" != "$expected" ]] || \
+        [[ -n "$(/usr/bin/rpm -V cpio)" ]]; then
+        printf 'installed bootstrap cpio differs from authenticated bundle\n' >&2
+        exit 1
+    fi
+    build_rpms=()
+    for package in "$bundle"/build/*.rpm; do
+        if [[ "$package" != "$cpio_rpm" ]]; then
+            build_rpms+=("$package")
+        fi
+    done
+    if ((${#build_rpms[@]} == 0)); then
+        printf 'authenticated build dependency closure is empty\n' >&2
+        exit 1
+    fi
+    /usr/bin/rpm -Uvh --quiet "${build_rpms[@]}"
+elif [[ "${LTO_CPIO_PREINSTALLED:-0}" == 0 ]]; then
+    /usr/bin/rpm -Uvh --quiet "$bundle"/build/*.rpm
+else
+    printf 'invalid cpio bootstrap admission mode\n' >&2
+    exit 1
+fi
 for tool in /usr/bin/git /usr/bin/gzip /usr/bin/rpmbuild \
             /usr/bin/sha256sum /usr/bin/mktemp; do
     if [[ ! -x "$tool" ]]; then
