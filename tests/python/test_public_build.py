@@ -227,6 +227,14 @@ class PublicBuildTests(unittest.TestCase):
         self.assertIs(parsed["runtime_provider_bytes"], False)
         self.assertLess(len(manifest), 2048)
 
+    def test_exact_disclosed_license_inventory_survives_vendor_scan(self):
+        verifier = runpy.run_path(str(ROOT / "scripts/verify-rpm.py"))
+        path = "/usr/share/doc/lto-ltfs/license-inventory.json"
+        contents = (ROOT / "provenance/license-inventory.json").read_bytes().decode("latin-1")
+        verifier["verify_text"](path, contents)
+        with self.assertRaises(verifier["VerificationError"]):
+            verifier["verify_text"](path, contents + "\nextra HPE claim")
+
 
 if __name__ == "__main__":
     unittest.main()

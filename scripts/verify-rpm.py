@@ -78,6 +78,8 @@ EXPECTED_RELEASE = "22.el9"
 EXPECTED_LICENSE = "BSD-3-Clause AND BSD-1-Clause AND LGPL-2.1-only"
 LGPL_TEXT_PATH = "/usr/share/licenses/lto-ltfs/COPYING.LIB"
 LGPL_NOTICE_PATH = "/usr/share/licenses/lto-ltfs/LGPL-NOTICE"
+LICENSE_INVENTORY_PATH = "/usr/share/doc/lto-ltfs/license-inventory.json"
+LICENSE_INVENTORY_SHA256 = "8ee8dfed0759098bb3bf3eb902801b0bca8077b5a35a54f65c17bbbca44e1d32"
 LGPL_TEXT_SHA256 = "e5f56b8b8a25d180fa873f1ad24fac4c0f310c538ae22ec16bb8641ef7902993"
 LGPL_NOTICE_SHA256 = "74ebdf36bef70ae39abb6e7eba31eaa45132fde38faeac8a6e07cbe1df3fc114"
 EXACT_CONFIG_PATHS = {
@@ -1099,6 +1101,12 @@ def verify_hpe_compatibility(path, text):
 
 
 def verify_text(path, text):
+    if path == LICENSE_INVENTORY_PATH:
+        # This disclosure necessarily names the compared vendor and retained
+        # evidence. Its exact bytes are pinned; no generic payload exception.
+        if hashlib.sha256(text.encode("latin-1")).hexdigest() != LICENSE_INVENTORY_SHA256:
+            fail("installed license inventory differs from reviewed source")
+        return
     if path == LGPL_TEXT_PATH and (
         hashlib.sha256(text.encode("latin-1")).hexdigest() != LGPL_TEXT_SHA256
     ):
