@@ -214,6 +214,27 @@ class PublicBuildTests(unittest.TestCase):
             with self.assertRaises(error):
                 compare(first, second)
 
+    def test_comparison_cli_refuses_mutated_or_extra_artifacts(self):
+        with tempfile.TemporaryDirectory() as raw:
+            first, second = Path(raw) / "first", Path(raw) / "second"
+            first.mkdir()
+            second.mkdir()
+            for root in (first, second):
+                for name in ARTIFACTS - {"SHA256SUMS"}:
+                    (root / name).write_bytes(name.encode())
+                (root / "SHA256SUMS").write_text("".join(
+                    f"{hashlib.sha256((root / name).read_bytes()).hexdigest()}  {name}\n"
+                    for name in sorted(ARTIFACTS - {"SHA256SUMS"})
+                ), encoding="ascii")
+            command = ["python3", str(VERIFY), "--compare-first", str(first),
+                       "--compare-second", str(second)]
+            self.assertEqual(subprocess.run(command, capture_output=True).returncode, 0)
+            (second / RPM).write_bytes(b"one byte different")
+            self.assertNotEqual(subprocess.run(command, capture_output=True).returncode, 0)
+            (second / RPM).write_bytes(RPM.encode())
+            (second / "extra").write_bytes(b"unapproved")
+            self.assertNotEqual(subprocess.run(command, capture_output=True).returncode, 0)
+
     def test_container_uses_icu_tools_only_in_build_stage(self):
         container = (ROOT / "packaging/rpm/Containerfile").read_text()
         build_stage, runtime_stage = container.split(" AS runtime-test", 1)

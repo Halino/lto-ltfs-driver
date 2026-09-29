@@ -319,7 +319,25 @@ def main() -> int:
     parser.add_argument("--authenticate-bundle", action="store_true")
     parser.add_argument("--authenticate-icu-tools", type=Path)
     parser.add_argument("--write-build-inputs", type=Path)
+    parser.add_argument("--compare-first", type=Path)
+    parser.add_argument("--compare-second", type=Path)
     args = parser.parse_args()
+    if args.compare_first or args.compare_second:
+        if (
+            not args.compare_first or not args.compare_second
+            or any((args.repo, args.tag, args.commit, args.bundle, args.lock,
+                    args.output, args.authenticate_bundle, args.authenticate_icu_tools,
+                    args.write_build_inputs))
+        ):
+            parser.error("comparison accepts only two unsigned output directories")
+        try:
+            verify_hash_manifest(args.compare_first)
+            verify_hash_manifest(args.compare_second)
+            compare_builds(args.compare_first, args.compare_second)
+        except (OSError, UnicodeError, ValueError) as error:
+            print(f"public driver comparison rejected: {error}", file=sys.stderr)
+            return 1
+        return 0
     if not (args.authenticate_icu_tools or args.write_build_inputs) and bool(args.bundle) != bool(args.lock):
         parser.error("--bundle and --lock must be supplied together")
     if args.authenticate_bundle:
