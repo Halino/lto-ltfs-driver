@@ -31,8 +31,9 @@ on:
 permissions:
   contents: read
 
-# Both Environments must require external reviewers and block bypass. The
-# publication approval must explicitly acknowledge GitHub's residual,
+# Release Environments require human review and block administrator bypass.
+# The approved single-owner policy permits self-review; agents must never
+# approve for the human reviewer. Publication approval must acknowledge GitHub's residual,
 # non-atomic administrator-setting race. This workflow never receives a
 # signing secret. Public source/tag and final Release require separate owner
 # approval; installing this workflow is not permission to dispatch it.
