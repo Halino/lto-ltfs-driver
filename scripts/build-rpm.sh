@@ -4,7 +4,7 @@
 set -euo pipefail
 
 project_name=lto-ltfs
-project_version=0.1.0
+project_version=0.1.1
 output_directory=
 source_only=0
 rpm_bundle=

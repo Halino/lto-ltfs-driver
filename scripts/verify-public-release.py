@@ -22,9 +22,9 @@ class PublicDriverReleaseError(RuntimeError):
 
 # Exact driver-only assets; app/runtime files are not part of this Release.
 RELEASE_ASSET_NAMES = frozenset({
-    "lto-ltfs-0.1.0-22.el9.x86_64.rpm",
-    "lto-ltfs-0.1.0-22.el9.src.rpm",
-    "lto-ltfs-0.1.0.tar.gz",
+    "lto-ltfs-0.1.1-22.el9.x86_64.rpm",
+    "lto-ltfs-0.1.1-22.el9.src.rpm",
+    "lto-ltfs-0.1.1.tar.gz",
     "SOURCE-MANIFEST.json",
     "BUILD-INPUTS.json",
     "RPM-PAYLOAD-DIGEST",
@@ -42,8 +42,8 @@ _COMMIT = re.compile(r"[0-9a-f]{40}\Z")
 _FPR = re.compile(r"[0-9A-F]{40}\Z")
 _REPO = re.compile(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+\Z")
 _TAG = re.compile(r"v[0-9]+\.[0-9]+\.[0-9]+\Z")
-_BINARY = "lto-ltfs-0.1.0-22.el9.x86_64.rpm"
-_SRPM = "lto-ltfs-0.1.0-22.el9.src.rpm"
+_BINARY = "lto-ltfs-0.1.1-22.el9.x86_64.rpm"
+_SRPM = "lto-ltfs-0.1.1-22.el9.src.rpm"
 PINNED_UBI_IMAGE = (
     "registry.access.redhat.com/ubi9/ubi@sha256:"
     "5426a8f45e80a07168a30ea24d84f266094b3756624a5508cc53927e6ee39e09"
@@ -269,7 +269,7 @@ def verify_source_inputs(candidate: Path, source_root: Path, tag: str, commit: s
     try:
         builder = runpy.run_path(str(source_root / "scripts/verify-public-build.py"))
         inspector = runpy.run_path(str(source_root / "scripts/verify-rpm.py"))
-        source_archive = candidate / "lto-ltfs-0.1.0.tar.gz"
+        source_archive = candidate / "lto-ltfs-0.1.1.tar.gz"
         manifest = candidate / "SOURCE-MANIFEST.json"
         builder["verify_tag_archive"](source_root, commit, source_archive)
         inspector["verify_source_manifest"](source_archive, manifest)

@@ -55,6 +55,17 @@ def fixture_lock(build: bytes = b"build-rpm", runtime: bytes = b"runtime-rpm") -
 
 
 class PublicDependenciesTests(unittest.TestCase):
+    def test_runtime_transaction_includes_installed_pkgconfig_metadata_provider(self):
+        lock = json.loads((ROOT / 'packaging/rpm/public-dependencies.json').read_text())
+        self.fetcher['validate_lock'](lock)
+        runtime = {row['name']: row for row in lock['packages'] if row['role'] == 'runtime'}
+        for name in ('libpkgconf', 'pkgconf', 'pkgconf-m4', 'pkgconf-pkg-config'):
+            self.assertIn(name, runtime, 'fresh runtime install must satisfy ltfs.pc auto-require')
+            build = next(row for row in lock['packages'] if row['role'] == 'build' and row['name'] == name)
+            self.assertEqual({k: v for k, v in runtime[name].items() if k != 'role'},
+                             {k: v for k, v in build.items() if k != 'role'})
+        self.assertNotIn('libicu-devel', runtime)
+
     @classmethod
     def setUpClass(cls) -> None:
         cls.fetcher = runpy.run_path(str(FETCHER))
@@ -106,7 +117,7 @@ class PublicDependenciesTests(unittest.TestCase):
             (ROOT / "packaging/rpm/public-dependencies.json").read_text(encoding="utf-8")
         )
         self.fetcher["validate_lock"](lock)
-        self.assertEqual(166, len(lock["packages"]))
+        self.assertEqual(170, len(lock["packages"]))
         self.assertEqual(
             "registry.access.redhat.com/ubi9/ubi@sha256:"
             "5426a8f45e80a07168a30ea24d84f266094b3756624a5508cc53927e6ee39e09",

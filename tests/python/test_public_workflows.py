@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import re
+import os
+import subprocess
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -22,6 +25,45 @@ def _read_workflow(path: Path) -> tuple[str, dict]:
 
 
 class PublicWorkflowTests(unittest.TestCase):
+    def test_ci_provenance_fixture_checks_real_git_identity_outside_source(self):
+        _text, data = _read_workflow(CI)
+        steps = data['jobs']['source-checks']['steps']
+        fixture = next((s for s in steps if s.get('name') == 'Prepare pinned upstream provenance fixture'), None)
+        self.assertIsNotNone(fixture, 'CI must prepare the full upstream oracle')
+        with tempfile.TemporaryDirectory() as raw:
+            base = Path(raw)
+            upstream = base / 'origin'
+            upstream.mkdir()
+            def git(*args):
+                return subprocess.run(['git', '-C', str(upstream), *args], check=True, capture_output=True, text=True).stdout.strip()
+            git('init', '-q')
+            git('config', 'user.email', 'fixture@example.test')
+            git('config', 'user.name', 'Fixture')
+            (upstream / 'LICENSE').write_text('controlled upstream fixture\n')
+            git('add', '.')
+            git('commit', '-qm', 'Fixture')
+            git('tag', 'v2.4.8.4-10522')
+            commit, tree = git('rev-parse', 'HEAD'), git('rev-parse', 'HEAD^{tree}')
+            script = fixture['run'].replace('https://github.com/LinearTapeFileSystem/ltfs.git', str(upstream))
+            script = script.replace('7d0de7c0a71296353160f4c5bc082fec9af04e5c', commit).replace('5e22b0e576d2cb15deb41bdee1073f862c5b48e0', tree)
+            env = dict(os.environ, RUNNER_TEMP=str(base / 'runner'), GITHUB_ENV=str(base / 'env'))
+            Path(env['RUNNER_TEMP']).mkdir()
+            result = subprocess.run(['bash', '-euo', 'pipefail', '-c', script], cwd=ROOT, env=env, capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
+            path = Path(Path(env['GITHUB_ENV']).read_text().strip().split('=', 1)[1])
+            self.assertFalse(path.is_relative_to(ROOT))
+            self.assertEqual(subprocess.check_output(['git', '-C', str(path), 'rev-parse', 'HEAD'], text=True).strip(), commit)
+            # A moved upstream tag must fail before the fixture is exported.
+            (upstream / 'LICENSE').write_text('changed upstream\n')
+            git('commit', '-qam', 'Changed')
+            git('tag', '-f', 'v2.4.8.4-10522')
+            env['RUNNER_TEMP'] = str(base / 'runner-bad')
+            env['GITHUB_ENV'] = str(base / 'bad-env')
+            Path(env['RUNNER_TEMP']).mkdir()
+            result = subprocess.run(['bash', '-euo', 'pipefail', '-c', script], cwd=ROOT, env=env, capture_output=True, text=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertFalse(Path(env['GITHUB_ENV']).exists())
+
     def test_pr_workflow_has_no_privileged_path(self) -> None:
         text, data = _read_workflow(CI)
         self.assertIn("pull_request:", text)
@@ -96,8 +138,8 @@ class PublicWorkflowTests(unittest.TestCase):
 
     def test_signer_pins_both_rpms_and_checks_post_signatures(self) -> None:
         script = SIGNER.read_text(encoding="utf-8")
-        self.assertIn("lto-ltfs-0.1.0-22.el9.x86_64.rpm", script)
-        self.assertIn("lto-ltfs-0.1.0-22.el9.src.rpm", script)
+        self.assertIn("lto-ltfs-0.1.1-22.el9.x86_64.rpm", script)
+        self.assertIn("lto-ltfs-0.1.1-22.el9.src.rpm", script)
         self.assertIn("--compare-first", script)
         self.assertIn("--addsign", script)
         self.assertIn("rpmkeys", script)

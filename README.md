@@ -217,9 +217,9 @@ scripts/build-rpm.sh \
   --rpm-lock /srv/lto-ltfs/RPM-BUNDLE.sha256 \
   --output /tmp/lto-ltfs-rpm-a
 (cd /tmp/lto-ltfs-rpm-a && sha256sum -c SHA256SUMS)
-scripts/verify-rpm.py /tmp/lto-ltfs-rpm-a/lto-ltfs-0.1.0-22.el9.x86_64.rpm
+scripts/verify-rpm.py /tmp/lto-ltfs-rpm-a/lto-ltfs-0.1.1-22.el9.x86_64.rpm
 scripts/verify-rpm.py --srpm \
-  /tmp/lto-ltfs-rpm-a/lto-ltfs-0.1.0-22.el9.src.rpm \
+  /tmp/lto-ltfs-rpm-a/lto-ltfs-0.1.1-22.el9.src.rpm \
   --source-manifest /tmp/lto-ltfs-rpm-a/SOURCE-MANIFEST.json
 ```
 
@@ -320,7 +320,13 @@ record. Every successful pre-format record requires a nonempty `0x0401` value;
 normal `unmounted` inspection remains strict and any other partial LTFS evidence
 fails closed. The exact ten-key output contract is described by
 `schemas/ltfs-info-v2.schema.json`. The private RHEL packaging candidate is
-`lto-ltfs-0.1.0-22.el9`; it has not been built, signed, published, or deployed.
+`lto-ltfs-0.1.1-22.el9`; it has not been built, signed, published, or deployed.
+This distinct candidate corrects the full upstream CI fixture and public runtime
+dependency closure. The earlier `v0.1.0` source tag and candidate remain fixed;
+new public source transfer, signing, qualification and publication are pending.
+The public driver project is [Halino/lto-ltfs-driver](https://github.com/Halino/lto-ltfs-driver).
+The paired application is maintained separately on its
+[Linux branch](https://github.com/Halino/lto-archiver/tree/linux).
 Release22 changes license/notice packaging only. The signed release21 remains
 unchanged. Release21 corrects
 [SG response bounds and unaligned endian access](docs/qualification/sg-lbp-response-bounds.md).

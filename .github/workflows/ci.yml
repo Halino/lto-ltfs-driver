@@ -22,10 +22,21 @@ jobs:
           python-version: '3.11'
       - name: Install workflow parser for policy tests
         run: python3 -m pip install --disable-pip-version-check 'PyYAML==6.0.3'
+      - name: Prepare pinned upstream provenance fixture
+        run: |
+          set -euo pipefail
+          upstream="$RUNNER_TEMP/ltfs-provenance-upstream"
+          git init -q "$upstream"
+          git -C "$upstream" fetch --no-tags https://github.com/LinearTapeFileSystem/ltfs.git \
+            refs/tags/v2.4.8.4-10522:refs/tags/v2.4.8.4-10522
+          test "$(git -C "$upstream" rev-parse 'v2.4.8.4-10522^{commit}')" = 7d0de7c0a71296353160f4c5bc082fec9af04e5c
+          test "$(git -C "$upstream" rev-parse 'v2.4.8.4-10522^{tree}')" = 5e22b0e576d2cb15deb41bdee1073f862c5b48e0
+          git -C "$upstream" checkout --detach 7d0de7c0a71296353160f4c5bc082fec9af04e5c
+          printf 'LTFS_PROVENANCE_UPSTREAM=%s\n' "$upstream" >> "$GITHUB_ENV"
       - name: Check source, provenance, packaging and public workflow policy
         run: |
           set -euo pipefail
-          python3 scripts/check-provenance.py .
+          python3 scripts/check-provenance.py . --upstream "$LTFS_PROVENANCE_UPSTREAM"
           python3 -m unittest \
             tests.python.test_public_dependencies \
             tests.python.test_packaging \

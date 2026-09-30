@@ -216,9 +216,9 @@ class PackagingPolicyTests(unittest.TestCase):
     def test_readme_rpm_verification_examples_use_release_22(self):
         readme = README.read_text(encoding="utf-8")
         self.assertEqual(
-            readme.count("lto-ltfs-0.1.0-22.el9.x86_64.rpm"), 1
+            readme.count("lto-ltfs-0.1.1-22.el9.x86_64.rpm"), 1
         )
-        self.assertEqual(readme.count("lto-ltfs-0.1.0-22.el9.src.rpm"), 1)
+        self.assertEqual(readme.count("lto-ltfs-0.1.1-22.el9.src.rpm"), 1)
         self.assertNotRegex(
             readme,
             r"lto-ltfs-0\.1\.0-(?:[1-9]|1[0-9]|20)\.el9\.(?:x86_64|src)\.rpm",
@@ -432,7 +432,7 @@ class RpmVerifierTests(unittest.TestCase):
         self.payload = self.root / "payload"
         self.tools.mkdir()
         self.payload.mkdir()
-        self.rpm = self.root / "lto-ltfs-0.1.0-22.el9.x86_64.rpm"
+        self.rpm = self.root / "lto-ltfs-0.1.1-22.el9.x86_64.rpm"
         self.rpm.write_bytes(b"not-a-real-rpm-test-fixture")
         self.metadata = self.root / "metadata.txt"
         self.records = self.root / "records.txt"
@@ -717,7 +717,7 @@ class RpmVerifierTests(unittest.TestCase):
         )
         self.records.write_text("\n".join(records) + "\n", encoding="utf-8")
         self.metadata.write_text(
-            "lto-ltfs\t0.1.0\t22.el9\tx86_64\t"
+            "lto-ltfs\t0.1.1\t22.el9\tx86_64\t"
             "BSD-3-Clause AND BSD-1-Clause AND LGPL-2.1-only\t" + "a" * 64 + "\t0\n",
             encoding="utf-8",
         )
@@ -773,7 +773,7 @@ class RpmVerifierTests(unittest.TestCase):
         )
 
     def _write_valid_source_rpm_fixture(self):
-        source_rpm = self.root / "lto-ltfs-0.1.0-22.el9.src.rpm"
+        source_rpm = self.root / "lto-ltfs-0.1.1-22.el9.src.rpm"
         source_rpm.write_bytes(b"not-a-real-source-rpm-test-fixture")
         source_payload = self.root / "source-payload"
         source_payload.mkdir()
@@ -782,7 +782,7 @@ class RpmVerifierTests(unittest.TestCase):
                 "git",
                 "archive",
                 "--format=tar",
-                "--prefix=lto-ltfs-0.1.0/",
+                "--prefix=lto-ltfs-0.1.1/",
                 "HEAD",
             ],
             cwd=ROOT,
@@ -790,7 +790,7 @@ class RpmVerifierTests(unittest.TestCase):
             capture_output=True,
         ).stdout
         with (
-            (source_payload / "lto-ltfs-0.1.0.tar.gz").open("wb") as target,
+            (source_payload / "lto-ltfs-0.1.1.tar.gz").open("wb") as target,
             gzip.GzipFile(fileobj=target, mode="wb", mtime=0) as compressed,
         ):
             compressed.write(archive_bytes)
@@ -807,14 +807,14 @@ class RpmVerifierTests(unittest.TestCase):
             ).stdout
             (source_payload / destination).write_bytes(content)
         self.metadata.write_text(
-            "lto-ltfs\t0.1.0\t22.el9\tx86_64\t"
+            "lto-ltfs\t0.1.1\t22.el9\tx86_64\t"
             "BSD-3-Clause AND BSD-1-Clause AND LGPL-2.1-only\t" + "b" * 64 + "\t1\n"
         )
         self.records.write_text(
-            "lto-ltfs-0.1.0.tar.gz\nlto-ltfs.spec\n99-lto-ltfs.rules\nlto-ltfs.conf\n"
+            "lto-ltfs-0.1.1.tar.gz\nlto-ltfs.spec\n99-lto-ltfs.rules\nlto-ltfs.conf\n"
         )
         source_manifest = self.root / "SOURCE-MANIFEST.json"
-        archive = source_payload / "lto-ltfs-0.1.0.tar.gz"
+        archive = source_payload / "lto-ltfs-0.1.1.tar.gz"
         source_manifest.write_text(
             json.dumps(
                 {
@@ -2027,15 +2027,15 @@ class RpmVerifierTests(unittest.TestCase):
         )
         unpacked = self.root / "unpacked"
         unpacked.mkdir()
-        archive = source_payload / "lto-ltfs-0.1.0.tar.gz"
+        archive = source_payload / "lto-ltfs-0.1.1.tar.gz"
         with tarfile.open(archive, "r:gz") as source:
             source.extractall(unpacked)
-        spec = unpacked / "lto-ltfs-0.1.0/packaging/rpm/lto-ltfs.spec"
+        spec = unpacked / "lto-ltfs-0.1.1/packaging/rpm/lto-ltfs.spec"
         tampered = spec.read_text() + "\n%post\n/usr/bin/mkltfs -d $DEVICE\n"
         spec.write_text(tampered)
         (source_payload / "lto-ltfs.spec").write_text(tampered)
         with tarfile.open(archive, "w:gz") as target:
-            target.add(unpacked / "lto-ltfs-0.1.0", arcname="lto-ltfs-0.1.0")
+            target.add(unpacked / "lto-ltfs-0.1.1", arcname="lto-ltfs-0.1.1")
 
         old_payload = self.payload
         self.payload = source_payload
@@ -2057,18 +2057,18 @@ class RpmVerifierTests(unittest.TestCase):
         )
         unpacked = self.root / "unpacked-checker"
         unpacked.mkdir()
-        archive = source_payload / "lto-ltfs-0.1.0.tar.gz"
+        archive = source_payload / "lto-ltfs-0.1.1.tar.gz"
         with tarfile.open(archive, "r:gz") as source:
             source.extractall(unpacked)
         marker = self.root / "untrusted-checker-executed"
-        checker = unpacked / "lto-ltfs-0.1.0/scripts/check-provenance.py"
+        checker = unpacked / "lto-ltfs-0.1.1/scripts/check-provenance.py"
         checker.write_text(
             "#!/usr/bin/env python3\n"
             "from pathlib import Path\n"
             f"Path({str(marker)!r}).write_text('executed')\n"
         )
         with tarfile.open(archive, "w:gz") as target:
-            target.add(unpacked / "lto-ltfs-0.1.0", arcname="lto-ltfs-0.1.0")
+            target.add(unpacked / "lto-ltfs-0.1.1", arcname="lto-ltfs-0.1.1")
 
         old_payload = self.payload
         self.payload = source_payload
@@ -2224,18 +2224,18 @@ class RpmBuildScriptTests(unittest.TestCase):
                                 print("incomplete locked build context", file=sys.stderr)
                                 raise SystemExit(92)
                         artifacts = {
-                            "lto-ltfs-0.1.0.tar.gz": (
-                                context / "lto-ltfs-0.1.0.tar.gz"
+                            "lto-ltfs-0.1.1.tar.gz": (
+                                context / "lto-ltfs-0.1.1.tar.gz"
                             ).read_bytes(),
-                            "lto-ltfs-0.1.0-22.el9.src.rpm": b"source rpm\\n",
-                            "lto-ltfs-0.1.0-22.el9.x86_64.rpm": b"binary rpm\\n",
+                            "lto-ltfs-0.1.1-22.el9.src.rpm": b"source rpm\\n",
+                            "lto-ltfs-0.1.1-22.el9.x86_64.rpm": b"binary rpm\\n",
                             "RPM-PAYLOAD-DIGEST": b"sha256:fixture\\n",
                             "SOURCE-MANIFEST.json": (
                                 context / "SOURCE-MANIFEST.json"
                             ).read_bytes(),
                         }
                         if os.environ.get("FAKE_PODMAN_MISMATCH") and call == 2:
-                            artifacts["lto-ltfs-0.1.0-22.el9.x86_64.rpm"] += b"changed"
+                            artifacts["lto-ltfs-0.1.1-22.el9.x86_64.rpm"] += b"changed"
                         for name, content in artifacts.items():
                             (destination / name).write_bytes(content)
                         lines = [
@@ -2412,22 +2412,22 @@ class RpmBuildScriptTests(unittest.TestCase):
                 capture_output=True,
                 text=True,
             )
-            outputs.append(output / "lto-ltfs-0.1.0.tar.gz")
+            outputs.append(output / "lto-ltfs-0.1.1.tar.gz")
         self.assertEqual(
             hashlib.sha256(outputs[0].read_bytes()).digest(),
             hashlib.sha256(outputs[1].read_bytes()).digest(),
         )
         with tarfile.open(outputs[0], "r:gz") as archive:
             names = archive.getnames()
-        self.assertIn("lto-ltfs-0.1.0/payload.txt", names)
-        self.assertNotIn("lto-ltfs-0.1.0/untracked.txt", names)
+        self.assertIn("lto-ltfs-0.1.1/payload.txt", names)
+        self.assertNotIn("lto-ltfs-0.1.1/untracked.txt", names)
         for output in (path.parent for path in outputs):
             manifest = json.loads((output / "SOURCE-MANIFEST.json").read_text())
             self.assertEqual(manifest["schema"], 1)
             self.assertEqual(
                 manifest["archive_sha256"],
                 hashlib.sha256(
-                    (output / "lto-ltfs-0.1.0.tar.gz").read_bytes()
+                    (output / "lto-ltfs-0.1.1.tar.gz").read_bytes()
                 ).hexdigest(),
             )
 

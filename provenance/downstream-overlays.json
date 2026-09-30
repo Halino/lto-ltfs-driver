@@ -16,7 +16,7 @@
   {
     "path": "README.md",
     "upstream_sha256": "0e87e8661b7657397011b0ec03ab53398fa3908e26c3c83cd407d1fe22959441",
-    "downstream_sha256": "74a7ae4c6f2fa19f7884d27b568d5a6b56983b6c3c3ee92f223f0c6211c26509",
+    "downstream_sha256": "6a35027284f58b24d5b4a27597f075888d3ed256a0ecfe4a0be4bd5234a65ab5",
     "rationale": "Document offline locked RHEL 9 RPM construction, guarded device provisioning and pre-format inspection, broker descriptor admission, MAM continuity, SG sequential sense and finalization semantics, corrected HP LTO-6 capacity telemetry, VCI signature and option parsing, and explicit hardware/interoperability and non-universal-reserve limitations. Describe release21 SG/endian corrections and historical predecessors. Update current package examples to the release22 candidate, document the conditional LGPL-2.1-only treatment alongside IBM and third-party BSD notices without claiming public clearance, and link the exact GitHub-built release verification guide.",
     "task": "task-8-pre-format/task-10/complete-ltfs-qualification/tmpfiles-device-namespace-fix/r4-flat-udev-alias/mam-medium-serial-r6/review-fix-1/r7-sg-capacity/r8-sg-filemark/r9-sg-sequential-sense/r10-sg-close/r11-capacity-sentinel/r16-stable-fuse-source/r17-capacity-vci-options/r18-read-only-capacity/mam-variable-volume-id-20260908/sg-endian-release21-20260908/lgpl-release22-20260928/public-release-20260929"
   },
@@ -30,7 +30,7 @@
   {
     "path": "docs/public-release-verification.md",
     "upstream_sha256": null,
-    "downstream_sha256": "246ec5775599e1a81d5aee1e73678d752e1bdbff13ad5031f84cad4669d25f1f",
+    "downstream_sha256": "69724a5b46e3d51ae60c124397f292ba714e3b2bf6f5b2ad4c80dcc41fb17ceb",
     "rationale": "Document exact signed driver Release assets and source, GPG and attestation verification, independent source/final approvals, immutable-release race, conditional provenance and hardware-free limits.",
     "task": "public-release-20260929"
   },
@@ -86,7 +86,7 @@
   {
     "path": "src/Makefile.am",
     "upstream_sha256": "aec602eed678a82cde670650773eb1c0333d9c41bba29d1a83bbbbcb61ffd78d",
-    "downstream_sha256": "c00fcd57a8a320e408354cfa5e5f0116da553263eec4e7c2e76fe58869e34bb2",
+    "downstream_sha256": "11bc09ae765c593591ccb6d2789e4a6dc09738001d3e71ea4920675d8f1787a9",
     "rationale": "Define the downstream product and install the public finalization API header.",
     "task": "task-2/task-7-fix-1"
   },

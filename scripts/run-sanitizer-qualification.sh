@@ -36,7 +36,7 @@ check_version()
 	stderr_file=$(mktemp "${TMPDIR:-/tmp}/lto-ltfs-version.XXXXXX")
 	expected_file=$(mktemp "${TMPDIR:-/tmp}/lto-ltfs-version-expected.XXXXXX")
 	trap 'rm -f "$stdout_file" "$stderr_file" "$expected_file"' EXIT HUP INT TERM
-	printf 'lto-ltfs 0.1.0\n' >"$expected_file"
+	printf 'lto-ltfs 0.1.1\n' >"$expected_file"
 	if ! ./src/ltfs "$version_option" >"$stdout_file" 2>"$stderr_file"; then
 		cat "$stderr_file" >&2
 		rm -f "$stdout_file" "$stderr_file" "$expected_file"

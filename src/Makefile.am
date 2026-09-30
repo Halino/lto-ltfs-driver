@@ -40,7 +40,7 @@ ltfs_SOURCES = main.c ltfs_fuse.c
 ltfs_DEPENDENCIES = libltfs/libltfs.la ../messages/libbin_ltfs_dat.a
 ltfs_CPPFLAGS = @AM_CPPFLAGS@ -I ../ltfs-sde/src -fPIC \
 	-DLTO_LTFS_PROJECT=\"lto-ltfs\" \
-	-DLTO_LTFS_VERSION=\"0.1.0\"
+	-DLTO_LTFS_VERSION=\"0.1.1\"
 ltfs_LDADD = libltfs/libltfs.la
 ltfs_LDFLAGS = @AM_LDFLAGS@ ../messages/libbin_ltfs_dat.a
 endif

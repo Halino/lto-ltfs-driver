@@ -93,29 +93,29 @@ build=$work/rpmbuild
 stage=$work/stage
 mkdir -p "$build/SOURCES" "$build/SPECS" "$build/BUILD" \
     "$build/BUILDROOT" "$build/RPMS" "$build/SRPMS" "$stage"
-source_archive=$build/SOURCES/lto-ltfs-0.1.0.tar.gz
+source_archive=$build/SOURCES/lto-ltfs-0.1.1.tar.gz
 /usr/bin/git -C "$repository" archive --format=tar \
-    --prefix=lto-ltfs-0.1.0/ "$commit" | /usr/bin/gzip -n > "$source_archive"
+    --prefix=lto-ltfs-0.1.1/ "$commit" | /usr/bin/gzip -n > "$source_archive"
 cp -- "$repository/packaging/rpm/lto-ltfs.spec" "$build/SPECS/"
 cp -- "$repository/packaging/udev/99-lto-ltfs.rules" "$build/SOURCES/"
 cp -- "$repository/packaging/tmpfiles/lto-ltfs.conf" "$build/SOURCES/"
 cp -- "$source_archive" "$stage/"
 /usr/bin/python3 -B "$repository/scripts/verify-rpm.py" \
-    --write-source-manifest "$stage/lto-ltfs-0.1.0.tar.gz" \
+    --write-source-manifest "$stage/lto-ltfs-0.1.1.tar.gz" \
     "$stage/SOURCE-MANIFEST.json"
 PATH="$icu_tools:/usr/bin:/bin" LD_BIND_NOW=1 SOURCE_DATE_EPOCH=$epoch /usr/bin/rpmbuild -ba \
     --define "_topdir $build" --define "source_date_epoch $epoch" \
     "$build/SPECS/lto-ltfs.spec"
-binary=$build/RPMS/x86_64/lto-ltfs-0.1.0-22.el9.x86_64.rpm
-source_rpm=$build/SRPMS/lto-ltfs-0.1.0-22.el9.src.rpm
+binary=$build/RPMS/x86_64/lto-ltfs-0.1.1-22.el9.x86_64.rpm
+source_rpm=$build/SRPMS/lto-ltfs-0.1.1-22.el9.src.rpm
 if [[ ! -f "$binary" || -L "$binary" || ! -f "$source_rpm" || -L "$source_rpm" ]]; then
     printf 'exact release-22 RPM/SRPM was not produced\n' >&2
     exit 1
 fi
 mapfile -t built_files < <(find "$build/RPMS" "$build/SRPMS" -type f -printf '%P\n' | LC_ALL=C sort)
 if ((${#built_files[@]} != 2)) || \
-    [[ "${built_files[0]}" != 'lto-ltfs-0.1.0-22.el9.src.rpm' || \
-       "${built_files[1]}" != 'x86_64/lto-ltfs-0.1.0-22.el9.x86_64.rpm' ]]; then
+    [[ "${built_files[0]}" != 'lto-ltfs-0.1.1-22.el9.src.rpm' || \
+       "${built_files[1]}" != 'x86_64/lto-ltfs-0.1.1-22.el9.x86_64.rpm' ]]; then
     printf 'rpmbuild emitted extra or unexpected package files\n' >&2
     exit 1
 fi
@@ -128,9 +128,9 @@ cp -- "$binary" "$source_rpm" "$stage/"
 (
     cd -- "$stage"
     /usr/bin/sha256sum BUILD-INPUTS.json RPM-PAYLOAD-DIGEST SOURCE-MANIFEST.json \
-        lto-ltfs-0.1.0-22.el9.src.rpm \
-        lto-ltfs-0.1.0-22.el9.x86_64.rpm \
-        lto-ltfs-0.1.0.tar.gz > SHA256SUMS
+        lto-ltfs-0.1.1-22.el9.src.rpm \
+        lto-ltfs-0.1.1-22.el9.x86_64.rpm \
+        lto-ltfs-0.1.1.tar.gz > SHA256SUMS
 )
 /usr/bin/python3 -B "$repository/scripts/verify-public-build.py" \
     --repo "$repository" --tag "$tag" --commit "$commit" --output "$stage"
