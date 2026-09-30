@@ -2,8 +2,9 @@
 
 check_PROGRAMS =
 TESTS =
-TEST_EXTENSIONS = .py
+TEST_EXTENSIONS = .py .sh
 PY_LOG_COMPILER = $(PYTHON)
+SH_LOG_COMPILER = $(SHELL)
 
 if ENABLE_TESTS
 check_PROGRAMS += c/test_version test_ltfs_endian test_events test_operation_control \
@@ -13,7 +14,7 @@ check_PROGRAMS += c/test_version test_ltfs_endian test_events test_operation_con
 	test_streaming_stats test_standalone_receipt test_fsync_receipt \
 	test_arch_open test_fcfs_flush
 TESTS += c/test_version test_ltfs_endian test_events test_operation_control \
-	test_device_identity test_operation_lock test_retry_policy test_finalization \
+	c/run-device-identity.sh test_operation_lock test_retry_policy test_finalization \
 	test_tape_close test_tape_destructive test_sg_destructive_cdb test_sg_capacity \
 	test_ltfs_info test_ltfs_info_transport test_perf_counters test_perf_reporter \
 	test_streaming_stats test_standalone_receipt test_fsync_receipt \
@@ -23,6 +24,7 @@ TESTS += c/test_version test_ltfs_endian test_events test_operation_control \
 	python/test_complete_qualification.py \
 	python/test_file_destructive.py \
 	python/test_test_surface.py \
+	python/test_device_identity_runner.py \
 	python/test_containerfile.py python/test_copyright_symbols.py \
 	python/test_event_schema.py python/test_retry_policy_build.py \
 	python/test_ltfs_info.py python/test_bench.py \
@@ -211,11 +213,14 @@ TESTS_ENVIRONMENT = \
 	LTFSCK_BINARY="$(abs_top_builddir)/src/utils/ltfsck" \
 	LTFS_INFO_CLI_BINARY="$(abs_top_builddir)/src/utils/ltfs-info" \
 	LTFS_BUILD_DIR="$(abs_top_builddir)" \
+	LTFS_DEVICE_IDENTITY_BINARY="$(abs_top_builddir)/tests/test_device_identity" \
 	LTFS_SOURCE_DIR="$(abs_top_srcdir)" \
 	LTFS_EVENT_FIXTURE_BINARY="$(abs_top_builddir)/tests/test_events" \
 	LTFS_INFO_BINARY="$(abs_top_builddir)/tests/test_ltfs_info"
 
 EXTRA_DIST = \
+	c/run-device-identity.sh \
+	python/test_device_identity_runner.py \
 	../schemas/ltfs-event-v1.schema.json \
 	../schemas/ltfs-info-v1.schema.json \
 	c/config_tokenizer_oracle.c \

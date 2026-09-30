@@ -10,7 +10,7 @@ Version:        0.1.0
 Release:        22%{?dist}
 Summary:        Auditable LTFS 2.4 runtime for LTO Archiver
 License:        BSD-3-Clause AND BSD-1-Clause AND LGPL-2.1-only
-URL:            https://github.com/Halino/lto-ltfs
+URL:            https://github.com/Halino/lto-ltfs-driver
 Source0:        %{name}-%{version}.tar.gz
 Source1:        99-lto-ltfs.rules
 Source2:        lto-ltfs.conf
@@ -33,6 +33,7 @@ BuildRequires:  make
 BuildRequires:  openssl-devel
 BuildRequires:  python3
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  /usr/bin/setpriv
 BuildRequires:  zlib-devel
 
 Requires:       /usr/bin/fusermount
