@@ -24,6 +24,70 @@ ARTIFACTS = {
 }
 
 
+class RpmbuildOutputAdmissionTests(unittest.TestCase):
+    """Run the production shell gate against real rpmbuild directory layouts."""
+
+    def setUp(self):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        self.build = Path(temporary.name)
+        self.binary = self.build / "RPMS/x86_64" / RPM
+        self.source_rpm = self.build / "SRPMS" / SRPM
+        for path in (self.binary, self.source_rpm):
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(b"package fixture")
+
+    def admit(self):
+        # Stop before copying or RPM inspection: this exercises the exact gate,
+        # not a reimplementation of its path/count or symlink checks.
+        script = (ROOT / "scripts/build-public-unsigned.sh").read_text()
+        start = script.index("binary=$build/RPMS/")
+        end = script.index('cp -- "$binary" "$source_rpm" "$stage/"', start)
+        return subprocess.run(
+            ["bash", "-eu", "-o", "pipefail", "-c",
+             'build=$1\n' + script[start:end], "output-admission", str(self.build)],
+            capture_output=True, text=True,
+        )
+
+    def test_accepts_exact_binary_and_source_in_rpmbuild_layout(self):
+        result = self.admit()
+        self.assertEqual(result.returncode, 0, result.stderr)
+
+    def test_rejects_extra_package(self):
+        (self.binary.parent / "extra.rpm").write_bytes(b"unexpected package")
+        result = self.admit()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("extra or unexpected package files", result.stderr)
+
+    def test_rejects_missing_source_package(self):
+        self.source_rpm.unlink()
+        result = self.admit()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("exact release-22 RPM/SRPM was not produced", result.stderr)
+
+    def test_rejects_binary_in_wrong_architecture_directory(self):
+        wrong = self.build / "RPMS/aarch64" / RPM
+        wrong.parent.mkdir()
+        self.binary.rename(wrong)
+        self.assertNotEqual(self.admit().returncode, 0)
+
+    def test_rejects_wrong_binary_filename(self):
+        self.binary.rename(self.binary.with_name("different-release.x86_64.rpm"))
+        self.assertNotEqual(self.admit().returncode, 0)
+
+    def test_rejects_binary_symlink(self):
+        target = self.build / "binary-target"
+        self.binary.rename(target)
+        self.binary.symlink_to(target)
+        self.assertNotEqual(self.admit().returncode, 0)
+
+    def test_rejects_source_package_symlink(self):
+        target = self.build / "source-target"
+        self.source_rpm.rename(target)
+        self.source_rpm.symlink_to(target)
+        self.assertNotEqual(self.admit().returncode, 0)
+
+
 class PublicBuildTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

@@ -115,7 +115,7 @@ fi
 mapfile -t built_files < <(find "$build/RPMS" "$build/SRPMS" -type f -printf '%P\n' | LC_ALL=C sort)
 if ((${#built_files[@]} != 2)) || \
     [[ "${built_files[0]}" != 'lto-ltfs-0.1.0-22.el9.src.rpm' || \
-       "${built_files[1]}" != 'lto-ltfs-0.1.0-22.el9.x86_64.rpm' ]]; then
+       "${built_files[1]}" != 'x86_64/lto-ltfs-0.1.0-22.el9.x86_64.rpm' ]]; then
     printf 'rpmbuild emitted extra or unexpected package files\n' >&2
     exit 1
 fi
