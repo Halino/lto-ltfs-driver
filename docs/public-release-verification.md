@@ -1,17 +1,19 @@
 # Public driver release: approval and verification
 
-This source tree is a **candidate**, not evidence that a GitHub Release exists.
+This source tree prepares a **successor candidate**. The published `v0.1.1`
+source tag is immutable; no `v0.1.2` source/tag approval or successor RPM is
+available from this preparation.
 The public driver repository is
 [Halino/lto-ltfs-driver](https://github.com/Halino/lto-ltfs-driver); the paired
 application lives on [Halino/lto-archiver's Linux branch](https://github.com/Halino/lto-archiver/tree/linux).
-The local `0.1.1-22` / `v0.1.1` identity is a proposed candidate; its source
+The local `0.1.2-22` / `v0.1.2` identity is a proposed candidate; its source
 transfer, signed RPM release and qualification remain pending.
 Publication requires separate source/tag approval and separate final-asset
 approval. Neither a successful local build nor an approved workflow is permission
 to push source, import a signing key, publish assets, or install on a host.
 
-The exact driver package is `lto-ltfs-0.1.1-22.el9.x86_64.rpm`; the matching
-source package is `lto-ltfs-0.1.1-22.el9.src.rpm`. The workflow builds twice on
+The expected driver package is `lto-ltfs-0.1.2-22.el9.x86_64.rpm`; the matching
+source package is `lto-ltfs-0.1.2-22.el9.src.rpm`. The workflow builds twice on
 GitHub-hosted runners using the same digest-pinned UBI 9 image and an exact
 public dependency lock. It compares unsigned bytes before protected signing,
 then runs a provider-free, no physical tape install/fixture/erase check. The
@@ -20,7 +22,7 @@ The official CentOS `icu` RPM supplies isolated **build tools only**; its
 executables and libraries are excluded from the distributed RPM and SRPM.
 
 The Release is a direct-download set, **no DNF repository**. It must contain
-exactly the two RPMs, `lto-ltfs-0.1.1.tar.gz`, `SOURCE-MANIFEST.json`,
+exactly the two RPMs, `lto-ltfs-0.1.2.tar.gz`, `SOURCE-MANIFEST.json`,
 `BUILD-INPUTS.json`, `RPM-PAYLOAD-DIGEST`, `FINAL-RPM-SHA256SUMS`,
 `FINAL-RPM-SHA256SUMS.asc`, `RPM-PUBLIC-KEY.asc`, and `ATTESTATION.json`.
 Every filename and SHA-256, the full primary and signing-subkey fingerprints,
@@ -35,7 +37,7 @@ gh release download TAG --repo Halino/lto-ltfs-driver --dir downloaded --pattern
 (cd downloaded && sha256sum -c FINAL-RPM-SHA256SUMS)
 gpg --verify downloaded/FINAL-RPM-SHA256SUMS.asc downloaded/FINAL-RPM-SHA256SUMS
 rpm -K downloaded/*.rpm
-gh attestation verify downloaded/lto-ltfs-0.1.1-22.el9.x86_64.rpm \
+gh attestation verify downloaded/lto-ltfs-0.1.2-22.el9.x86_64.rpm \
   --repo Halino/lto-ltfs-driver --signer-workflow Halino/lto-ltfs-driver/.github/workflows/build-release.yml \
   --source-ref refs/tags/TAG --source-digest REVIEWED_COMMIT \
   --signer-digest REVIEWED_COMMIT --deny-self-hosted-runners \

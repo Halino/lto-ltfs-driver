@@ -50,9 +50,9 @@ class SanitizerQualificationTests(unittest.TestCase):
             "if test \"${LTFS_BAD_VERSION_OUTPUT:-0}\" = 1; then\n"
             "  printf 'wrong-version\\n'\n"
             "elif test \"${LTFS_NO_VERSION_NEWLINE:-0}\" = 1; then\n"
-            "  printf 'lto-ltfs 0.1.1'\n"
+            "  printf 'lto-ltfs 0.1.2'\n"
             "else\n"
-            "  printf 'lto-ltfs 0.1.1\\n'\n"
+            "  printf 'lto-ltfs 0.1.2\\n'\n"
             "fi\n",
         )
 

@@ -45,7 +45,7 @@ class PublicDriverReleaseProofTests(unittest.TestCase):
         make = self.gate["make_final_proof"]
         validate = self.gate["validate_final_proof"]
         error = self.gate["PublicDriverReleaseError"]
-        proof = make(REPO, "v0.1.1", COMMIT, 17, "c" * 64, digest, 49, 1000)
+        proof = make(REPO, "v0.1.2", COMMIT, 17, "c" * 64, digest, 49, 1000)
         expected = {key: value for key, value in proof.items() if key != "checked_at"}
         validate(proof, expected, 1120)
         for changed, now in (
@@ -100,14 +100,14 @@ class PublicDriverReleaseProofTests(unittest.TestCase):
         command = self.gate["attestation_command"](
             Path("driver.rpm"), REPO,
             f"{REPO}/.github/workflows/build-release.yml",
-            "refs/tags/v0.1.1", COMMIT, Path("ATTESTATION.json"),
+            "refs/tags/v0.1.2", COMMIT, Path("ATTESTATION.json"),
         )
         self.assertEqual(command[:3], ["gh", "attestation", "verify"])
         self.assertIn("--deny-self-hosted-runners", command)
         self.assertIn(COMMIT, command)
         for wrong_repo, wrong_signer, wrong_ref in (
-            ("wrong/lto", f"{REPO}/.github/workflows/build-release.yml", "refs/tags/v0.1.1"),
-            (REPO, "elsewhere/workflow.yml", "refs/tags/v0.1.1"),
+            ("wrong/lto", f"{REPO}/.github/workflows/build-release.yml", "refs/tags/v0.1.2"),
+            (REPO, "elsewhere/workflow.yml", "refs/tags/v0.1.2"),
             (REPO, f"{REPO}/.github/workflows/build-release.yml", "refs/heads/main"),
         ):
             with self.assertRaises(self.gate["PublicDriverReleaseError"]):
@@ -159,7 +159,7 @@ class PublicDriverReleaseProofTests(unittest.TestCase):
                 "verify_source_inputs": source, "_run": command,
             }):
                 with self.assertRaises(error):
-                    verify(root, approved, FPR, SUBFPR, REPO, "v0.1.1", COMMIT, root)
+                    verify(root, approved, FPR, SUBFPR, REPO, "v0.1.2", COMMIT, root)
             source.assert_not_called()
             command.assert_not_called()
 
@@ -167,7 +167,7 @@ class PublicDriverReleaseProofTests(unittest.TestCase):
         error = self.gate["PublicDriverReleaseError"]
         names = self.gate["RELEASE_ASSET_NAMES"]
         document = {
-            "schema_version": 1, "repo": REPO, "tag": "v0.1.1",
+            "schema_version": 1, "repo": REPO, "tag": "v0.1.2",
             "commit": COMMIT, "primary_fingerprint": FPR,
             "signing_subkey_fingerprint": SUBFPR,
             "assets": {name: "b" * 64 for name in names},
@@ -206,24 +206,24 @@ class PublicDriverReleaseProofTests(unittest.TestCase):
             root = Path(raw)
             approved = candidate_fixture(root, names)
             release = {
-                "id": 82, "draft": True, "tag_name": "v0.1.1",
+                "id": 82, "draft": True, "tag_name": "v0.1.2",
                 "assets": [
                     {"name": name, "size": (root / name).stat().st_size, "state": "uploaded"}
                     for name in sorted(names)
                 ],
             }
             check = self.gate["verify_draft_identity"]
-            check(release, root, approved, 82, "v0.1.1")
+            check(release, root, approved, 82, "v0.1.2")
             for altered in (
                 release | {"id": 83},
                 release | {"draft": False},
                 release | {"assets": release["assets"][:-1]},
             ):
                 with self.assertRaises(error):
-                    check(altered, root, approved, 82, "v0.1.1")
+                    check(altered, root, approved, 82, "v0.1.2")
             (root / next(iter(names))).write_bytes(b"changed")
             with self.assertRaises(error):
-                check(release, root, approved, 82, "v0.1.1")
+                check(release, root, approved, 82, "v0.1.2")
 
     def test_smoke_report_must_bind_run_commit_and_pinned_image(self) -> None:
         report = {

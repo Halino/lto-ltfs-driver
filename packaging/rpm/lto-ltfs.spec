@@ -6,7 +6,7 @@
 %{!?source_date_epoch:%global source_date_epoch 0}
 
 Name:           lto-ltfs
-Version:        0.1.1
+Version:        0.1.2
 Release:        22%{?dist}
 Summary:        Auditable LTFS 2.4 runtime for LTO Archiver
 License:        BSD-3-Clause AND BSD-1-Clause AND LGPL-2.1-only
@@ -122,6 +122,10 @@ getent group lto-admin >/dev/null || /usr/sbin/groupadd -r lto-admin
 %config(noreplace) %attr(0640,root,lto-admin) %{_sysconfdir}/lto-ltfs/device.json
 
 %changelog
+* Wed Sep 30 2026 LTO Archiver Engineering <noreply@example.invalid> - 0.1.2-22
+- Prepare a separate successor source candidate with consistent native CLI
+  version-test and artifact identities; retain release 22 and upstream LTFS.
+
 * Wed Sep 30 2026 LTO Archiver Engineering <noreply@example.invalid> - 0.1.1-22
 - Prepare a distinct downstream candidate with pinned upstream CI provenance
   and the complete public runtime dependency closure; native LTFS behavior

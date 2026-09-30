@@ -215,7 +215,7 @@ jobs:
                 --lock packaging/rpm/public-dependencies.json
               rpm -Uvh --quiet --replacepkgs \
                 /work/dependencies/rpm-bundle/runtime/*.rpm \
-                /artifacts/lto-ltfs-0.1.1-22.el9.x86_64.rpm
+                /artifacts/lto-ltfs-0.1.2-22.el9.x86_64.rpm
               test -x /usr/bin/fusermount
               ltfs --version
               ltfsck --version
@@ -231,7 +231,7 @@ jobs:
               test ! -e /usr/bin/mkltfs
               test ! -e /usr/bin/ltfs-info
             '
-          python3 - "$RUNNER_TEMP/incoming/unsigned/lto-ltfs-0.1.1-22.el9.x86_64.rpm" \
+          python3 - "$RUNNER_TEMP/incoming/unsigned/lto-ltfs-0.1.2-22.el9.x86_64.rpm" \
             "$RUNNER_TEMP/driver-smoke-report.json" <<'PY'
           import hashlib, json, os, pathlib, sys
           binary = pathlib.Path(sys.argv[1])

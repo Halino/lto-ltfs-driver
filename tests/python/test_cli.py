@@ -28,7 +28,7 @@ class CliTests(unittest.TestCase):
             timeout=5,
         )
         self.assertEqual(run.returncode, 0, run.stderr)
-        self.assertEqual(run.stdout, "lto-ltfs 0.1.1\n")
+        self.assertEqual(run.stdout, "lto-ltfs 0.1.2\n")
         self.assertEqual(run.stderr, "")
 
     def test_version_ignores_blocking_config_and_device_inputs(self):
@@ -52,7 +52,7 @@ class CliTests(unittest.TestCase):
             timeout=5,
         )
         self.assertEqual(run.returncode, 0, run.stderr)
-        self.assertEqual(run.stdout, "lto-ltfs 0.1.1\n")
+        self.assertEqual(run.stdout, "lto-ltfs 0.1.2\n")
         self.assertEqual(run.stderr, "")
 
     def test_event_and_index_options(self):

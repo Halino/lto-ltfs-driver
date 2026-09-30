@@ -138,8 +138,8 @@ class PublicWorkflowTests(unittest.TestCase):
 
     def test_signer_pins_both_rpms_and_checks_post_signatures(self) -> None:
         script = SIGNER.read_text(encoding="utf-8")
-        self.assertIn("lto-ltfs-0.1.1-22.el9.x86_64.rpm", script)
-        self.assertIn("lto-ltfs-0.1.1-22.el9.src.rpm", script)
+        self.assertIn("lto-ltfs-0.1.2-22.el9.x86_64.rpm", script)
+        self.assertIn("lto-ltfs-0.1.2-22.el9.src.rpm", script)
         self.assertIn("--compare-first", script)
         self.assertIn("--addsign", script)
         self.assertIn("rpmkeys", script)

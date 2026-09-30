@@ -18,9 +18,9 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RPM = "lto-ltfs-0.1.1-22.el9.x86_64.rpm"
-SRPM = "lto-ltfs-0.1.1-22.el9.src.rpm"
-SOURCE = "lto-ltfs-0.1.1.tar.gz"
+RPM = "lto-ltfs-0.1.2-22.el9.x86_64.rpm"
+SRPM = "lto-ltfs-0.1.2-22.el9.src.rpm"
+SOURCE = "lto-ltfs-0.1.2.tar.gz"
 ARTIFACTS = frozenset({
     RPM, SRPM, SOURCE, "SOURCE-MANIFEST.json", "RPM-PAYLOAD-DIGEST",
     "BUILD-INPUTS.json", "SHA256SUMS",
@@ -49,7 +49,7 @@ def _git(repository: Path, *arguments: str) -> str:
 
 def verify_source_ref(repository: Path, tag: str, expected_commit: str) -> int:
     repository = Path(repository)
-    if tag != "v0.1.1" or not HEX40.fullmatch(expected_commit):
+    if tag != "v0.1.2" or not HEX40.fullmatch(expected_commit):
         raise PublicDriverBuildError("driver tag or commit identity is invalid")
     if (
         _git(repository, "rev-parse", "--show-toplevel") != str(repository.resolve())
@@ -197,7 +197,7 @@ def verify_tag_archive(repository: Path, commit: str, archive: Path) -> None:
     try:
         producer = subprocess.Popen(
             ["/usr/bin/git", "-C", str(repository), "archive", "--format=tar",
-             "--prefix=lto-ltfs-0.1.1/", commit],
+             "--prefix=lto-ltfs-0.1.2/", commit],
             stdin=subprocess.DEVNULL, stdout=subprocess.PIPE, stderr=subprocess.DEVNULL,
         )
         assert producer.stdout is not None

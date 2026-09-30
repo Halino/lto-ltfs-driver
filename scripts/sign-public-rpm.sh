@@ -14,8 +14,8 @@ secret=$3
 public=$4
 primary=$5
 subkey=$6
-binary=lto-ltfs-0.1.1-22.el9.x86_64.rpm
-source_rpm=lto-ltfs-0.1.1-22.el9.src.rpm
+binary=lto-ltfs-0.1.2-22.el9.x86_64.rpm
+source_rpm=lto-ltfs-0.1.2-22.el9.src.rpm
 repository=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)
 
 if [[ "$output" != /* || -e "$output" || -L "$output" || ! -d "$(dirname -- "$output")" || -L "$(dirname -- "$output")" ]]; then
@@ -55,7 +55,7 @@ rpm --dbpath "$stage/rpmdb" --initdb
 rpmkeys --dbpath "$stage/rpmdb" --import "$public"
 
 for name in "$source_rpm" "$binary" \
-            lto-ltfs-0.1.1.tar.gz SOURCE-MANIFEST.json \
+            lto-ltfs-0.1.2.tar.gz SOURCE-MANIFEST.json \
             BUILD-INPUTS.json RPM-PAYLOAD-DIGEST; do
     cp -- "$unsigned/$name" "$stage/payload/$name"
 done
@@ -63,9 +63,9 @@ cp -- "$public" "$stage/payload/RPM-PUBLIC-KEY.asc"
 
 for name in "$source_rpm" "$binary"; do
     if [[ "$name" == "$binary" ]]; then
-        expected='lto-ltfs-0.1.1-22.el9.x86_64'
+        expected='lto-ltfs-0.1.2-22.el9.x86_64'
     else
-        expected='lto-ltfs-0.1.1-22.el9.src'
+        expected='lto-ltfs-0.1.2-22.el9.src'
     fi
     observed=$(rpm -qp --qf '%{NAME}-%{VERSION}-%{RELEASE}.%{ARCH}' "$stage/payload/$name")
     if [[ "$observed" != "$expected" ]]; then

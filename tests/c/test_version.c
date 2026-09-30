@@ -105,7 +105,7 @@ static int check_version_option(const char *option)
 	memset(&result, 0, sizeof(result));
 	CHECK_INT_EQ(run_version(option, &result), 0);
 	CHECK_INT_EQ(result.exit_code, EXIT_SUCCESS);
-	CHECK_STR_EQ(result.standard_output, "lto-ltfs 0.1.0\n");
+	CHECK_STR_EQ(result.standard_output, "lto-ltfs 0.1.2\n");
 	CHECK_STR_EQ(result.standard_error, "");
 	return 0;
 }

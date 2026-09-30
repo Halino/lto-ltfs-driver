@@ -79,7 +79,7 @@ EXPECTED_LICENSE = "BSD-3-Clause AND BSD-1-Clause AND LGPL-2.1-only"
 LGPL_TEXT_PATH = "/usr/share/licenses/lto-ltfs/COPYING.LIB"
 LGPL_NOTICE_PATH = "/usr/share/licenses/lto-ltfs/LGPL-NOTICE"
 LICENSE_INVENTORY_PATH = "/usr/share/doc/lto-ltfs/license-inventory.json"
-LICENSE_INVENTORY_SHA256 = "387871bf4a909e2b8ce6054d8e95a9fa64f117c5e974846aab2534dbceb0169f"
+LICENSE_INVENTORY_SHA256 = "d5aad48bc27c9076588ff4cab6c7a5b149c73bda9ec79b9ee3f063dcdf7fcc03"
 LGPL_TEXT_SHA256 = "e5f56b8b8a25d180fa873f1ad24fac4c0f310c538ae22ec16bb8641ef7902993"
 LGPL_NOTICE_SHA256 = "74ebdf36bef70ae39abb6e7eba31eaa45132fde38faeac8a6e07cbe1df3fc114"
 EXACT_CONFIG_PATHS = {
@@ -161,7 +161,7 @@ ALLOWED_AUTO_DEPENDENCY = re.compile(
 ALLOWED_EXACT_AUTO_DEPENDENCIES = {
     "/usr/sbin/groupadd",
     "/usr/bin/pkg-config",  # Auto-require for the installed ltfs.pc metadata.
-    "config(lto-ltfs) = 0.1.1-22.el9",
+    "config(lto-ltfs) = 0.1.2-22.el9",
     "rpmlib(CompressedFileNames) <= 3.0.4-1",
     "rpmlib(FileDigests) <= 4.6.0-1",
     "rpmlib(PayloadFilesHavePrefix) <= 4.0-1",
@@ -307,7 +307,7 @@ def read_metadata(rpm_path, source=False):
         payload_digest,
         source_package,
     ) = fields
-    if name != "lto-ltfs" or version != "0.1.1":
+    if name != "lto-ltfs" or version != "0.1.2":
         fail("RPM name or version is unexpected")
     if release != EXPECTED_RELEASE:
         fail("RPM release is unexpected")
@@ -811,7 +811,7 @@ def source_manifest_record(archive_path):
     if (
         not archive_path.is_file()
         or archive_path.is_symlink()
-        or archive_path.name != "lto-ltfs-0.1.1.tar.gz"
+        or archive_path.name != "lto-ltfs-0.1.2.tar.gz"
     ):
         fail("source archive path is invalid")
     with tempfile.TemporaryDirectory(prefix="lto-ltfs-source-manifest-") as temporary:
@@ -868,7 +868,7 @@ def read_source_manifest(manifest_path):
         fail("trusted source manifest schema is invalid")
     if (
         record["schema"] != 1
-        or record["archive_name"] != "lto-ltfs-0.1.1.tar.gz"
+        or record["archive_name"] != "lto-ltfs-0.1.2.tar.gz"
         or not isinstance(record["archive_sha256"], str)
         or not re.fullmatch(r"[0-9a-f]{64}", record["archive_sha256"])
     ):
@@ -886,7 +886,7 @@ def read_source_file_names(rpm_path):
     output = run_query(["rpm", "-qp", "--qf", "[%{FILENAMES}\\n]", str(rpm_path)])
     names = output.splitlines()
     expected = {
-        "lto-ltfs-0.1.1.tar.gz",
+        "lto-ltfs-0.1.2.tar.gz",
         "lto-ltfs.spec",
         "99-lto-ltfs.rules",
         "lto-ltfs.conf",
@@ -905,7 +905,7 @@ def extract_source_archive(archive_path, destination):
 
 
 def extract_source_archive_members(archive, destination):
-    expected_prefix = PurePosixPath("lto-ltfs-0.1.1")
+    expected_prefix = PurePosixPath("lto-ltfs-0.1.2")
     total_size = 0
     count = 0
     seen = set()
@@ -974,10 +974,10 @@ def verify_source_rpm(rpm_path, source_manifest):
         }
         if actual != expected_sources:
             fail("extracted SRPM differs from its source metadata")
-        source_archive = payload_root / "lto-ltfs-0.1.1.tar.gz"
+        source_archive = payload_root / "lto-ltfs-0.1.2.tar.gz"
         verify_source_manifest(source_archive, source_manifest)
         extract_source_archive(source_archive, source_root)
-        project_root = source_root / "lto-ltfs-0.1.1"
+        project_root = source_root / "lto-ltfs-0.1.2"
         for packaged_name, project_name in (
             ("lto-ltfs.spec", "packaging/rpm/lto-ltfs.spec"),
             ("99-lto-ltfs.rules", "packaging/udev/99-lto-ltfs.rules"),

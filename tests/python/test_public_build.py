@@ -16,10 +16,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 VERIFY = ROOT / "scripts/verify-public-build.py"
-RPM = "lto-ltfs-0.1.1-22.el9.x86_64.rpm"
-SRPM = "lto-ltfs-0.1.1-22.el9.src.rpm"
+RPM = "lto-ltfs-0.1.2-22.el9.x86_64.rpm"
+SRPM = "lto-ltfs-0.1.2-22.el9.src.rpm"
 ARTIFACTS = {
-    RPM, SRPM, "lto-ltfs-0.1.1.tar.gz", "SOURCE-MANIFEST.json",
+    RPM, SRPM, "lto-ltfs-0.1.2.tar.gz", "SOURCE-MANIFEST.json",
     "RPM-PAYLOAD-DIGEST", "SHA256SUMS", "BUILD-INPUTS.json",
 }
 
@@ -107,14 +107,16 @@ class PublicBuildTests(unittest.TestCase):
             git("-c", "user.name=Test", "-c", "user.email=test@example.invalid",
                 "commit", "-qm", "source")
             commit = git("rev-parse", "HEAD")
-            git("tag", "v0.1.1")
+            git("tag", "v0.1.2")
             check = self.api["verify_source_ref"]
             error = self.api["PublicDriverBuildError"]
-            self.assertGreater(check(repo, "v0.1.1", commit), 0)
+            self.assertGreater(check(repo, "v0.1.2", commit), 0)
             with self.assertRaises(error):
                 check(repo, "v0.1.0", commit)
+            with self.assertRaises(error):
+                check(repo, "v0.1.1", commit)
             tar_bytes = subprocess.run(
-                ["git", "archive", "--format=tar", "--prefix=lto-ltfs-0.1.1/", commit],
+                ["git", "archive", "--format=tar", "--prefix=lto-ltfs-0.1.2/", commit],
                 cwd=repo, check=True, capture_output=True,
             ).stdout
             archive = repo / "tag.tar.gz"
@@ -125,12 +127,12 @@ class PublicBuildTests(unittest.TestCase):
                 self.api["verify_tag_archive"](repo, commit, archive)
             archive.unlink()
             with self.assertRaises(error):
-                check(repo, "v0.1.1", "0" * 40)
+                check(repo, "v0.1.2", "0" * 40)
             with self.assertRaises(error):
                 check(repo, "v0.2.0", commit)
             (repo / "untracked").write_text("dirty", encoding="utf-8")
             with self.assertRaises(error):
-                check(repo, "v0.1.1", commit)
+                check(repo, "v0.1.2", commit)
 
     def test_output_allowlist_and_two_build_byte_comparison(self):
         check = self.api["verify_output_set"]
@@ -260,7 +262,7 @@ class PublicBuildTests(unittest.TestCase):
                 check(root, {digest})
             archive = root / "source.tar.gz"
             with tarfile.open(archive, "w:gz") as output:
-                item = tarfile.TarInfo("lto-ltfs-0.1.1/ordinary-name")
+                item = tarfile.TarInfo("lto-ltfs-0.1.2/ordinary-name")
                 item.size = len(provider)
                 output.addfile(item, io.BytesIO(provider))
             with self.assertRaises(error):
